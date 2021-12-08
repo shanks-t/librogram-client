@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Book } from "./Book"
 
 
 export const Search = () => {
-    
+
     const [books, setBooks] = useState({});
     const [search, setSearch] = useState('');
     const [api_key, set_api_key] = useState('AIzaSyAsXW_Px7aF_lPGe1qNwR0_PjWWB7uz5k8')
@@ -46,17 +47,19 @@ export const Search = () => {
             </div>
             <div className='results'>
                 {
-                    books?.items?.map(book => (
-                        book?.volumeInfo?.imageLinks?.thumbnail ?
-                            <a target='blank' href={book?.volumeInfo?.infoLink}>
-                                <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
-                            </a>
-                            : <a target='blank' href={book?.volumeInfo?.infoLink}>
-                                <h3>{book.volumeInfo.title}</h3>
-                            </a>
-                    ))
+                    books?.items?.map(item => <Book book={item}/>)
                 }
             </div>
         </>
     );
 }
+
+// books?.items?.map(book => (
+//     book?.volumeInfo?.imageLinks?.thumbnail ?
+//         <a target='blank' href={book?.volumeInfo?.infoLink}>
+//             <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
+//         </a>
+//         : <a target='blank' href={book?.volumeInfo?.infoLink}>
+//             <h3>{book.volumeInfo.title}</h3>
+//         </a>
+// ))
