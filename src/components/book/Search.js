@@ -6,10 +6,11 @@ export const Search = () => {
 
     const [books, setBooks] = useState({});
     const [search, setSearch] = useState('');
-    const [api_key, set_api_key] = useState('AIzaSyAsXW_Px7aF_lPGe1qNwR0_PjWWB7uz5k8')
+    const [API_KEY, set_API_KEY] = useState(`${process.env.REACT_APP_API}`)
 
-    //const API_KEY = AIzaSyAsXW_Px7aF_lPGe1qNwR0_PjWWB7uz5k8
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api_key}&maxResults=30`
+
+    
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}&maxResults=30`
 
     const getBooks = async () => {
         try {
@@ -54,12 +55,3 @@ export const Search = () => {
     );
 }
 
-// books?.items?.map(book => (
-//     book?.volumeInfo?.imageLinks?.thumbnail ?
-//         <a target='blank' href={book?.volumeInfo?.infoLink}>
-//             <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
-//         </a>
-//         : <a target='blank' href={book?.volumeInfo?.infoLink}>
-//             <h3>{book.volumeInfo.title}</h3>
-//         </a>
-// ))
