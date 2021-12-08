@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { BrowserRouter as Router } from "react-router-dom"
+import { Librogram } from './components/Librogram';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Librogram />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
