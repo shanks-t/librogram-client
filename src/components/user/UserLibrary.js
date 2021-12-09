@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react"
 import { useParams, useHistory } from 'react-router-dom'
 import { getBooksByUser, getCurrentUser } from "./UserManager"
+import "./UserProfile.css"
 
 export const UserLibrary = (props) => {
     const [books, setBooks] = useState([])
-    const [ username, setUsername ] = useState({})
+    const [username, setUsername] = useState({})
     const history = useHistory()
 
 
     const fetchLibrary = () => {
         getCurrentUser().then(data => setUsername(data.user.username))
         getBooksByUser(username).then(data => setBooks(data))
-      }
-
-
-    // const bookFetcher = () => {
-    // }
+    }
 
     useEffect(() => {
-       // bookFetcher()
         fetchLibrary()
     }, []);
 
@@ -31,15 +27,15 @@ export const UserLibrary = (props) => {
         <>
 
             <article className="library">
-                <ul>
+                <div className="books">
                     {
                         books.map(book => {
                             return <><a target='blank' href={book?.volumeInfo?.infoLink}>
-                                <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
+                                <img src={book?.image_path} alt={book.title} />
                             </a></>
                         })
                     }
-                </ul>
+                </div>
             </article>
         </>
     )

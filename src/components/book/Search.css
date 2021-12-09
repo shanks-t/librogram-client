@@ -18,6 +18,21 @@
     margin-top: 3rem;
   }
 
+  .book {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: .3rem;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    width: 5rem;
+  }
+
+  .book .button {
+      justify-content: flex-end;
+      display: flex;
+  }
+
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -57,7 +72,7 @@
   }
   
   .modal-close-button {
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1;
     color: #000;

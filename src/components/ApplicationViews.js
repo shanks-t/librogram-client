@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { Search } from "./book/Search"
 import { UserLibrary } from "./user/UserLibrary"
+import { UserProfile } from "./user/UserProfile"
 
 export const ApplicationViews = () => {
     return <>
@@ -10,7 +11,7 @@ export const ApplicationViews = () => {
                 <Search />
             </Route>
             <Route exact path="/profile">
-                <UserLibrary />
+                <UserProfile />
             </Route>
         </main>
     </>
