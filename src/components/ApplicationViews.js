@@ -4,10 +4,7 @@ import { Search } from "./book/Search"
 
 export const ApplicationViews = () => {
     return <>
-        <main style={{
-            margin: "5rem 2rem",
-            backgroundColor: "lightgoldenrodyellow"
-        }}>
+        <main>
             <Route exact path="/search">
                 <Search />
             </Route>
