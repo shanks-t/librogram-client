@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Book } from "./Book"
+import './Search.css'
 
 
 export const Search = () => {
