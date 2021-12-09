@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { saveBook } from './BookManager';
+import { saveBook, saveUserBook } from './BookManager';
 import './Search.css'
 import Modal from './Modal'
 import useModal from './useModal'
@@ -22,6 +22,9 @@ export const Book = ({ book }) => {
         pageCount: book?.volumeInfo?.pageCount,
         publisher: book?.volumeInfo?.publisher,
         datePublished: book?.volumeInfo?.publishedDate,
+        }
+        const copyUserBook = {
+
         }
         setNewBook(copyBook)
         setTitle(book?.volumeInfo.title)

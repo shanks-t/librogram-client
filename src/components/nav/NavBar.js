@@ -1,12 +1,16 @@
 import React from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory, useParams } from "react-router-dom"
 import "./NavBar.css"
 
 export const NavBar = () => {
+
+    
     const history = useHistory()
     return (
         <ul className="navbar">
-
+            <li className="navbar__item">
+                <Link className="nav-link" to="/profile">Profile</Link>
+            </li>
             {
                 (localStorage.getItem("lg_user_token") !== null) ?
                     <li className="nav-item">
