@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 import { getBooksByUser, getCurrentUser } from "./UserManager"
 import "./UserProfile.css"
 
@@ -30,9 +30,9 @@ export const UserLibrary = (props) => {
                 <div className="books">
                     {
                         books.map(book => {
-                            return <><a target='blank' href={book?.volumeInfo?.infoLink}>
+                            return <><Link to={`profile/books/${book.id}`}>
                                 <img src={book?.image_path} alt={book.title} />
-                            </a></>
+                            </Link></>
                         })
                     }
                 </div>
