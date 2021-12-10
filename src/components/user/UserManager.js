@@ -9,6 +9,17 @@ export const saveUserBook = (book) => {
     })
 
 }
+export const updateUserBook = (book) => {
+    return fetch(`http://localhost:8000/userbooks${bookId}`, {
+        method: "PATCH",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(book)
+    })
+
+}
 
 export const getBook = (bookId) => {
     return fetch(`http://localhost:8000/books/${bookId}`, {
