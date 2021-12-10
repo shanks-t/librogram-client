@@ -22,7 +22,7 @@ export const UserLibrary = (props) => {
             getBooks()
         }
     }, [userId])
-    
+
     useEffect(() => {
         getUser()
     }, []);
@@ -39,8 +39,8 @@ export const UserLibrary = (props) => {
                 <div className="books">
                     {
                         books.map(book => {
-                            return <><Link to={`profile/books/${book.id}/${book.id}`}>
-                                <img src={book?.image_path} alt={book.title} />
+                            return <><Link to={`profile/books/${book.book.id}/${book.id}`}>
+                                <img src={book?.book.image_path} alt={book.book.title} />
                             </Link></>
                         })
                     }
