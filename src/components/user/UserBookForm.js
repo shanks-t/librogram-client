@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
+import { getUserBook, updateUserBook } from "./UserManager"
 
 export const UserBookForm = () => {
     const [ userBook, setUserBook ] = useState({})
@@ -7,35 +8,29 @@ export const UserBookForm = () => {
     const { userBookId } = useParams()
 
     const handleOnChange = (event) => {
-        const copyGame = { ...game }
-        copyGame[event.target.name] = event.target.value
-        setGameState(copyGame)
+        const copyUserBook = { ...userBook }
+        copyUserBook[event.target.name] = event.target.value
+        setUserBook(copyUserBook)
     }
 
     useEffect(() => {
-            getGame(userBookId).then((data) => setUserBook({
+            getUserBook(userBookId).then((data) => setUserBook({
             ...data,
-            title: data.title,
-            designer: data.designer,
-            yearReleased: data.year_released,
-            playTime: data.play_time,
-            ageRecommendation: data.age_recommendation,
-            categoryId: data.category_id
+            rating: data.rating,
+            review: data.review,
+            startDate: data.start_date,
+            finishDate: data.finish_date,
+            currentPage: data.current_page,
+            statusId: data.status
             }))
     }, [userBookId])
 
-    const saveUserBook = (event) => {
+
+
+    const updateUserBookFields = (event) => {
         event.preventDefault()
 
-        createUserBook(game).then(() => {
-            history.push('/profile/books')
-        })
-    }
-
-    const updateGame = (event) => {
-        event.preventDefault()
-
-        updateGameFetch(game).then(() => {
+        updateUserBook(userBook).then(() => {
             history.push('/profile/books')
         })
     }
@@ -43,45 +38,41 @@ export const UserBookForm = () => {
     return (
         <form>
             <div>
-                <label>Title</label>
-                <input type="text" name="title"  value={game.title} onChange={(event) => handleOnChange(event)}></input>
+                <label>rating</label>
+                <input type="text" name="rating"  value={userBook.rating} onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
-                <label>Designer</label>
-                <input type="text" name="designer" value={game.designer} onChange={(event) => handleOnChange(event)}></input>
+                <label>review</label>
+                <input type="text" name="review" value={userBook.review} onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
-                <label>Year Released</label>
-                <input type="number" name="yearReleased" value={game.yearReleased} onChange={(event) => handleOnChange(event)}></input>
+                <label>start date</label>
+                <input type="number" name="startDate" value={userBook.startDate} onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
-                <label>Play Time</label>
-                <input type="number" name="playTime" value={game.playTime} onChange={(event) => handleOnChange(event)}></input>
+                <label>finish date</label>
+                <input type="number" name="finishDate" value={userBook.finishDate} onChange={(event) => handleOnChange(event)}></input>
             </div>
             <div>
-                <label>Age Recommendation</label>
-                <input type="number" name="ageRecommendation" value={game.ageRecommendation} onChange={(event) => handleOnChange(event)}></input>
+                <label>current page</label>
+                <input type="number" name="currentPage" value={userBook.currentPage} onChange={(event) => handleOnChange(event)}></input>
             </div>
-            <div>
-                <label>Categories</label>
-                <select type="number" name="categoryId" value={game.categoryId} onChange={(event) => handleOnChange(event)}>
-                    <option value='0'>Select a Category</option>
+            {/* <div>
+                <label>Book Status</label>
+                <select type="number" name="statusId" value={userBook.statusId} onChange={(event) => handleOnChange(event)}>
+                    <option value='0'>Select a Status</option>
                     {
-                        categories.map(category => <option value={category.id}>{category.label}</option>)
+                        statuses.map(status => <option value={status.id}>{status.label}</option>)
                     }
                 </select>
-            </div>
+            </div> */}
             <div>
                 <button onClick={(event) => {
-                    if (gameId) {
-                        updateGame(event)
-                    } else {
-                        saveGame(event)
-                    }}
-                }>Save Game</button>
+                        updateUserBookFields(event)
+                    }}>Save Game</button>
             </div>
         </form>
     )
