@@ -17,6 +17,7 @@ export const UserBookForm = () => {
     }
 
     useEffect(() => {
+        if (userBookId) {
             getUserBook(userBookId).then((data) => setUserBook({
             ...data,
             rating: data.rating,
@@ -26,6 +27,7 @@ export const UserBookForm = () => {
             currentPage: data.current_page,
             statusId: data.status
             }))
+        }
     }, [userBookId])
 
     const getRatingsState = (event) => {
@@ -37,11 +39,14 @@ export const UserBookForm = () => {
     const updateUserBookFields = (event) => {
         event.preventDefault()
 
-        updateUserBook(userBookId).then(() => {
+        updateUserBook(userBookId, userBook).then(() => {
             history.push('/profile/books')
         })
     }
 
+    useEffect(() => {
+        console.log('userBook', userBook)
+    }, [userBook]);
     console.log('userbookId', userBookId)
     return (
         <form>
