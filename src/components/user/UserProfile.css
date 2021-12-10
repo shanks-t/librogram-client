@@ -20,3 +20,12 @@
     display: flex;
     justify-content: space-evenly
 }
+
+.userBook-details-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 3rem
+}
+.userBook-details-container form{
+    margin-right: 13rem;
+}

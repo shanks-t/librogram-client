@@ -15,7 +15,7 @@ export const ApplicationViews = () => {
             <Route exact path="/profile">
                 <UserProfile />
             </Route>
-            <Route exact path="/profile/books/:bookId(\d+)">
+            <Route exact path="/profile/books/:bookId(\d+)/:userBookId(\d+)">
                 <UserBookDetailsView />
             </Route>
         </main>

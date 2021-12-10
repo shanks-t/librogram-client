@@ -30,7 +30,7 @@ export const UserLibrary = (props) => {
                 <div className="books">
                     {
                         books.map(book => {
-                            return <><Link to={`profile/books/${book.id}`}>
+                            return <><Link to={`profile/books/${book.id}/${book.id}`}>
                                 <img src={book?.image_path} alt={book.title} />
                             </Link></>
                         })

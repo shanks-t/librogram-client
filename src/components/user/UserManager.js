@@ -10,7 +10,7 @@ export const saveUserBook = (book) => {
 
 }
 export const updateUserBook = userBookId => {
-    return fetch(`http://localhost:8000/userbooks${userBookId}`, {
+    return fetch(`http://localhost:8000/userbooks/${userBookId}/edit`, {
         method: "PATCH",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -21,7 +21,7 @@ export const updateUserBook = userBookId => {
 }
 
 export const getUserBook = userBookId => {
-    return fetch(`http://localhost:8000/books/${userBookId}`, {
+    return fetch(`http://localhost:8000/userbooks/${userBookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }

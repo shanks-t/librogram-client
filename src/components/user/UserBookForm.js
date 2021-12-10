@@ -4,6 +4,9 @@ import { getUserBook, updateUserBook } from "./UserManager"
 
 export const UserBookForm = () => {
     const [ userBook, setUserBook ] = useState({})
+    const [ ratingObj, setRatingObj ] = useState({
+        "rating": 0
+    })
     const history = useHistory()
     const { userBookId } = useParams()
 
@@ -25,36 +28,45 @@ export const UserBookForm = () => {
             }))
     }, [userBookId])
 
-
+    const getRatingsState = (event) => {
+        const copyRating = { ...ratingObj }
+        copyRating['rating'] = event.target.value
+        setRatingObj(copyRating)
+    }
 
     const updateUserBookFields = (event) => {
         event.preventDefault()
 
-        updateUserBook(userBook).then(() => {
+        updateUserBook(userBookId).then(() => {
             history.push('/profile/books')
         })
     }
 
+    console.log('userbookId', userBookId)
     return (
         <form>
             <div>
                 <label>rating</label>
-                <input type="text" name="rating"  value={userBook.rating} onChange={(event) => handleOnChange(event)}></input>
+                <input name='rating' type='range' min='1' max='10' defaultValue='10' step='0.1' onChange={(event) => getRatingsState(event)}></input>
+                            {ratingObj.rating ?
+                                <p>Rating: {ratingObj.rating}</p>
+                                : <p>Rating: Rate this game</p>
+                            }
             </div>
 
             <div>
                 <label>review</label>
-                <input type="text" name="review" value={userBook.review} onChange={(event) => handleOnChange(event)}></input>
+                <input type="textField" name="review" value={userBook.review} onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
                 <label>start date</label>
-                <input type="number" name="startDate" value={userBook.startDate} onChange={(event) => handleOnChange(event)}></input>
+                <input type="date" name="startDate" value={userBook.startDate} onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
                 <label>finish date</label>
-                <input type="number" name="finishDate" value={userBook.finishDate} onChange={(event) => handleOnChange(event)}></input>
+                <input type="date" name="finishDate" value={userBook.finishDate} onChange={(event) => handleOnChange(event)}></input>
             </div>
             <div>
                 <label>current page</label>
@@ -72,7 +84,7 @@ export const UserBookForm = () => {
             <div>
                 <button onClick={(event) => {
                         updateUserBookFields(event)
-                    }}>Save Game</button>
+                    }}>Update Book Details</button>
             </div>
         </form>
     )
