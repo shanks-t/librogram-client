@@ -9,6 +9,25 @@ export const saveUserBook = (book) => {
     })
 
 }
+export const updateUserBook = (userBookId, userBook) => {
+    return fetch(`http://localhost:8000/userbooks/${userBookId}/edit`, {
+        method: "PATCH",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userBook)
+    })
+}
+
+export const getUserBook = userBookId => {
+    return fetch(`http://localhost:8000/userbooks/${userBookId}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+        .then(response => response.json())
+}
 
 export const getBook = (bookId) => {
     return fetch(`http://localhost:8000/books/${bookId}`, {
@@ -19,8 +38,8 @@ export const getBook = (bookId) => {
         .then(response => response.json())
 }
 
-export const getBooksByUser = (username) => {
-    return fetch(`http://localhost:8000/books?username=${username}`, {
+export const getBooksByUser = (userId) => {
+    return fetch(`http://localhost:8000/books?user_id=${userId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }

@@ -7,6 +7,7 @@ export const Register = (props) => {
     const lastName = useRef();
     const username = useRef();
     const email = useRef();
+    const profileImageUrl = useRef()
     const bio = useRef();
     const [isAdmin, setAdmin] = useState(false)
     const password = useRef();
@@ -35,12 +36,12 @@ export const Register = (props) => {
                 first_name: firstName.current.value,
                 last_name: lastName.current.value,
                 email: email.current.value,
+                profile_image_url: profileImageUrl.current.value,
                 username: username.current.value,
-                bio: "",
+                bio: bio.current.value,
                 username: username.current.value,
                 password: password.current.value,
-                profile_image_url: "",
-                created_on: "",
+                created_on: new Date(),
                 is_staff: isAdmin,
                 active: 1,
                 subscriber: false
@@ -115,6 +116,17 @@ export const Register = (props) => {
                     />
                 </fieldset>
                 <fieldset>
+                    <label htmlFor="bio"> Bio </label>
+                    <input
+                        ref={bio}
+                        type="text"
+                        name="username"
+                        className="form-control"
+                        placeholder="username"
+                        required
+                    />
+                </fieldset>
+                <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
                     <input
                         ref={email}
@@ -122,6 +134,17 @@ export const Register = (props) => {
                         name="email"
                         className="form-control"
                         placeholder="Email address"
+                        required
+                    />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="profileImageUrl"> User Photo </label>
+                    <input
+                        ref={profileImageUrl}
+                        type="text"
+                        name="profileImageUrl"
+                        className="form-control"
+                        placeholder="photo url"
                         required
                     />
                 </fieldset>

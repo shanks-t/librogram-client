@@ -8,6 +8,7 @@ import useModal from './useModal'
 export const Book = ({ book }) => {
     const { isShowing, toggle } = useModal();
     const [ newBook, setNewBook ] = useState({})
+    const [ userBook, setUserBook ] = useState({})
     const [ title, setTitle ] = useState('')
     const [ author, setAuthor ] = useState('')
 
@@ -23,9 +24,7 @@ export const Book = ({ book }) => {
         publisher: book?.volumeInfo?.publisher,
         datePublished: book?.volumeInfo?.publishedDate,
         }
-        const copyUserBook = {
-
-        }
+  
         setNewBook(copyBook)
         setTitle(book?.volumeInfo.title)
         setAuthor(book?.volumeInfo.authors)

@@ -24,17 +24,17 @@ export const UserBookDetails = (props) => {
         <>
 
             <article className="book-details">
-                <img src={book.image_path}/> <br></br>
-                {book.title} <br></br>
-                {book.subtitle}<br></br>
-                {book.author}<br></br>
-                {book.publisher}<br></br>
-                {book.date_published}<br></br>
-                {book.page_count}<br></br>
-                {book.description}<br></br>
+                <img src={book?.image_path}/> <br></br>
+                {book?.title} <br></br>
+                {book?.subtitle}<br></br>
+                {book?.author}<br></br>
+                {book?.publisher}<br></br>
+                {book?.date_published}<br></br>
+                {book?.page_count}<br></br>
+                {book?.description}<br></br>
                 <div>
                     {
-                    book.comments.map(comment => 
+                    book?.comments?.map(comment => 
                         <><p>{comment.comment}</p>
                         <p>{comment.user.username}</p>
                         <p>{comment.created_on}</p></>)
