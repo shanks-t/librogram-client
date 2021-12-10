@@ -38,8 +38,8 @@ export const getBook = (bookId) => {
         .then(response => response.json())
 }
 
-export const getBooksByUser = (username) => {
-    return fetch(`http://localhost:8000/books?username=${username}`, {
+export const getBooksByUser = (userId) => {
+    return fetch(`http://localhost:8000/books?user_id=${userId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }

@@ -14,6 +14,7 @@ export const UserBookForm = () => {
         const copyUserBook = { ...userBook }
         copyUserBook[event.target.name] = event.target.value
         setUserBook(copyUserBook)
+        getRatingsState(event)
     }
 
     useEffect(() => {
@@ -52,10 +53,10 @@ export const UserBookForm = () => {
         <form>
             <div>
                 <label>rating</label>
-                <input name='rating' type='range' min='1' max='10' defaultValue='10' step='0.1' onChange={(event) => getRatingsState(event)}></input>
+                <input name='rating' type='range' min='1' max='10' value={userBook.rating} step='0.1' onChange={(event) => handleOnChange(event)}></input>
                             {ratingObj.rating ?
                                 <p>Rating: {ratingObj.rating}</p>
-                                : <p>Rating: Rate this game</p>
+                                : <p>Rating: {userBook.rating}</p>
                             }
             </div>
 

@@ -5,23 +5,32 @@ import "./UserProfile.css"
 
 export const UserLibrary = (props) => {
     const [books, setBooks] = useState([])
-    const [username, setUsername] = useState({})
+    const [userId, setUserId] = useState({})
     const history = useHistory()
 
 
-    const fetchLibrary = () => {
-        getCurrentUser().then(data => setUsername(data.user.username))
-        getBooksByUser(username).then(data => setBooks(data))
+    const getUser = () => {
+        getCurrentUser().then(data => setUserId(data.user.id))
     }
-
+    const getBooks = () => {
+        getBooksByUser(userId).then(data => setBooks(data))
+    }
+    
     useEffect(() => {
-        fetchLibrary()
+        if(userId) {
+
+            getBooks()
+        }
+    }, [userId])
+    
+    useEffect(() => {
+        getUser()
     }, []);
 
     useEffect(() => {
         console.log('books', books)
-        console.log('user', username)
-    }, [books, username]);
+        console.log('user', userId)
+    }, [books, userId]);
 
     return (
         <>
