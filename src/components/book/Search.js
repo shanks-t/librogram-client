@@ -43,7 +43,7 @@ export const Search = () => {
             <h2>Search for Books</h2>
             <div className="search">
                 <input type="text" value={search} onChange={onInputChange} />
-                <button type="submit" onClick={getBooks}>Search</button>
+                <button type="submit"  onClick={getBooks}>Search</button>
                 <br></br>
 
             </div>

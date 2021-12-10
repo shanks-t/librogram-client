@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { saveBook } from './BookManager';
+import { saveBook, saveUserBook } from './BookManager';
 import './Search.css'
 import Modal from './Modal'
 import useModal from './useModal'
@@ -23,6 +23,9 @@ export const Book = ({ book }) => {
         publisher: book?.volumeInfo?.publisher,
         datePublished: book?.volumeInfo?.publishedDate,
         }
+        const copyUserBook = {
+
+        }
         setNewBook(copyBook)
         setTitle(book?.volumeInfo.title)
         setAuthor(book?.volumeInfo.authors)
@@ -45,9 +48,14 @@ export const Book = ({ book }) => {
                 {
                     book?.volumeInfo?.imageLinks?.thumbnail ?
                         <>
-                            <a target='blank' href={book?.volumeInfo?.infoLink}>
-                                <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
-                            </a><button className='button-default' onClick={handleClick}>Add To Library</button>
+                            <div className='book'>
+                                <a target='blank' href={book?.volumeInfo?.infoLink}>
+                                    <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
+                                </a>
+                                <div className='button'><button className='button-default' onClick={handleClick}>Add To Library</button></div>
+                                
+                            </div>
+                            
                             <Modal
                             isShowing={isShowing}
                             hide={toggle}
