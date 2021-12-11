@@ -46,6 +46,15 @@ export const getBooksByUser = (userId) => {
     })
         .then(response => response.json())
 }
+
+export const getStatuses = () => {
+    return fetch(`http://localhost:8000/statuses`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+        .then(response => response.json())
+}
 export const getCurrentUser = () => {
     return fetch(`http://localhost:8000/readers/currentuser`, {
         headers: {

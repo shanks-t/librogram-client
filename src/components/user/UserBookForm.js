@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { getUserBook, updateUserBook } from "./UserManager"
+import { getStatuses, getUserBook, updateUserBook } from "./UserManager"
 
 export const UserBookForm = () => {
     const [ userBook, setUserBook ] = useState({})
-    const [ ratingObj, setRatingObj ] = useState({
-        "rating": 0
-    })
+    const [ statuses, setStatuses ] = useState([])
     const history = useHistory()
     const { userBookId } = useParams()
+
+    useEffect(() => {
+        getStatuses().then(data => setStatuses(data))
+        
+    }, []);
 
     const handleOnChange = (event) => {
         const copyUserBook = { ...userBook }
@@ -42,9 +45,9 @@ export const UserBookForm = () => {
 
     useEffect(() => {
         console.log('userBook', userBook)
-    }, [userBook]);
-    console.log('userbookId', userBookId)
-    
+        console.log('status', statuses)
+    }, [userBook, statuses]);
+
     return (
         <form>
             <div>
@@ -71,15 +74,15 @@ export const UserBookForm = () => {
                 <label>current page</label>
                 <input type="number" name="currentPage" value={userBook.currentPage} onChange={(event) => handleOnChange(event)}></input>
             </div>
-            {/* <div>
+            <div>
                 <label>Book Status</label>
-                <select type="number" name="statusId" value={userBook.statusId} onChange={(event) => handleOnChange(event)}>
+                <select type="number" name="statusId" value={userBook?.statusId?.id} onChange={(event) => handleOnChange(event)}>
                     <option value='0'>Select a Status</option>
                     {
-                        statuses.map(status => <option value={status.id}>{status.label}</option>)
-                    }
+                        statuses.map(status => <option  value={status.id}>{status.label}</option>)
+                    } 
                 </select>
-            </div> */}
+            </div>
             <div>
                 <button onClick={(event) => {
                         updateUserBookFields(event)
