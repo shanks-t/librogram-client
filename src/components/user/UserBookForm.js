@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { getUserBook, updateUserBook } from "./UserManager"
+import { getStatuses, getUserBook, updateUserBook } from "./UserManager"
 
 export const UserBookForm = () => {
     const [ userBook, setUserBook ] = useState({})
-    const [ ratingObj, setRatingObj ] = useState({
-        "rating": 0
-    })
+    const [ statuses, setStatuses ] = useState([])
     const history = useHistory()
     const { userBookId } = useParams()
+
+    useEffect(() => {
+        getStatuses().then(data => setStatuses(data))
+        
+    }, []);
 
     const handleOnChange = (event) => {
         const copyUserBook = { ...userBook }
         copyUserBook[event.target.name] = event.target.value
         setUserBook(copyUserBook)
-        getRatingsState(event)
     }
 
     useEffect(() => {
@@ -31,11 +33,7 @@ export const UserBookForm = () => {
         }
     }, [userBookId])
 
-    const getRatingsState = (event) => {
-        const copyRating = { ...ratingObj }
-        copyRating['rating'] = event.target.value
-        setRatingObj(copyRating)
-    }
+
 
     const updateUserBookFields = (event) => {
         event.preventDefault()
@@ -47,17 +45,15 @@ export const UserBookForm = () => {
 
     useEffect(() => {
         console.log('userBook', userBook)
-    }, [userBook]);
-    console.log('userbookId', userBookId)
+        console.log('status', statuses)
+    }, [userBook, statuses]);
+
     return (
         <form>
             <div>
                 <label>rating</label>
                 <input name='rating' type='range' min='1' max='10' value={userBook.rating} step='0.1' onChange={(event) => handleOnChange(event)}></input>
-                            {ratingObj.rating ?
-                                <p>Rating: {ratingObj.rating}</p>
-                                : <p>Rating: {userBook.rating}</p>
-                            }
+                    <p>Rating: {userBook.rating}</p>
             </div>
 
             <div>
@@ -78,15 +74,15 @@ export const UserBookForm = () => {
                 <label>current page</label>
                 <input type="number" name="currentPage" value={userBook.currentPage} onChange={(event) => handleOnChange(event)}></input>
             </div>
-            {/* <div>
+            <div>
                 <label>Book Status</label>
-                <select type="number" name="statusId" value={userBook.statusId} onChange={(event) => handleOnChange(event)}>
+                <select type="number" name="statusId" value={userBook?.statusId?.id} onChange={(event) => handleOnChange(event)}>
                     <option value='0'>Select a Status</option>
                     {
-                        statuses.map(status => <option value={status.id}>{status.label}</option>)
-                    }
+                        statuses.map(status => <option  value={status.id}>{status.label}</option>)
+                    } 
                 </select>
-            </div> */}
+            </div>
             <div>
                 <button onClick={(event) => {
                         updateUserBookFields(event)
