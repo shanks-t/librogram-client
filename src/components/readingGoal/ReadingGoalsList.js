@@ -21,13 +21,13 @@ export const ReadingGoalsList = (props) => {
         <>
         
         <article className="goals">
-        <button onClick={()=>history.push('goals/create')}>Register New Game</button>
+        <button onClick={()=>history.push('goals/create')}>Create a New Reading Goal</button>
         <ul>
         {
                 goals.map(goal => {
                     return <>
                     <li key={`goal--${goal.id}`} className="goal">
-                        <Link to={`goals/${goal.id}`}>{goal.id}</Link>
+                        <Link to={`goals/edit/${goal.id}`}>{goal.id}</Link>
                     </li>
                     {goal.number_of_pages ? (<li>number of pages:{goal.number_of_pages}</li>) : null}
                     {goal.number_of_books ? (<li>number of books:{goal.number_of_books}</li>) : null}

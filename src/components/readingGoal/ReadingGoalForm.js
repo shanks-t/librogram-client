@@ -1,92 +1,83 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { getStatuses, getUserBook, updateUserBook } from "./UserManager"
+import { getReadingGoal, saveReadingGoal, updateReadingGoal } from "./ReadingGoalManager"
 
-export const UserBookForm = () => {
-    const [ userBook, setUserBook ] = useState({})
-    const [ statuses, setStatuses ] = useState([])
+
+export const ReadingGoalForm = () => {
+    const [ readingGoal, setReadingGoal ] = useState({})
     const history = useHistory()
-    const { userBookId } = useParams()
+    const { goalId } = useParams()
 
-    useEffect(() => {
-        getStatuses().then(data => setStatuses(data))
-        
-    }, []);
 
     const handleOnChange = (event) => {
-        const copyUserBook = { ...userBook }
-        copyUserBook[event.target.name] = event.target.value
-        setUserBook(copyUserBook)
+        const copyReadingGoal = { ...readingGoal }
+        copyReadingGoal[event.target.name] = event.target.value
+        setReadingGoal(copyReadingGoal)
     }
 
     useEffect(() => {
-        if (userBookId) {
-            getUserBook(userBookId).then((data) => setUserBook({
+        if (goalId) {
+            getReadingGoal(goalId).then((data) => setReadingGoal({
             ...data,
-            rating: data.rating,
-            review: data.review,
+            numberOfBooks: data.number_of_books,
+            numberOfPages: data.number_of_pages,
             startDate: data.start_date,
-            finishDate: data.finish_date,
-            currentPage: data.current_page,
-            statusId: data.status
+            endDate: data.end_date,
             }))
         }
-    }, [userBookId])
+    }, [goalId])
 
 
 
-    const updateUserBookFields = (event) => {
+    const saveGoal = (event) => {
         event.preventDefault()
 
-        updateUserBook(userBookId, userBook).then(() => {
-            history.push('/profile/books')
+        saveReadingGoal(readingGoal).then(() => {
+            history.push('/profile')
         })
     }
 
+    const updateGoal = (event) => {
+        event.preventDefault()
+
+        updateReadingGoal(goalId, readingGoal).then(() => {
+            history.push('/profile')
+        })
+    }
     useEffect(() => {
-        console.log('userBook', userBook)
-        console.log('status', statuses)
-    }, [userBook, statuses]);
+        console.log('ReadingGoal', readingGoal)
+        console.log('goalId', goalId)
+    }, [readingGoal]);
 
     return (
         <form>
             <div>
-                <label>rating</label>
-                <input name='rating' type='range' min='1' max='10' value={userBook.rating} step='0.1' onChange={(event) => handleOnChange(event)}></input>
-                    <p>Rating: {userBook.rating}</p>
+                <label>number of books</label>
+                <input name='numberOfBooks' type='number' min='1' max='10' value={readingGoal.numberOfBooks} step='0.1' onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
-                <label>review</label>
-                <input type="textField" name="review" value={userBook.review} onChange={(event) => handleOnChange(event)}></input>
+                <label>number of pages</label>
+                <input type="number" name="numberOfPages" value={readingGoal.numberOfPages} onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
                 <label>start date</label>
-                <input type="date" name="startDate" value={userBook.startDate} onChange={(event) => handleOnChange(event)}></input>
+                <input type="date" name="startDate" value={readingGoal.startDate} onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
-                <label>finish date</label>
-                <input type="date" name="finishDate" value={userBook.finishDate} onChange={(event) => handleOnChange(event)}></input>
-            </div>
-            <div>
-                <label>current page</label>
-                <input type="number" name="currentPage" value={userBook.currentPage} onChange={(event) => handleOnChange(event)}></input>
-            </div>
-            <div>
-                <label>Book Status</label>
-                <select type="number" name="statusId" value={userBook?.statusId?.id} onChange={(event) => handleOnChange(event)}>
-                    <option value='0'>Select a Status</option>
-                    {
-                        statuses.map(status => <option  value={status.id}>{status.label}</option>)
-                    } 
-                </select>
+                <label>end date</label>
+                <input type="date" name="endDate" value={readingGoal.endDate} onChange={(event) => handleOnChange(event)}></input>
             </div>
             <div>
                 <button onClick={(event) => {
-                        updateUserBookFields(event)
-                    }}>Update Book Details</button>
+                       if (goalId) {
+                        updateGoal(event)
+                    } else {
+                        saveGoal(event)
+                    }
+                    }}>Update Goal Details</button>
             </div>
         </form>
     )
