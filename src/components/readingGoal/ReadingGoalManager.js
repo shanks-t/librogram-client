@@ -10,7 +10,7 @@ export const updateReadingGoal = (goalId, goal) => {
 }
 
 export const saveReadingGoal = (goal) => {
-    return fetch("http://localhost:8000/reaing_goals", {
+    return fetch("http://localhost:8000/reading_goals", {
         method: "POST",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,

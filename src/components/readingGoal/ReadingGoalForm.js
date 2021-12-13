@@ -53,12 +53,12 @@ export const ReadingGoalForm = () => {
         <form>
             <div>
                 <label>number of books</label>
-                <input name='numberOfBooks' type='number' min='1' max='10' value={readingGoal.numberOfBooks} step='0.1' onChange={(event) => handleOnChange(event)}></input>
+                <input name='numberOfBooks' type='number' min='1' max='10' value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
                 <label>number of pages</label>
-                <input type="number" name="numberOfPages" value={readingGoal.numberOfPages} onChange={(event) => handleOnChange(event)}></input>
+                <input type="number" name="numberOfPages" step='20' value={readingGoal.numberOfPages} onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
@@ -77,7 +77,7 @@ export const ReadingGoalForm = () => {
                     } else {
                         saveGoal(event)
                     }
-                    }}>Update Goal Details</button>
+                    }}>Save Goal</button>
             </div>
         </form>
     )
