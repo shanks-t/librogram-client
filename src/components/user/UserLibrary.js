@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams, useHistory, Link } from 'react-router-dom'
-import { getBooksByUser, getCurrentUser } from "./UserManager"
+import { getBooksByUser, getCurrentUser, deleteBook } from "./UserManager"
 import "./UserProfile.css"
 
 export const UserLibrary = (props) => {
@@ -27,6 +27,12 @@ export const UserLibrary = (props) => {
         getUser()
     }, []);
 
+    const handleDelete = (bookId) => {
+        deleteBook(bookId).then(() => {
+            getBooks()
+        })
+    }
+
     useEffect(() => {
         console.log('books', books)
         console.log('user', userId)
@@ -41,7 +47,12 @@ export const UserLibrary = (props) => {
                         books.map(book => {
                             return <><Link to={`profile/books/${book.book.id}/${book.id}`}>
                                 <img src={book?.book.image_path} alt={book.book.title} />
-                            </Link></>
+                                </Link>
+                            <button className='delete' onClick={(event) => {
+                                event.preventDefault()
+                                handleDelete(book.id)
+                            }}>Remove from library</button>
+                            </>
                         })
                     }
                 </div>
