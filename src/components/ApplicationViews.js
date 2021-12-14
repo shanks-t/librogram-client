@@ -1,6 +1,8 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Search } from "./book/Search"
+import { ReadingGoalForm } from "./readingGoal/ReadingGoalForm"
+import { ReadingGoalsList } from "./readingGoal/ReadingGoalsList"
 import { UserBookDetails } from "./user/UserBookDetails"
 import { UserBookDetailsView } from "./user/UserBookDetailView"
 import { UserLibrary } from "./user/UserLibrary"
@@ -17,6 +19,15 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/profile/books/:bookId(\d+)/:userBookId(\d+)">
                 <UserBookDetailsView />
+            </Route>
+            <Route exact path="/goals">
+                <ReadingGoalsList />
+            </Route>
+            <Route exact path="/goals/create">
+                <ReadingGoalForm />
+            </Route>
+            <Route exact path="/goals/edit/:goalId(\d+)">
+                <ReadingGoalForm />
             </Route>
         </main>
     </>

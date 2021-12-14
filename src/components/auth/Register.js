@@ -41,7 +41,6 @@ export const Register = (props) => {
                 bio: bio.current.value,
                 username: username.current.value,
                 password: password.current.value,
-                created_on: new Date(),
                 is_staff: isAdmin,
                 active: 1,
                 subscriber: false
