@@ -33,14 +33,31 @@ export const UserBookDetails = (props) => {
                 {book?.page_count}<br></br>
                 {book?.description}<br></br>
                 <div>
+                    <h3>Comments</h3>
                     {
-                    book?.comments?.map(comment => 
-                        <><p>{comment.comment}</p>
-                        <p>{comment.user.username}</p>
-                        <p>{comment.created_on}</p></>)
+                    book?.comments?.map(comment => {
+                        return  <><p>{comment.comment}</p>
+                        <p>{book.user.username}</p>
+                        <p>{comment.created_on}</p>
+                        {comment.user.id === book.user.id ? 
+                        <>
+                        <button>Edit your comment</button>
+                        <button>Delete your comment</button>
+                        </>
+                    :""
+                }
+                </>
+                    })
                     }
                 </div>
-            </article>
+            <div className='readers'>
+                <h3>Who's checked out this book:</h3>
+                {book?.readers_list?.map(reader => (
+                    <p>{reader}</p>
+                ))
+                }
+            </div>
+        </article>
         </>
     )
 }

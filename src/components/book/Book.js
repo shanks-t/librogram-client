@@ -23,6 +23,7 @@ export const Book = ({ book }) => {
         pageCount: book?.volumeInfo?.pageCount,
         publisher: book?.volumeInfo?.publisher,
         datePublished: book?.volumeInfo?.publishedDate,
+        tags: book?.volumeInfo?.categories
         }
   
         setNewBook(copyBook)
