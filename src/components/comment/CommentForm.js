@@ -3,10 +3,11 @@ import { useHistory, useParams } from "react-router-dom"
 import { saveComment, getComment, updateComment } from "./CommentManager"
 
 
-export const CommentForm = () => {
+export const CommentForm = ( { id }) => {
     const [ comment, setComment ] = useState({})
     const history = useHistory()
     const { bookId } = useParams()
+    const commentId = id
 
     const handleOnChange = (event) => {
         const copyComment = { ...comment }
@@ -15,14 +16,14 @@ export const CommentForm = () => {
         setComment(copyComment)
     }
 
-    // useEffect(() => {
-    //     if (commentId) {
-    //         getComment(commentId).then((data) => setComment({
-    //         ...data,
-    //         comment: data.comment,
-    //         }))
-    //     }
-    // }, [commentId])
+    useEffect(() => {
+        if (commentId) {
+            getComment(commentId).then((data) => setComment({
+            ...data,
+            comment: data.comment,
+            }))
+        }
+    }, [commentId])
 
 
 
@@ -34,17 +35,18 @@ export const CommentForm = () => {
         })
     }
 
-    // const updateUserComment = (event) => {
-    //     event.preventDefault()
+    const updateUserComment = (event) => {
+        event.preventDefault()
 
-    //     updateComment(commentId, comment).then(() => {
-    //         history.push('/profile')
-    //     })
-    // }
+        updateComment(commentId, comment).then(() => {
+            history.push('/profile')
+        })
+    }
     useEffect(() => {
         console.log('book', bookId)
+        console.log('commentId', commentId)
         
-    }, [bookId]);
+    }, [bookId. commentId]);
 
 
     return (
@@ -55,8 +57,11 @@ export const CommentForm = () => {
             </div>
             <div>
                 <button onClick={(event) => {
+                    if (commentId) {
+                        updateUserComment(event)
+                    } else {
                         addComment(event)
-                    }
+                    }}
                     }>Save Comment</button>
             </div>
         </form>

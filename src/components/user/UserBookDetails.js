@@ -9,19 +9,28 @@ export const UserBookDetails = (props) => {
     const [book, setBook] = useState({})
     const history = useHistory()
     const [ showCommentForm, setShowCommentForm ] = useState(false)
+    const [ showEditCommentForm, setShowEditCommentForm ] = useState(false)
     const { bookId } = useParams()
 
     const fetchBookInfo = () => {
         getBook(bookId).then(data => setBook(data))
     }
 
-    const handleToggle = () => {
+    const handleCreateToggle = (id) => {
         if(showCommentForm) {
             setShowCommentForm(false)
         }else{ 
             setShowCommentForm(true)
         }
     }
+    const handleEditToggle = (id) => {
+        if(showEditCommentForm) {
+            setShowEditCommentForm(false)
+        }else{ 
+            setShowEditCommentForm(true)
+        }
+    }
+
     useEffect(() => {
         fetchBookInfo()
     }, []);
@@ -47,14 +56,32 @@ export const UserBookDetails = (props) => {
                     {
                     book?.comments?.map(comment => {
                         return <> <p>{comment.comment}</p>
-                        <p>{book.user.username}</p>
-                        <p>{comment.created_on}</p></>
+                        <p>{comment.user.username}</p>
+                        <p>{comment.created_on}</p>
+                        {comment.user.id === book.user.id ? 
+                            <>
+                            <button onClick={()=> handleEditToggle()
+                            }>Edit your comment</button>
+                            <button>Delete your comment</button>
+                            {showEditCommentForm ?
+                            <CommentForm
+                            toggle={setShowCommentForm}
+                            book={book}
+                            id={comment.id}
+                            />
+                    :""
+                }
+                            </>
+                        :""
+                    }
+                    </>
                     })
                     }
-                <button onClick={() => handleToggle()}>Add comment</button>
+                <button onClick={() => handleCreateToggle()}>Add comment</button>
                 {showCommentForm ?
                     <CommentForm
                     toggle={setShowCommentForm}
+                    book={book}
                     />
                     :""
                 }

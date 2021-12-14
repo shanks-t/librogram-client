@@ -1,6 +1,6 @@
 export const updateComment = (commentId, comment) => {
-    return fetch(`http://localhost:8000/comments/${commentId}/edit`, {
-        method: "PATCH",
+    return fetch(`http://localhost:8000/comments/${commentId}`, {
+        method: "PUT",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
             'Content-Type': 'application/json'
