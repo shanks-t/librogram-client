@@ -51,7 +51,7 @@ export const UserBookDetails = (props) => {
                 {book?.date_published}<br></br>
                 {book?.page_count}<br></br>
                 {book?.description}<br></br>
-                <div>
+                <div className='comments'>
                     <h3>Comments</h3>
                     {
                     book?.comments?.map(comment => {
@@ -85,6 +85,14 @@ export const UserBookDetails = (props) => {
                     />
                     :""
                 }
+                </div>
+                <div className='tags'>
+                    <h3>Tags</h3>
+                    {
+                        book?.tags?.map(tag => (
+                            <p>{tag.label}</p>
+                        ))
+                    }
                 </div>
             <div className='readers'>
                 <h3>Who's checked out this book:</h3>
