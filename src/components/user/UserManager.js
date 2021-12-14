@@ -65,7 +65,7 @@ export const getCurrentUser = () => {
 }
 
 export const deleteBook = (bookId) => {
-    return fetch(`http://localhost:8000/books/${ bookId }`, {
+    return fetch(`http://localhost:8000/userbooks/${ bookId }`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
