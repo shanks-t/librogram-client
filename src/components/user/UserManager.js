@@ -72,3 +72,12 @@ export const deleteBook = (bookId) => {
         }
     })
 }
+
+export const searchBooksByUser = (userId, q, term) => {
+    return fetch(`http://localhost:8000/userbooks?user_id=${userId}&${q}=${term}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+        .then(res => res.json())
+}
