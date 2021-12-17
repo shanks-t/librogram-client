@@ -17,7 +17,7 @@ export const Book = ({ book }) => {
         const copyBook = {
         title: book?.volumeInfo?.title,
         subtitle: book?.volumeInfo?.subtitle,
-        author: book?.volumeInfo?.authors[0],
+        author: book?.volumeInfo?.authors,
         imagePath: book?.volumeInfo?.imageLinks?.thumbnail,
         description: book?.volumeInfo?.description,
         pageCount: book?.volumeInfo?.pageCount,
@@ -66,9 +66,12 @@ export const Book = ({ book }) => {
 
                             />
                         </>
-                        : <><a target='blank' href={book?.volumeInfo?.infoLink}>
+                        : <> <div className='book'>
+                        <a target='blank' href={book?.volumeInfo?.infoLink}>
                             <h3>{book.volumeInfo.title}</h3>
-                        </a><button></button></>
+                        </a><div className='button'><button className='button-default' onClick={handleClick}>Add To Library</button></div>
+                        </div>
+                        </>
 
                 }
         </>

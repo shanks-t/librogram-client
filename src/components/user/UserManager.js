@@ -64,6 +64,15 @@ export const getCurrentUser = () => {
         .then(response => response.json())
 }
 
+export const getTags = () => {
+    return fetch(`http://localhost:8000/tags`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const deleteBook = (bookId) => {
     return fetch(`http://localhost:8000/userbooks/${ bookId }`, {
         method: "DELETE",
@@ -71,4 +80,13 @@ export const deleteBook = (bookId) => {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
     })
+}
+
+export const searchBooksByUser = (userId, q, term) => {
+    return fetch(`http://localhost:8000/userbooks?user_id=${userId}&${q}=${term}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+        .then(res => res.json())
 }
