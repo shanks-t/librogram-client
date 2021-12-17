@@ -66,9 +66,12 @@ export const Book = ({ book }) => {
 
                             />
                         </>
-                        : <><a target='blank' href={book?.volumeInfo?.infoLink}>
+                        : <> <div className='book'>
+                        <a target='blank' href={book?.volumeInfo?.infoLink}>
                             <h3>{book.volumeInfo.title}</h3>
-                        </a><button></button></>
+                        </a><div className='button'><button className='button-default' onClick={handleClick}>Add To Library</button></div>
+                        </div>
+                        </>
 
                 }
         </>
