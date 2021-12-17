@@ -17,7 +17,7 @@ export const Book = ({ book }) => {
         const copyBook = {
         title: book?.volumeInfo?.title,
         subtitle: book?.volumeInfo?.subtitle,
-        author: book?.volumeInfo?.authors[0],
+        author: book?.volumeInfo?.authors,
         imagePath: book?.volumeInfo?.imageLinks?.thumbnail,
         description: book?.volumeInfo?.description,
         pageCount: book?.volumeInfo?.pageCount,

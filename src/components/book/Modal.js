@@ -8,9 +8,15 @@ const Modal = ({ isShowing, hide, title, author, book, addBook }) => isShowing ?
             <div className="modal">
                 <div className="modal-header">
                 </div>
+                {author.length === 1 ? 
                 <p>
-                    Would you like to add {title} by {author} to your library?
+                    Would you like to add {title} by {author} to your library? 
                 </p>
+                : 
+                <p>
+                Would you like to add {title} by {author[0]} and {author[1]} to your library? 
+                </p>
+                }
                 <button onClick={() => addBook(book)}>yes</button>
                     <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
                         No
