@@ -12,9 +12,8 @@ This is the final, server-side project for NSS full-stack boot camp. The live ap
 ## Features
 
 - Full crud functionality with server
-- Custom actions for signing up and leaving events
-- Custom properties for dynamic event and user content
-- Database filtering of events based on queries
+- Filtering books by title, author, book length or category via django ORM
+- A custom property for calculating and updating progress toward reading goals
 
 ## Librogam ERD
 https://drawsql.app/nss-7/diagrams/librogram#
