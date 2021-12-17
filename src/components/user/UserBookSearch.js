@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 
 export const UserBookSearch = ({ handleSearch }) => {
 
-  
-    
-
     return (
     
     <fieldset className="search">

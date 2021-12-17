@@ -64,6 +64,15 @@ export const getCurrentUser = () => {
         .then(response => response.json())
 }
 
+export const getTags = () => {
+    return fetch(`http://localhost:8000/tags`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const deleteBook = (bookId) => {
     return fetch(`http://localhost:8000/userbooks/${ bookId }`, {
         method: "DELETE",

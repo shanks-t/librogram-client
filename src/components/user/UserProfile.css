@@ -31,3 +31,10 @@
 .userBook-details-container form{
     margin-right: 13rem;
 }
+
+.delete {
+    justify-content: flex-end;
+    display: flex;
+    width: 8rem;
+    margin-left: auto;
+}
