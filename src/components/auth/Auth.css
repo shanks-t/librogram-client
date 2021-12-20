@@ -1,0 +1,26 @@
+fieldset {
+    width: 10rem;
+}
+
+.login {
+    width: 20rem;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+
+.link--register {
+   text-align: center;
+}
+
+main {
+    display: grid;
+    align-items: center;
+    height: 90vh;
+}
+
+.register {
+    width: 22rem;
+    border-radius: 10px;
+    font-weight: bold;
+}

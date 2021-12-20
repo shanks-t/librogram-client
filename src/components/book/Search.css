@@ -1,16 +1,13 @@
-.search {
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-  }
+main {
+
+  display: grid;
+  align-items: center;
+  height: 90vh;
+  justify-content: center;
+  text-align: center;
+}
   
-  h2 {
-    justify-content: center;
-    display: flex;
-    margin-top: 10rem
-  }
-  
-  .results {
+.results {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -22,15 +19,17 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    margin: .3rem;
+    margin: .9rem;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     width: 5rem;
   }
 
-  .book .button {
-      justify-content: flex-end;
+  .button {
+      justify-content: space-between;
       display: flex;
+      width: 7.5rem;
+      height: 2.5rem;
   }
 
   .modal-overlay {
