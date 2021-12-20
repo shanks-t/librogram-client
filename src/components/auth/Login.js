@@ -59,7 +59,7 @@ export const Login = () => {
                     color='textSecondary'
                     >Please sign in</Typography>
                     <MenuBookOutlinedIcon sx={{ fontSize: 100 }}/>
-                    <fieldset className='login'>
+                    <fieldset>
                         <label htmlFor="inputUsername"> Username</label>
                         <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
