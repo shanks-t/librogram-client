@@ -38,3 +38,21 @@ export const getReadingGoals = () => {
     })
         .then(response => response.json())
 }
+
+export const getGoalsByUser = (userId) => {
+    return fetch(`http://localhost:8000/reading_goals?user_id=${userId}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
+export const getCurrentUser = () => {
+    return fetch(`http://localhost:8000/currentuser`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+        .then(response => response.json())
+}

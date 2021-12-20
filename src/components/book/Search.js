@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Book } from "./Book"
+import { Container } from '@mui/material';
+import { Grid } from '@mui/material';
+import { Paper } from '@mui/material';
+import { Stack } from '@mui/material';
 import './Search.css'
 
 
@@ -39,20 +43,20 @@ export const Search = () => {
 
 
     return (
-        <>
-            <h2>Search for Books</h2>
+<>
             <div className="search">
+            <h2>Search for Books</h2>
                 <input type="text" value={search} onChange={onInputChange} />
-                <button type="submit"  onClick={getBooks}>Search</button>
+                <button type="submit" onClick={getBooks}>Search</button>
                 <br></br>
-
-            </div>
-            <div className='results'>
-                {
-                    books?.items?.map(item => <Book book={item}/>)
-                }
-            </div>
-        </>
+            </div >
+            <Grid container>
+                <Grid className='results'>
+                    {books?.items?.map(item => <Book book={item} />)}
+                </Grid>
+ 
+            </Grid>
+            </>
     );
 }
 

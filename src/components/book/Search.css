@@ -1,16 +1,13 @@
-.search {
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-  }
+main {
+
+  display: grid;
+  align-items: center;
+  height: 90vh;
+  justify-content: center;
+  text-align: center;
+}
   
-  h2 {
-    justify-content: center;
-    display: flex;
-    margin-top: 10rem
-  }
-  
-  .results {
+.results {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -28,9 +25,11 @@
     width: 5rem;
   }
 
-  .book .button {
+  .button {
       justify-content: space-between;
       display: flex;
+      width: 7.5rem;
+      height: 2.5rem;
   }
 
   .modal-overlay {
