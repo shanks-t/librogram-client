@@ -1,0 +1,9 @@
+fieldset {
+    width: 10rem;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.link--register {
+   text-align: center;
+}

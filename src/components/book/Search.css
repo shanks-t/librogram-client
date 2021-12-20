@@ -22,14 +22,14 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    margin: .3rem;
+    margin: .9rem;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     width: 5rem;
   }
 
   .book .button {
-      justify-content: flex-end;
+      justify-content: space-between;
       display: flex;
   }
 

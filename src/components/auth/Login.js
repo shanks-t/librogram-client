@@ -1,6 +1,9 @@
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
+import  Typography  from "@mui/material/Typography";
+import  Container  from "@mui/material/Container";
 
 
 export const Login = () => {
@@ -43,8 +46,18 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
-                    <h2>Please sign in</h2>
+                    <Typography 
+                        variant='h1'
+                        color='primary'
+                        align='center'
+                        >Librogram</Typography>
+                    <Typography
+                    variant='h3'
+                    align='center'
+                    color='textSecondary'
+                    >Please sign in</Typography>
+                    <Container className='form' align='center' fixed>
+                    <MenuBookOutlinedIcon sx={{ fontSize: 100 }}/>
                     <fieldset>
                         <label htmlFor="inputUsername"> Username</label>
                         <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
@@ -58,6 +71,7 @@ export const Login = () => {
                     }}>
                         <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
                     </fieldset>
+                    </Container>
                 </form>
             </section>
             <section className="link--register">
