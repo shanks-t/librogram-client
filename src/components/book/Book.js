@@ -3,7 +3,6 @@ import { saveBook, saveUserBook } from './BookManager';
 import './Search.css'
 import Modal from './Modal'
 import useModal from './useModal'
-import { Button } from '@mui/material';
 
 
 export const Book = ({ book }) => {
@@ -53,7 +52,7 @@ export const Book = ({ book }) => {
                                 <a target='blank' href={book?.volumeInfo?.infoLink}>
                                     <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
                                 </a>
-                                <Button variant='outlined' className='button' onClick={handleClick}>Add To Library</Button>
+                                <div className='button'><button className='button-default' onClick={handleClick}>Add To Library</button></div>
                                 
                             </div>
                             
@@ -70,7 +69,7 @@ export const Book = ({ book }) => {
                         : <> <div className='book'>
                         <a target='blank' href={book?.volumeInfo?.infoLink}>
                             <h3>{book.volumeInfo.title}</h3>
-                        </a><div className='button'><Button variant='outlined' className='button' onClick={handleClick}>Add To Library</Button></div>
+                        </a><div className='button'><button className='button-default' onClick={handleClick}>Add To Library</button></div>
                         </div>
                         </>
 

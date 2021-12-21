@@ -19,7 +19,7 @@ export const UserLibrary = ({ user }) => {
     const getUser = () => {
         getCurrentUser().then(data => setUserId(data.user.id))
     }
-    const getBooks = (userId) => {
+    const getBooks = (userId, name, value) => {
         getBooksByUser(userId).then(data => setBooks(data))
     }
     const handleSearch = (e) => {
