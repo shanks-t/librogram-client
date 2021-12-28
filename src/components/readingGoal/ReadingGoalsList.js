@@ -6,7 +6,7 @@ import { ProgressBar } from "./ProgressBar"
 import { deleteReadingGoal } from "./ReadingGoalManager"
 import "./ReadingGoal.css"
 
-export const ReadingGoalsList = (props) => {
+export const ReadingGoalsList = ({ close }) => {
     const [goals, setGoals] = useState([])
     const history = useHistory()
 
@@ -28,12 +28,15 @@ export const ReadingGoalsList = (props) => {
             goalsFetch()
         })
     }
+    const goToGoalForm = () => {
+        history.push('goals/create')
+    }
 
     return (
         <>
 
             <article className="goals">
-                <button onClick={() => history.push('goals/create')}>Create a New Reading Goal</button>
+                <button onClick={() => {goToGoalForm(); close()}}>Create a New Reading Goal</button>
                 {
                     goals.map(goal => {
                         return <>

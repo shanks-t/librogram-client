@@ -53,7 +53,7 @@ export const ReadingGoalForm = () => {
         <form>
             <div>
                 <label>number of books</label>
-                <input name='numberOfBooks' type='number' min='1' max='500' value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
+                <input name='numberOfBooks' type='number' min='1' max='500' required value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
