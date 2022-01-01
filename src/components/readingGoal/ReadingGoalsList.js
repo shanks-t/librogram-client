@@ -41,7 +41,7 @@ export const ReadingGoalsList = ({ close }) => {
                     goals.map(goal => {
                         return <>
                             <h3 key={`goal--${goal.id}`} className="goal">
-                                <Link to={`goals/edit/${goal.id}`}>{goal.id}</Link>
+                                <Link to={`goals/edit/${goal.id}`} onClick={() => {close()}}>{goal.id}</Link>
                                 <Link className="delete" onClick={(event) => {
                                     event.preventDefault()
                                     handleDelete(goal.id)}}>delete</Link>
