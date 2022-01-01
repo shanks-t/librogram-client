@@ -36,7 +36,7 @@ export const ReadingGoalsList = ({ close }) => {
         <>
 
             <article className="goals">
-                <button onClick={() => {goToGoalForm(); close()}}>Create a New Reading Goal</button>
+                
                 {
                     goals.map(goal => {
                         return <>

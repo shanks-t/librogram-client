@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 
+import { ReadingGoalForm } from '../../readingGoal/ReadingGoalForm';
 import { ReadingGoalsList } from '../../readingGoal/ReadingGoalsList';
 import { ProgressBar } from '../../readingGoal/ProgressBar';
 import { getReadingGoals } from '../../readingGoal/ReadingGoalManager';
@@ -101,6 +102,11 @@ const ScrollableContent = styled.div`
 
 
 const ModalOne = ({ closeFn = () => null, open = false }) => {
+    const [ showForm, setShowForm ] = useState(false)
+
+    const handleShowForm = () => {
+        setShowForm(!showForm)
+    }
     return (
         <Modal open={open}>
             <ModalBoxContainer>
@@ -110,10 +116,15 @@ const ModalOne = ({ closeFn = () => null, open = false }) => {
                 <ModalBoxContent>
                     <NonScrollableContent>
                         <p>Here are your current reading goals</p>
-                    </NonScrollableContent>
+                        {showForm ? <button  onClick={() => {handleShowForm()}}> Cancel </button> : <button onClick={() => {handleShowForm()}}> Create New Reading Goal</button>}
+                        </NonScrollableContent>
+                    { showForm ?
+                        <ReadingGoalForm toggle={handleShowForm} />
+                        :
                     <ScrollableContent>
                         <ReadingGoalsList close={closeFn}/>
                     </ScrollableContent>
+                    }
                 </ModalBoxContent>
             </ModalBoxContainer>
         </Modal>
