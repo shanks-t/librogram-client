@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { getStatuses, getUserBook, updateUserBook } from "./UserManager"
+import SliderRating from "./SliderRating"
 
 export const UserBookForm = () => {
     const [ userBook, setUserBook ] = useState({})
@@ -51,9 +52,10 @@ export const UserBookForm = () => {
     return (
         <form>
             <div>
-                <label>rating</label>
+                <SliderRating handleOnChange={handleOnChange} rating={userBook.rating}/>
+                {/* <label>rating</label>
                 <input name='rating' type='range' min='1' max='10' value={userBook.rating} step='0.1' onChange={(event) => handleOnChange(event)}></input>
-                    <p>Rating: {userBook.rating}</p>
+                    <p>Rating: {userBook.rating}</p> */}
             </div>
 
             <div>

@@ -5,3 +5,7 @@
 .incomplete {
     color: red;
 }
+
+span {
+    text-align: center;
+}

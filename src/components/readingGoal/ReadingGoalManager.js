@@ -38,3 +38,11 @@ export const getReadingGoals = () => {
     })
         .then(response => response.json())
 }
+export const deleteReadingGoal = (goalId) => {
+    return fetch(`http://localhost:8000/reading_goals/${ goalId }`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+        }
+    })
+}

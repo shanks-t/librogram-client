@@ -14,10 +14,13 @@ export const NavBar = () => {
             <li className="navbar__item">
                 <Link className="nav-link" to="/search">Search</Link>
             </li>
+            <li className="navbar__item">
+                <Link className="nav-link" to="/goals">goals</Link>
+            </li>
             {
                 (localStorage.getItem("lg_user_token") !== null) ?
-                    <li className="nav-item">
-                        <button className="nav-link fakeLink"
+                    <li className="navbar__item">
+                        <button className="nav-link"
                             onClick={() => {
                                 localStorage.removeItem("lg_user_token")
                                 history.push({ pathname: "/" })
