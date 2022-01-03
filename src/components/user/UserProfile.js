@@ -18,14 +18,9 @@ export const UserProfile = (props) => {
     }, []);
 
     return (
-        <div className="container">
-            <div className="modal-btn">
-                <button type="button" data-modal="modal-one">Open modal one</button>
-            </div>
-            <div className='profile-container'>
-                <UserBio user={user}/>
-                <UserLibrary user={user}/>
-            </div>
+        <div className='profile-container'>
+            <UserBio user={user}/>
+            <UserLibrary user={user}/>
         </div>
-        )
+    )
 }
