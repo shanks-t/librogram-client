@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom"
 import { getReadingGoal, saveReadingGoal, updateReadingGoal } from "./ReadingGoalManager"
 
 
-export const ReadingGoalForm = ({ toggle }) => {
+export const ReadingGoalForm = () => {
     const [ readingGoal, setReadingGoal ] = useState({})
     const history = useHistory()
     const { goalId } = useParams()
@@ -33,7 +33,7 @@ export const ReadingGoalForm = ({ toggle }) => {
         event.preventDefault()
 
         saveReadingGoal(readingGoal).then(() => {
-            toggle()
+            history.push('/profile')
         })
     }
 
@@ -53,7 +53,7 @@ export const ReadingGoalForm = ({ toggle }) => {
         <form>
             <div>
                 <label>number of books</label>
-                <input name='numberOfBooks' type='number' min='1' max='500' required value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
+                <input name='numberOfBooks' type='number' min='1' max='10' value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
