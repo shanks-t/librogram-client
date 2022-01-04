@@ -2,9 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 //import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
-import { Container } from "@mui/material";
-import { Button } from "@mui/material";
-import { Typography } from "@mui/material";
+import { Container } from "@mui/material/";
+import { Button } from "@mui/material/";
+import { Typography } from "@mui/material/";
+import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 
 import { MdMenuBook } from "react-icons/md";
 import "./Auth.css";
@@ -87,10 +88,10 @@ export const Register = (props) => {
 
             <Container align='center'>
                 <form className="form--login" onSubmit={handleRegister}>
-                <Typography
-                    variant='h3'
-                    align='center'
-                    color='textSecondary'
+                    <Typography
+                        variant='h3'
+                        align='center'
+                        color='textSecondary'
                     >Please sign in
                     </Typography>
                     <MdMenuBook className="book-icon-register" />
@@ -184,19 +185,12 @@ export const Register = (props) => {
                             required
                         />
                     </fieldset>
-                    <fieldset className='register'>
-                        <label htmlFor="verifyPassword"> "Are you an administrator?" </label>
-                        <input
-                            onChange={() => {
-                                handleAdminCheckbox()
-                            }}
-                            type="checkbox"
-                            name="isAdmin"
-                            className="form-control"
-                            placeholder="Verify password"
-                        />
-                    </fieldset>
-                    <Button variant='outlined' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
+                    <FormGroup sx={{ alignItems: 'center'}}>
+                        <FormControlLabel control={<Checkbox name='isAdmin' onChange={() => {
+                            handleAdminCheckbox()
+                        }} />} label="Are you and Administrator?" />
+                    </FormGroup>
+                    <Button sx={{ m: 2 }} variant='outlined' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
                 </form>
                 <section className="link--register">
                     Already registered? <Link to="/login">Login</Link>

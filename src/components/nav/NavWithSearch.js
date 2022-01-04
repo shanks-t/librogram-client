@@ -78,7 +78,7 @@ export const NavWithSearch = () => {
                             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                             <Nav.Link as={Link} to="/goals">Goals</Nav.Link>
                             <NavDropdown title="Link" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                                <NavDropdown.Item data-modal="modal-two">Edit Bio</NavDropdown.Item>
                                 <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action5">

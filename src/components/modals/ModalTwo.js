@@ -3,53 +3,75 @@ import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 
 import Modal from './Modal';
+import { UserBioForm } from '../user/UserBioForm';
 
-import { Button } from 'react-bootstrap'
+import styled, {keyframes} from 'styled-components';
+import { AiOutlineCloseCircle } from "react-icons/ai";
+
+const fadeIn = keyframes`
+    from {
+        margin-right: -100%;
+    }
+    to {
+        margin-right: 0%;
+    }
+`;
+
+const ModalOverlay = styled.div`
+    color: #4A82A6;
+    position: fixed;
+    top: 50;
+    right: 0;
+    z-index: 1100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    animation: ${fadeIn} 0.5s;
+`;
+
+const ModalBoxContainer = styled.div`
+    display: block;
+    position: fixed;
+    top: 50;
+    right: 0;
+    z-index: 1200;
+    height: 550px;
+    max-height: calc(100% - 6px);
+    width: 50%;
+    max-width: 650px;
+    border: 2px solid black;
+    border-radius: 25px 25px 25px 25px;
+    background-color: #fff;
+    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+    animation: ${fadeIn} 0.5s;
+    // TBD: add responsiveness
+`;
+
+const ModalBoxControl = styled.div`
+    position: absolute;
+    top: 0px;
+    right: 11px;
+    z-index: 1200;
+`;
+
+const ModalBoxContent = styled.div`
+    color: #333;
+`;
+
 
 const ModalTwo = ({ closeFn = () => null, open = false }) => {
-    const [ showForm, setShowForm ] = useState(false)
-
-    const handleShowForm = () => {
-        setShowForm(!showForm)
-    }
 
     return (
-        <>
-        <Modal open={open} onHide={closeFn}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={closeFn}>
-            Close
-          </Button>
-          <Button variant="primary" >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-        // <Modal open={open}>
-        //     <ModalBoxContainer>
-        //         <ModalBoxControl>
-        //             <CloseIcon aria-label="close" onClick={closeFn}/>
-        //         </ModalBoxControl>
-        //         <ModalBoxContent>
-        //             <NonScrollableContent>
-        //                 <p>Here are your current reading goals</p>
-        //                 {showForm ? <button  onClick={() => {handleShowForm()}}> Cancel </button> : <button onClick={() => {handleShowForm()}}> Create New Reading Goal</button>}
-        //                 </NonScrollableContent>
-        //             { showForm ?
-        //                 <ReadingGoalForm toggle={handleShowForm} />
-        //                 :
-        //             <ScrollableContent>
-        //                 <ReadingGoalsList close={closeFn}/>
-        //             </ScrollableContent>
-        //             }
-        //         </ModalBoxContent>
-        //     </ModalBoxContainer>
-        // </Modal>
+        <Modal open={open}>
+            <ModalBoxContainer>
+                <ModalBoxControl>
+                    <AiOutlineCloseCircle aria-label="close" onClick={closeFn}/>
+                </ModalBoxControl>
+                <ModalBoxContent>
+                    <UserBioForm close={closeFn}/>
+                </ModalBoxContent>
+            </ModalBoxContainer>
+        </Modal>
         
     );
 };

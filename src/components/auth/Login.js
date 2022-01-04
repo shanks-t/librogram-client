@@ -10,7 +10,6 @@ import Button from '@mui/material/Button'
 import { MdMenuBook } from "react-icons/md";
 
 
-
 export const Login = () => {
     const username = useRef()
     const password = useRef()
@@ -72,7 +71,9 @@ export const Login = () => {
                         <label htmlFor="inputPassword"> Password </label>
                         <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
                     </fieldset>
-                    <Button variant='outlined' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
+                    <div>
+                    <Button sx={{ m: 2 }} variant='outlined' className="btn-login" type="submit">Sign In</Button>
+                    </div>
                 </form>
                 <Link to="/register">Not a member yet?</Link>
             </section>

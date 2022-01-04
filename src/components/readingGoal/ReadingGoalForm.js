@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { getReadingGoal, saveReadingGoal, updateReadingGoal } from "./ReadingGoalManager"
 
 
 export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
     const [ readingGoal, setReadingGoal ] = useState({})
     const history = useHistory()
-    //const { goalId } = useParams()
 
 
     const handleOnChange = (event) => {
