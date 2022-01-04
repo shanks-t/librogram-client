@@ -85,9 +85,7 @@ export const NavWithSearch = () => {
                                     Something else here
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#" disabled>
-                                Link
-                            </Nav.Link>
+                            
                         </Nav>
                         <Form className="d-flex" onSubmit={handleFormSubmit}>
                             <FormControl
@@ -103,6 +101,23 @@ export const NavWithSearch = () => {
                                 Search
                             </Button>
                         </Form>
+                        { (localStorage.getItem("lg_user_token") !== null) ?
+                            <Nav.Link as={Link} onClick={() => {
+                                localStorage.removeItem("lg_user_token")
+                                history.push({ pathname: "/" })
+                            }}>
+                                Logout
+                            </Nav.Link>
+                            :
+                            <>
+                        <div className="nav-item">
+                            <Link className="nav-link" to="/login">Login</Link>
+                        </div>
+                        <div className="nav-item">
+                            <Link className="nav-link" to="/register">Register</Link>
+                        </div>
+                    </>
+                        }
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
