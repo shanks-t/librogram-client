@@ -6,7 +6,7 @@ export const UserBookSearch = ({ handleSearch }) => {
     return (
     
     <fieldset className="search">
-    <label htmlFor="q">Search</label>
+    <label htmlFor="q">Search My Books</label>
     <input name="q" type="text" onChange={handleSearch} />
     </fieldset>
 
