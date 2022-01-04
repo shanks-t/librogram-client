@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext, createContext } from "react"
 import { useParams, useHistory } from 'react-router-dom'
 import { getBooksByUser, getCurrentUser } from "./UserManager"
 import { UserLibrary } from "./UserLibrary"
 import { UserBio } from "./UserBio"
-import { UserBookSearch } from "./UserBookSearch"
+import { CurrentUserProvider, useCurrentUser } from "./UserContext"
+
 
 export const UserProfile = (props) => {
-
     const [ user, setUser ] = useState({})
 
     const getUser = () => {
@@ -18,14 +18,17 @@ export const UserProfile = (props) => {
     }, []);
 
     return (
+        <CurrentUserProvider value={user}>
+
         <div className="container">
             <div className="modal-btn">
                 <button type="button" data-modal="modal-one">Open modal one</button>
             </div>
             <div className='profile-container'>
-                <UserBio user={user}/>
+                <UserBio />
                 <UserLibrary user={user}/>
             </div>
         </div>
+        </CurrentUserProvider>
         )
 }

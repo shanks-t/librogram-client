@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { saveBook, saveUserBook } from './BookManager';
 import './Search.css'
 import Modal from './Modal'
+import ModalThree from '../modals/ModalThree';
 import useModal from './useModal'
 
 
@@ -51,11 +52,11 @@ export const Book = ({ book }) => {
                                 <a target='blank' href={book?.volumeInfo?.infoLink}>
                                     <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
                                 </a>
-                                <div className='button'><button className='button-default'  data-modal="modal-two" onClick={handleClick}>Add To Library</button></div>
+                                <div className='button'><button className='button-default'  data-modal="modal-three" onClick={handleClick}>Add To Library</button></div>
                                 
                             </div>
                             
-                            <Modal
+                            <ModalThree
                             isShowing={isShowing}
                             hide={toggle}
                             book={newBook}

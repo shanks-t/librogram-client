@@ -3,22 +3,20 @@ import { useParams, useHistory, Link } from 'react-router-dom'
 import { getBooksByUser, getCurrentUser, deleteBook, searchBooksByUser } from "./UserManager"
 import { UserBookSearch } from "./UserBookSearch"
 import { UserBookFilter } from "./UserBookFilter"
+import { useCurrentUser } from "./UserContext"
 import "./UserProfile.css"
 
-export const UserLibrary = ({ user }) => {
+export const UserLibrary = () => {
     const [books, setBooks] = useState([])
-    const [userId, setUserId] = useState( user.id )
     const [filters, toggleFilters] = useState(false)
-    const history = useHistory()
-
+    const user = useCurrentUser()
+    const userId = user.id
     const showFilters = () => {
         if (filters === false) { toggleFilters(true) }
         else { toggleFilters(false) }
     }
 
-    const getUser = () => {
-        getCurrentUser().then(data => setUserId(data.user.id))
-    }
+
     const getBooks = (userId, name, value) => {
         getBooksByUser(userId).then(data => setBooks(data))
     }
@@ -31,15 +29,11 @@ export const UserLibrary = ({ user }) => {
     }
 
     useEffect(() => {
-        if (userId) {
+        if (user) {
 
             getBooks()
         }
-    }, [userId])
-
-    useEffect(() => {
-        getUser()
-    }, []);
+    }, [user])
 
     const handleDelete = (bookId) => {
         deleteBook(bookId).then(() => {

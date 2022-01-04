@@ -101,13 +101,16 @@ export const NavWithSearch = () => {
                                 Search
                             </Button>
                         </Form>
+
                         { (localStorage.getItem("lg_user_token") !== null) ?
+                        <Nav>
                             <Nav.Link as={Link} onClick={() => {
                                 localStorage.removeItem("lg_user_token")
                                 history.push({ pathname: "/" })
                             }}>
                                 Logout
                             </Nav.Link>
+                        </Nav>
                             :
                             <>
                         <div className="nav-item">

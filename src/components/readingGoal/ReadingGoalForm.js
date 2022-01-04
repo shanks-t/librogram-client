@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import { getReadingGoal, saveReadingGoal, updateReadingGoal } from "./ReadingGoalManager"
 
 
-export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
+export const ReadingGoalForm = ({ goalId, toggle }) => {
     const [ readingGoal, setReadingGoal ] = useState({})
     const history = useHistory()
 
@@ -30,19 +30,24 @@ export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
 
     const saveGoal = (event) => {
         event.preventDefault()
-
-        saveReadingGoal(readingGoal).then(() => {
-            
+        if (!readingGoal.endDate) {
+            window.alert('please add an end date for goal')
+        } else {
+            saveReadingGoal(readingGoal).then(() => {
+                toggle()
         })
-    }
+    }}
 
     const updateGoal = (event) => {
         event.preventDefault()
-
-        updateReadingGoal(goalId, readingGoal).then(() => {
-            history.push('/profile')
+        if (!readingGoal.endDate) {
+            window.alert('please add an end date for goal')
+        } else {
+            updateReadingGoal(goalId, readingGoal).then(() => {
+                toggle()
         })
-    }
+    }}
+    
     useEffect(() => {
         console.log('ReadingGoal', readingGoal)
         console.log('goalId', goalId)
@@ -52,7 +57,7 @@ export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
         <form>
             <div>
                 <label>number of books</label>
-                <input name='numberOfBooks' type='number' min='1' max='400' value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
+                <input required name='numberOfBooks' type='number' min='1' max='400' value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
@@ -67,14 +72,14 @@ export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
 
             <div>
                 <label>end date</label>
-                <input type="date" name="endDate" value={readingGoal.endDate} onChange={(event) => handleOnChange(event)}></input>
+                <input required='required' type="date" name="endDate" value={readingGoal.endDate} onChange={(event) => handleOnChange(event)}></input>
             </div>
             <div>
                 <button onClick={(event) => {
                        if (goalId) {
-                        updateGoal(event); handleShowForm()
+                        updateGoal(event)
                     } else {
-                        saveGoal(event); handleShowForm()
+                        saveGoal(event)
                     }
                     }}>Save Goal</button>
             </div>

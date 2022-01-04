@@ -3,7 +3,7 @@ import { Book } from "./Book"
 
 import './Search.css'
 
-export const SearchResults = () => {
+export const SearchResults = ({  }) => {
     const [ books, setBooks ] = useState([])
     const [ items, setItems ] = useState([])
 

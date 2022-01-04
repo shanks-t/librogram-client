@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Book } from "./Book"
+import { SearchResults } from './SearchResults';
 import './Search.css'
 
 
@@ -48,9 +49,7 @@ export const Search = () => {
 
             </div>
             <div className='results'>
-                {
-                    books?.items?.map(item => <Book book={item}/>)
-                }
+                <SearchResults books={books} />
             </div>
         </>
     );

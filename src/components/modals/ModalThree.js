@@ -1,13 +1,13 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
 import Modal from './Modal';
-import { UserBioForm } from '../user/UserBioForm';
+
 
 import styled, {keyframes} from 'styled-components';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
+// animation for fade in
 const fadeIn = keyframes`
     from {
         margin-right: -100%;
@@ -58,9 +58,49 @@ const ModalBoxContent = styled.div`
     color: #333;
 `;
 
+const NonScrollableContent = styled.div`
+    margin: auto;
+    text-align: center;
+`;
 
-const ModalTwo = ({ closeFn = () => null, open = false }) => {
+const ScrollableContent = styled.div`
+    position: absolute;
+    width: 86%;
+    height: calc(100% - 140px);
+    overflow-y: auto;
+    margin: 10px 30px 30px 30px;
+    padding: 0px 25px 38px 0px;
+    /* scroll bar width */
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    /* scroll bar track */
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 2px #333; 
+      border-radius: 10px;
+    }
+     
+    /* scroll bar handle */
+    &::-webkit-scrollbar-thumb {
+      background: rgba(51,51,51,0.8);
+      opacity: 0.6;
+      border-radius: 10px;
+    }
+    
+    /* scroll bar handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(51,51,51,1);
+    }
+`;
 
+
+const ModalThree = ({ closeFn = () => null, open = false }) => {
+    const [ showForm, setShowForm ] = useState(false)
+
+    const handleShowForm = () => {
+        setShowForm(!showForm)
+    }
     return (
         <Modal open={open}>
             <ModalBoxContainer>
@@ -68,7 +108,10 @@ const ModalTwo = ({ closeFn = () => null, open = false }) => {
                     <AiOutlineCloseCircle aria-label="close" onClick={closeFn}/>
                 </ModalBoxControl>
                 <ModalBoxContent>
-                    <UserBioForm close={closeFn}/>
+                    <NonScrollableContent>
+                        </NonScrollableContent>
+                    <ScrollableContent>
+                    </ScrollableContent>
                 </ModalBoxContent>
             </ModalBoxContainer>
         </Modal>
@@ -76,5 +119,4 @@ const ModalTwo = ({ closeFn = () => null, open = false }) => {
     );
 };
 
-export default ModalTwo;
-
+export default ModalThree
