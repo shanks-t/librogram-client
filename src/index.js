@@ -4,6 +4,7 @@ import './index.css';
 import { BrowserRouter as Router } from "react-router-dom"
 import { Librogram } from './components/Librogram';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +12,7 @@ ReactDOM.render(
       <Librogram />
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('app-root')
 );
 
 // If you want to start measuring performance in your app, pass a function
