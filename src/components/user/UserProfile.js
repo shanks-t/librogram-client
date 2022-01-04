@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom'
 import { getBooksByUser, getCurrentUser } from "./UserManager"
 import { UserLibrary } from "./UserLibrary"
 import { UserBio } from "./UserBio"
-import { CurrentUserProvider, useCurrentUser } from "./UserContext"
 
 
 export const UserProfile = (props) => {
@@ -18,7 +17,7 @@ export const UserProfile = (props) => {
     }, []);
 
     return (
-        <CurrentUserProvider value={user}>
+     
 
         <div className="container">
             <div className="modal-btn">
@@ -26,9 +25,9 @@ export const UserProfile = (props) => {
             </div>
             <div className='profile-container'>
                 <UserBio />
-                <UserLibrary user={user}/>
+                <UserLibrary />
             </div>
         </div>
-        </CurrentUserProvider>
+
         )
 }

@@ -6,20 +6,6 @@ import "./UserProfile.css"
 
 export const UserBio = (props) => {
     const user = useCurrentUser()
-    // const [user, setUser] = useState({})
-
-
-    // const fetchUserInfo = () => {
-    //     getCurrentUser().then(data => setUser(data))
-    // }
-
-    // useEffect(() => {
-    //     fetchUserInfo()
-    // }, [user?.profile_image_url, user?.bio]);
-
-    // useEffect(() => {
-    //     console.log('user', user)
-    // }, [user]);
 
     return (
         <>
