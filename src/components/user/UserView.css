@@ -1,0 +1,25 @@
+.profile-container {
+    display: flex;
+    margin: 1rem;
+    margin-left: -4rem
+}
+
+.search {
+    display: block;
+    margin: 0px;
+}
+
+.library {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.library-book {
+    margin-right: 1rem;
+}
+
+.books {
+    margin: 1rem;
+    margin-top: -11rem;
+}
+

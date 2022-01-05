@@ -21,7 +21,7 @@ export const UserLibrary = () => {
         getBooksByUser(userId).then(data => setBooks(data))
     }
     const handleSearch = (e) => {
-        if (e.target.value === 0) {
+        if (e.target.value == 0) {
             getBooks()
         }else{
             searchBooksByUser( userId, e.target.name, e.target.value).then(data => setBooks(data))
@@ -41,20 +41,16 @@ export const UserLibrary = () => {
         })
     }
 
-    useEffect(() => {
-        console.log('books', books)
-        console.log('user', userId)
-    }, [books, userId]);
 
     return (
-        <>
+        <div className="library">
         <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} filters={filters}/>
             <UserBookSearch user={user} handleSearch={handleSearch} />
                 <article className="library">
                     <div className="books">
                         {
                             books.map(book => {
-                                return <div><Link to={`profile/books/${book.book.id}/${book.id}`}>
+                                return <div className="library-book"><Link to={`profile/books/${book.book.id}/${book.id}`}>
                                     <img src={book?.book.image_path} alt={book.book.title} />
                                 </Link>
                                     <button className='delete' onClick={(event) => {
@@ -66,6 +62,6 @@ export const UserLibrary = () => {
                         }
                     </div>
                 </article>
-        </>
+        </div>
     )
 }
