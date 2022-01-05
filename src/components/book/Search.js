@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Book } from "./Book"
 import { SearchResults } from './SearchResults';
-import './Search.css'
+//import './Search.css'
+import { Container } from '@mui/material'
 
 
 export const Search = () => {
@@ -24,6 +25,12 @@ export const Search = () => {
         }
     }
 
+    const handleSearchKeyUp = (event) => {
+        event.preventDefault();
+        if (event.key === 'Enter' && event.keyCode === 13) {
+            getBooks();
+        }
+    }
     const onInputChange = e => {
         setSearch(e.target.value);
     }
@@ -40,10 +47,12 @@ export const Search = () => {
 
 
     return (
-        <>
+        <Container align='center' sx={{ mt: 2 }}>
+        <div>
             <h2>Search for Books</h2>
+        </div>
             <div className="search">
-                <input type="text" value={search} onChange={onInputChange} />
+                <input type="text" value={search} onChange={onInputChange} onKeyUp={handleSearchKeyUp}/>
                 <button type="submit"  onClick={getBooks}>Search</button>
                 <br></br>
 
@@ -51,7 +60,7 @@ export const Search = () => {
             <div className='results'>
                 <SearchResults books={books} />
             </div>
-        </>
+        </Container>
     );
 }
 

@@ -3,9 +3,8 @@ import { useHistory } from "react-router-dom"
 import { getReadingGoal, saveReadingGoal, updateReadingGoal } from "./ReadingGoalManager"
 
 
-export const ReadingGoalForm = ({ goalId, toggle }) => {
+export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
     const [ readingGoal, setReadingGoal ] = useState({})
-    const history = useHistory()
 
 
     const handleOnChange = (event) => {
@@ -34,7 +33,7 @@ export const ReadingGoalForm = ({ goalId, toggle }) => {
             window.alert('please add an end date for goal')
         } else {
             saveReadingGoal(readingGoal).then(() => {
-                toggle()
+                handleShowForm()
         })
     }}
 
@@ -44,7 +43,7 @@ export const ReadingGoalForm = ({ goalId, toggle }) => {
             window.alert('please add an end date for goal')
         } else {
             updateReadingGoal(goalId, readingGoal).then(() => {
-                toggle()
+                handleShowForm()
         })
     }}
     
@@ -82,6 +81,7 @@ export const ReadingGoalForm = ({ goalId, toggle }) => {
                         saveGoal(event)
                     }
                     }}>Save Goal</button>
+                    <button onClick={(event) => handleShowForm()}>cancel</button>
             </div>
         </form>
     )

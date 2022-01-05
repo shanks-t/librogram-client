@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Book } from "./Book"
 
-import './Search.css'
+//import './Search.css'
 
-export const SearchResults = ({  }) => {
-    const [ books, setBooks ] = useState([])
+export const SearchResults = ({ books }) => {
+    const [ localBooks, setLocalBooks ] = useState([])
     const [ items, setItems ] = useState([])
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export const SearchResults = ({  }) => {
     }
     const handleUpdateBooks = () => {
         if(items) {
-            setBooks(items)
+            setLocalBooks(items)
             console.log('books', books)
             console.log('items', items)
         }
@@ -26,10 +26,13 @@ export const SearchResults = ({  }) => {
     }, [items]);
 
     return (
-        <div className='results'>
-                {
-                    books?.items?.map(item => <Book book={item}/>)
-                }
-            </div>
+            <>
+            
+            {books ?
+                books?.items?.map(item => <Book book={item}/>)
+                :
+                localBooks?.items?.map(item => <Book book={item}/>)
+            }
+            </>
     )
 }

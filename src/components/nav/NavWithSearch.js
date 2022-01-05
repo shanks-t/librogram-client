@@ -39,7 +39,7 @@ export const NavWithSearch = () => {
             const response = await fetch(url);
             const data = await response.json()
             setBooks(data);
-            history.push('/results')
+            history.push('/search')
         } catch (error) {
             console.error(error);
         }
@@ -104,9 +104,8 @@ export const NavWithSearch = () => {
 
                         { (localStorage.getItem("lg_user_token") !== null) ?
                         <Nav>
-                            <Nav.Link as={Link} onClick={() => {
+                            <Nav.Link as={Link} to='/'onClick={() => {
                                 localStorage.removeItem("lg_user_token")
-                                history.push({ pathname: "/" })
                             }}>
                                 Logout
                             </Nav.Link>
@@ -125,7 +124,7 @@ export const NavWithSearch = () => {
                 </Container>
             </Navbar>
             <Switch>
-                <Route exact path="/results" component={SearchResults} />
+                <Route exact path="/search" component={SearchResults} />
             </Switch> 
             {/* <Navbar bg="dark" variant="dark">
                         <div>

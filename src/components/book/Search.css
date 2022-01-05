@@ -23,17 +23,19 @@
     justify-content: space-between;
     flex-direction: column;
     margin: .3rem;
+    margin-right: 4rem;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     width: 5rem;
   }
 
   .book .button {
-      justify-content: flex-end;
+      justify-content: flex-start;
       display: flex;
+      margin-left: 1rem;
   }
 
-  .modal-overlay {
+  /* .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -79,7 +81,7 @@
     opacity: .3;
     cursor: pointer;
     border: none;
-  }
+  } */
   
   button {
     font-size: .9rem;

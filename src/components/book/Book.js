@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { saveBook, saveUserBook } from './BookManager';
+import { useCurrentUser } from "../user/UserContext"
+
 import './Search.css'
-import Modal from './Modal'
-import ModalThree from '../modals/ModalThree';
+import CheckoutModal from './CheckOutModal'
 import useModal from './useModal'
 
 
@@ -12,6 +13,8 @@ export const Book = ({ book }) => {
     const [ userBook, setUserBook ] = useState({})
     const [ title, setTitle ] = useState('')
     const [ author, setAuthor ] = useState('')
+    const user = useCurrentUser()
+    
 
 
     const handleClick = () => {
@@ -52,11 +55,12 @@ export const Book = ({ book }) => {
                                 <a target='blank' href={book?.volumeInfo?.infoLink}>
                                     <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
                                 </a>
-                                <div className='button'><button className='button-default'  data-modal="modal-three" onClick={handleClick}>Add To Library</button></div>
+                                <div className='button'><button className='button-default'  onClick={handleClick}>Add To Library</button></div>
                                 
                             </div>
                             
-                            <ModalThree
+                            <CheckoutModal
+                            user={user}
                             isShowing={isShowing}
                             hide={toggle}
                             book={newBook}

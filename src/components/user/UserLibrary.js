@@ -21,7 +21,7 @@ export const UserLibrary = () => {
         getBooksByUser(userId).then(data => setBooks(data))
     }
     const handleSearch = (e) => {
-        if (e.target.value == 0) {
+        if (e.target.value === 0) {
             getBooks()
         }else{
             searchBooksByUser( userId, e.target.name, e.target.value).then(data => setBooks(data))

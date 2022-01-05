@@ -115,7 +115,7 @@ const ModalOne = ({ closeFn = () => null, open = false }) => {
                         {showForm ? <button  onClick={() => {handleShowForm()}}> Cancel </button> : <button onClick={() => {handleShowForm()}}> Create New Reading Goal</button>}
                         </NonScrollableContent>
                     { showForm ?
-                        <ReadingGoalForm toggle={handleShowForm} />
+                        <ReadingGoalForm handleShowForm={handleShowForm} />
                         :
                     <ScrollableContent>
                         <ReadingGoalsList close={closeFn}/>
