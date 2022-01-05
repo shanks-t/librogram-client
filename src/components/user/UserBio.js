@@ -9,7 +9,7 @@ export const UserBio = (props) => {
     const user = useCurrentUser()
 
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: 'rem' }}>
             <Card.Img variant="top" src={user?.profile_image_url} />
             <Card.Body>
                 <Card.Title>{user?.user?.username}</Card.Title>

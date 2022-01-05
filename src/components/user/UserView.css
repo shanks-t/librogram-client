@@ -1,12 +1,12 @@
 .profile-container {
     display: flex;
     margin: 1rem;
-    margin-left: -4rem
+    margin-left: 1rem
 }
 
 .search {
     display: block;
-    margin: 0px;
+    margin-left: 5rem;
 }
 
 .library {
@@ -20,6 +20,11 @@
 
 .books {
     margin: 1rem;
-    margin-top: -11rem;
+    margin-top: 5rem;
+}
+
+.filter-container {
+    margin-left: 5rem;
+    margin-top: 4.5rem;
 }
 
