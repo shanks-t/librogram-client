@@ -1,59 +1,67 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
-
-import { getCurrentUser, updateReaderBio } from "./UserManager"
+import { UserContext } from "./UserManager"
 import { Form, Button } from 'react-bootstrap'
 
 export const UserBioForm = ({ close }) => {
-    const [userBio, setUserBio] = useState({})
+    const [ userBio, setUserBio] = useState({})
     const [userId, setUserId] = useState({})
+    const { user, updateReaderBio, getCurrentUser } = useContext(UserContext)
 
     const handleOnChange = (event) => {
-        const copyUserBio = { ...userBio }
-        copyUserBio[event.target.name] = event.target.value
-        setUserBio(copyUserBio)
-    }
-
-    const fetchUserInfo = () => {
-        getCurrentUser().then(data => setUserBio({
-            ...data,
-            id: data.user.id,
-            bio: data.bio,
-            profileImageUrl: data.profile_image_url
-        }))
+        const copyUser = { ...user }
+        copyUser[event.target.name] = event.target.value
+        setUserBio(copyUser)
     }
 
     useEffect(() => {
-        fetchUserInfo()
+        if (user) {
+            setUserBio({
+         id: user.id,
+         bio: user.bio,
+         profileImageUrl: user.profile_image_url
+                 })
+        }
     }, []);
+    // const fetchUserInfo = () => {
+    //     getCurrentUser().then(data => setUserBio({
+    //         ...data,
+    //         id: data?.user.id,
+    //         bio: data?.bio,
+    //         profileImageUrl: data?.profile_image_url
+    //     }))
+    // }
+
+    useEffect(() => {
+        console.log('bio', userBio)
+    }, [user, userBio]);
 
     const handleClick = (event) => {
         event.preventDefault()
-        updateReaderBio(userBio.id, userBio).then(() => close())
+        updateReaderBio(user.user.id, userBio).then(() => close())
     }
+
+   
 
     return (
         <Form>
-            <Form.Group className="mb-3" controlId="formBio">
+            <Form.Group className="mb-3">
                 <Form.Label>Bio</Form.Label>
-                <Form.Control name='bio' type="textarea" 
+                <Form.Control name='bio' as="textarea" 
                 value={userBio.bio}
-                rows={4} 
+                rows={3}
                 placeholder="Enter Bio" 
                 onChange={(event) => handleOnChange(event)}
                 />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Profile Image</Form.Label>
                 <Form.Control name='profileImageUrl' type="url" 
-                value={userBio.profile_image_url}
-                placeholder="Password" 
+                value={userBio.profileImageUrl}
+                placeholder="profile image url" 
                 onChange={(event) => handleOnChange(event)}
                 />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
             <Button variant="primary" onClick={(event) => {handleClick(event)}}>
                 Submit

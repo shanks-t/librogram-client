@@ -10,12 +10,14 @@
 }
 
 .library {
-    display: flex;
+    display: block;
     flex-wrap: wrap;
+    margin: 5px;
+    margin-bottom: 3rem;
 }
 
 .library-book {
-    margin-right: 1rem;
+    margin-right: .5rem;
 }
 
 .books {
@@ -28,3 +30,7 @@
     margin-top: 4.5rem;
 }
 
+.card {
+    height: 50%;
+    width: 20rem;
+}

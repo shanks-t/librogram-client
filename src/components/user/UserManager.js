@@ -1,4 +1,23 @@
-export const saveUserBook = (book) => {
+import React, { useState } from "react"
+
+export const UserContext = React.createContext()
+
+export const CurrentUserProvider = (props) => {
+    const [user, setUser] = useState({events:[]})
+    const [tags, setTags] = useState([])
+
+    const getCurrentUser = () => {
+        return fetch("http://localhost:8000/readers/currentuser", {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setUser)
+    }
+
+
+ const saveUserBook = (book) => {
     return fetch("http://localhost:8000/userbooks", {
         method: "POST",
         headers: {
@@ -9,7 +28,7 @@ export const saveUserBook = (book) => {
     })
 
 }
-export const updateUserBook = (userBookId, userBook) => {
+ const updateUserBook = (userBookId, userBook) => {
     return fetch(`http://localhost:8000/userbooks/${userBookId}/edit`, {
         method: "PATCH",
         headers: {
@@ -20,7 +39,7 @@ export const updateUserBook = (userBookId, userBook) => {
     })
 }
 
-export const getUserBook = userBookId => {
+ const getUserBook = userBookId => {
     return fetch(`http://localhost:8000/userbooks/${userBookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
@@ -29,7 +48,7 @@ export const getUserBook = userBookId => {
         .then(response => response.json())
 }
 
-export const getBook = (bookId) => {
+ const getBook = (bookId) => {
     return fetch(`http://localhost:8000/books/${bookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
@@ -38,7 +57,7 @@ export const getBook = (bookId) => {
         .then(response => response.json())
 }
 
-export const getBooksByUser = (userId) => {
+ const getBooksByUser = (userId) => {
     return fetch(`http://localhost:8000/userbooks?user_id=${userId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
@@ -47,7 +66,7 @@ export const getBooksByUser = (userId) => {
         .then(response => response.json())
 }
 
-export const getStatuses = () => {
+ const getStatuses = () => {
     return fetch(`http://localhost:8000/statuses`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
@@ -55,25 +74,17 @@ export const getStatuses = () => {
     })
         .then(response => response.json())
 }
-export const getCurrentUser = () => {
-    return fetch(`http://localhost:8000/readers/currentuser`, {
-        headers: {
-            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
-        }
+
+
+const getTags = () => {
+    return fetch(`http://localhost:8000/tags`,{
+        headers: {"Authorization": `Token ${localStorage.getItem("lg_user_token")}`}
     })
-        .then(response => response.json())
+    .then(res => res.json())
+    .then(setTags)
 }
 
-export const getTags = () => {
-    return fetch(`http://localhost:8000/tags`, {
-        headers: {
-            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
-        }
-    })
-        .then(response => response.json())
-}
-
-export const deleteBook = (bookId) => {
+ const deleteBook = (bookId) => {
     return fetch(`http://localhost:8000/userbooks/${ bookId }`, {
         method: "DELETE",
         headers:{
@@ -82,7 +93,7 @@ export const deleteBook = (bookId) => {
     })
 }
 
-export const searchBooksByUser = (userId, q, term) => {
+ const searchBooksByUser = (userId, q, term) => {
     return fetch(`http://localhost:8000/userbooks?user_id=${userId}&${q}=${term}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
@@ -91,7 +102,7 @@ export const searchBooksByUser = (userId, q, term) => {
         .then(res => res.json())
 }
 
-export const updateReaderBio = (userId, Bio) => {
+ const updateReaderBio = (userId, Bio) => {
     return fetch(`http://localhost:8000/readers/${userId}/edit`, {
         method: "PATCH",
         headers: {
@@ -100,5 +111,16 @@ export const updateReaderBio = (userId, Bio) => {
         },
         body: JSON.stringify(Bio)
     })
-    .then(getCurrentUser())
+    .then(getCurrentUser)
+}
+
+
+
+return (
+    <UserContext.Provider value={{
+        user, tags, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio
+    }}>
+        {props.children}
+    </UserContext.Provider>
+)
 }

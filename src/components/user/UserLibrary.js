@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { useParams, useHistory, Link } from 'react-router-dom'
 import { getBooksByUser, getCurrentUser, deleteBook, searchBooksByUser } from "./UserManager"
 import { UserBookSearch } from "./UserBookSearch"
 import { UserBookFilter } from "./UserBookFilter"
-import { useCurrentUser } from "./UserContext"
+import { UserContext } from "./UserManager"
 import "./UserProfile.css"
 
-export const UserLibrary = () => {
+export const UserLibrary = (props) => {
     const [books, setBooks] = useState([])
+    const [ userId, setUserId ] = useState()
     const [filters, toggleFilters] = useState(false)
-    const user = useCurrentUser()
-    const userId = user.id
+    const { user, getCurrentUser, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
+
+    useEffect(() => {
+        getCurrentUser()
+    }, []);
+
+    useEffect(() => {
+      setUserId(user.id)  
+    }, [user]);
+
     const showFilters = () => {
         if (filters === false) { toggleFilters(true) }
         else { toggleFilters(false) }
@@ -29,8 +38,7 @@ export const UserLibrary = () => {
     }
 
     useEffect(() => {
-        if (user) {
-
+        if (userId) {
             getBooks()
         }
     }, [user])
