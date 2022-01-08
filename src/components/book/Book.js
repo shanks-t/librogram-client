@@ -42,7 +42,6 @@ export const Book = ({ book }) => {
         console.log('title', title)
     }, [newBook]);
 
-    console.log('authors', book?.volumeInfo?.authors)
     return (
         <>
                 {
@@ -52,7 +51,7 @@ export const Book = ({ book }) => {
                                 <a target='blank' href={book?.volumeInfo?.infoLink}>
                                     <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
                                 </a>
-                                <div className='button'><button className='button-default' onClick={handleClick}>Add To Library</button></div>
+                                <div className='button'><button className='button-default'  data-modal="modal-two" onClick={handleClick}>Add To Library</button></div>
                                 
                             </div>
                             

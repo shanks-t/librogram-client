@@ -1,5 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+
+//import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
+import { Container } from "@mui/material/";
+import { Button } from "@mui/material/";
+import { Typography } from "@mui/material/";
+import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
+
+import { MdMenuBook } from "react-icons/md";
 import "./Auth.css";
 
 export const Register = (props) => {
@@ -78,122 +86,116 @@ export const Register = (props) => {
                 </button>
             </dialog>
 
-            <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
-                <fieldset>
-                    <label htmlFor="firstName"> First Name </label>
-                    <input
-                        ref={firstName}
-                        type="text"
-                        name="firstName"
-                        className="form-control"
-                        placeholder="First name"
-                        required
-                        autoFocus
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="lastName"> Last Name </label>
-                    <input
-                        ref={lastName}
-                        type="text"
-                        name="lastName"
-                        className="form-control"
-                        placeholder="Last name"
-                        required
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="username"> Username </label>
-                    <input
-                        ref={username}
-                        type="text"
-                        name="username"
-                        className="form-control"
-                        placeholder="username"
-                        required
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="bio"> Bio </label>
-                    <input
-                        ref={bio}
-                        type="text"
-                        name="username"
-                        className="form-control"
-                        placeholder="username"
-                        required
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="inputEmail"> Email address </label>
-                    <input
-                        ref={email}
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        placeholder="Email address"
-                        required
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="profileImageUrl"> User Photo </label>
-                    <input
-                        ref={profileImageUrl}
-                        type="text"
-                        name="profileImageUrl"
-                        className="form-control"
-                        placeholder="photo url"
-                        required
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="inputPassword"> Password </label>
-                    <input
-                        ref={password}
-                        type="password"
-                        name="password"
-                        className="form-control"
-                        placeholder="Password"
-                        required
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <input
-                        ref={verifyPassword}
-                        type="password"
-                        name="verifyPassword"
-                        className="form-control"
-                        placeholder="Verify password"
-                        required
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="verifyPassword"> "Are you an administrator?" </label>
-                    <input
-                        onChange={() => {
+            <Container align='center'>
+                <form className="form--login" onSubmit={handleRegister}>
+                    <Typography
+                        variant='h3'
+                        align='center'
+                        color='textSecondary'
+                    >Please sign in
+                    </Typography>
+                    <MdMenuBook className="book-icon-register" />
+                    <fieldset className='register'>
+                        <label htmlFor="firstName"> First Name </label>
+                        <input
+                            ref={firstName}
+                            type="text"
+                            name="firstName"
+                            className="form-control"
+                            placeholder="First name"
+                            required
+                            autoFocus
+                        />
+                    </fieldset>
+                    <fieldset className='register'>
+                        <label htmlFor="lastName"> Last Name </label>
+                        <input
+                            ref={lastName}
+                            type="text"
+                            name="lastName"
+                            className="form-control"
+                            placeholder="Last name"
+                            required
+                        />
+                    </fieldset>
+                    <fieldset className='register'>
+                        <label htmlFor="username"> Username </label>
+                        <input
+                            ref={username}
+                            type="text"
+                            name="username"
+                            className="form-control"
+                            placeholder="username"
+                            required
+                        />
+                    </fieldset>
+                    <fieldset className='register'>
+                        <label htmlFor="bio"> Bio </label>
+                        <textarea
+                            ref={bio}
+                            rows={6}
+                            type="text"
+                            name="bio"
+                            className="form-control"
+                            placeholder="bio"
+                            required
+                        />
+                    </fieldset>
+                    <fieldset className='register'>
+                        <label htmlFor="inputEmail"> Email address </label>
+                        <input
+                            ref={email}
+                            type="email"
+                            name="email"
+                            className="form-control"
+                            placeholder="Email address"
+                            required
+                        />
+                    </fieldset>
+                    <fieldset className='register'>
+                        <label htmlFor="profileImageUrl"> User Photo </label>
+                        <input
+                            ref={profileImageUrl}
+                            type="text"
+                            name="profileImageUrl"
+                            className="form-control"
+                            placeholder="photo url"
+                            required
+                        />
+                    </fieldset>
+                    <fieldset className='register'>
+                        <label htmlFor="inputPassword"> Password </label>
+                        <input
+                            ref={password}
+                            type="password"
+                            name="password"
+                            className="form-control"
+                            placeholder="Password"
+                            required
+                        />
+                    </fieldset>
+                    <fieldset className='register'>
+                        <label htmlFor="verifyPassword"> Verify Password </label>
+                        <input
+                            ref={verifyPassword}
+                            type="password"
+                            name="verifyPassword"
+                            className="form-control"
+                            placeholder="Verify password"
+                            required
+                        />
+                    </fieldset>
+                    <FormGroup sx={{ alignItems: 'center'}}>
+                        <FormControlLabel control={<Checkbox name='isAdmin' onChange={() => {
                             handleAdminCheckbox()
-                        }}
-                        type="checkbox"
-                        name="isAdmin"
-                        className="form-control"
-                        placeholder="Verify password"
-                    />
-                </fieldset>
-                <fieldset
-                    style={{
-                        textAlign: "center",
-                    }}
-                >
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">
-                        Register
-                    </button>
-                </fieldset>
-            </form>
-            <section className="link--register">
-                Already registered? <Link to="/login">Login</Link>
-            </section>
+                        }} />} label="Are you and Administrator?" />
+                    </FormGroup>
+                    <Button sx={{ m: 2 }} variant='outlined' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
+                </form>
+                <section className="link--register">
+                    Already registered? <Link to="/login">Login</Link>
+                </section>
+            </Container>
         </main>
     );
 };

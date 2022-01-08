@@ -90,3 +90,15 @@ export const searchBooksByUser = (userId, q, term) => {
     })
         .then(res => res.json())
 }
+
+export const updateReaderBio = (userId, Bio) => {
+    return fetch(`http://localhost:8000/readers/${userId}/edit`, {
+        method: "PATCH",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Bio)
+    })
+    .then(getCurrentUser())
+}
