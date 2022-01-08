@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react"
-import { useCurrentUser } from "./UserContext"
+import React, { useEffect, useContext } from "react"
+import { UserContext } from "./UserManager"
 
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 //import "./UserProfile.css"
 
 
 export const UserBio = (props) => {
-    const user = useCurrentUser()
+    const { user, getCurrentUser } = useContext(UserContext)
 
+    useEffect(() => {
+        getCurrentUser()
+    }, []);
+
+    useEffect(() => {
+        console.log('user', user)
+    }, [user]);
     return (
         <Card style={{ width: 'rem' }}>
             <Card.Img variant="top" src={user?.profile_image_url} />
@@ -18,8 +25,8 @@ export const UserBio = (props) => {
                 </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-                <ListGroupItem>Cras justo odio</ListGroupItem>
-                <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
+                <ListGroupItem>total books: {user.current_books}</ListGroupItem>
+                <ListGroupItem>total reading goals: {user.goals}</ListGroupItem>
                 <ListGroupItem>Vestibulum at eros</ListGroupItem>
             </ListGroup>
         </Card>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useParams, useHistory } from 'react-router-dom'
 import { getBook, getCurrentUser } from "./UserManager"
 import { CommentForm } from "../comment/CommentForm"
+import { UserContext } from "./UserManager"
 import "./UserProfile.css"
 
 import { Image, Card, ListGroup, ListGroupItem, CardGroup } from "react-bootstrap"
@@ -13,6 +14,7 @@ export const UserBookDetails = (props) => {
     const [ showCommentForm, setShowCommentForm ] = useState(false)
     const [ showEditCommentForm, setShowEditCommentForm ] = useState(false)
     const { bookId } = useParams()
+    const { getBook, getCurrentUser } = useContext(UserContext)
 
     const fetchBookInfo = () => {
         getBook(bookId).then(data => setBook(data))

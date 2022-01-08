@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { getTags } from "./UserManager"
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "./UserManager";
 
 export const UserBookFilter = ({ handleSearch, showFilters, filters}) => {
-    const [ tags, setTags ] = useState([])
-    useEffect(() => {
-        getTags().then(data => setTags(data))
-    }, []);
+    const { tags } = useContext(UserContext)
+
+ 
 
     return (
         <div className="filter-container">

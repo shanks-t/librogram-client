@@ -1,25 +1,25 @@
 import React, { useState } from "react"
 
-export const ProfileContext = React.createContext()
+export const UserContext = React.createContext()
 
-export const ProfileProvider = (props) => {
-    const [profile, setProfile] = useState({events:[]})
+export const CurrentUserProvider = (props) => {
+    const [user, setUser] = useState({events:[]})
 
-    const getProfile = () => {
-        return fetch("http://localhost:8000/profile", {
+    const getCurrentUser = () => {
+        return fetch("http://localhost:8000/readers/currentuser", {
             headers: {
-                "Authorization": `Token ${localStorage.getItem("librogram_user_token")}`
+                "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
             }
         })
             .then(response => response.json())
-            .then(setProfile)
+            .then(setUser)
     }
 
     return (
-        <ProfileContext.Provider value={{
-            profile, getProfile
+        <UserContext.Provider value={{
+            user, getCurrentUser
         }}>
             {props.children}
-        </ProfileContext.Provider>
+        </UserContext.Provider>
     )
 }
