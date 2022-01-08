@@ -13,7 +13,7 @@ export const UserBio = (props) => {
     }, []);
 
     useEffect(() => {
-        console.log('user', user)
+        getCurrentUser()
     }, [user]);
     return (
         <Card style={{ width: 'rem' }}>
@@ -27,7 +27,7 @@ export const UserBio = (props) => {
             <ListGroup className="list-group-flush">
                 <ListGroupItem>total books: {user.current_books}</ListGroupItem>
                 <ListGroupItem>total reading goals: {user.goals}</ListGroupItem>
-                <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                <ListGroupItem>active reading goals: {user.active_goals}</ListGroupItem>
             </ListGroup>
         </Card>
         // <>

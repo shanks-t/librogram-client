@@ -11,7 +11,7 @@ useEffect(() => {
 }, []);
 
 const getUserTags = (data) => {
-    debugger
+    
     const userTags = []
     for (const item of data) {
         item.book.tags.map(tag => userTags.push(tag))

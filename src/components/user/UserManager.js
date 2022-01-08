@@ -118,7 +118,7 @@ const getTags = () => {
 
 return (
     <UserContext.Provider value={{
-        user, tags, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio
+        user, tags, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getStatuses, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio
     }}>
         {props.children}
     </UserContext.Provider>
