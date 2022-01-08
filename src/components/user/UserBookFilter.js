@@ -1,14 +1,27 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { UserContext } from "./UserManager";
 
 export const UserBookFilter = ({ handleSearch, showFilters, filters}) => {
-    const { getTags, tags } = useContext(UserContext)
+    const [ tags, setTags ] = useState([])
+    const { getBooksByUser, user } = useContext(UserContext)
 
  
 useEffect(() => {
-    getTags()
+    getBooksByUser(user.id).then(data => getUserTags(data))
 }, []);
 
+const getUserTags = (data) => {
+    debugger
+    const userTags = []
+    for (const item of data) {
+        item.book.tags.map(tag => userTags.push(tag))
+    }
+    setTags(userTags)
+}
+
+useEffect(() => {
+    console.log('usertags', tags)
+}, [tags]);
     return (
         <div className="filter-container">
             <div>
