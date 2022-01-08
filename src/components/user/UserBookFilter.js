@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserManager";
 
 export const UserBookFilter = ({ handleSearch, showFilters, filters}) => {
-    const { tags } = useContext(UserContext)
+    const { getTags, tags } = useContext(UserContext)
 
  
+useEffect(() => {
+    getTags()
+}, []);
 
     return (
         <div className="filter-container">
