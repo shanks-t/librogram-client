@@ -4,6 +4,8 @@ import { getBook, getCurrentUser } from "./UserManager"
 import { CommentForm } from "../comment/CommentForm"
 import "./UserProfile.css"
 
+import { Image, Card, ListGroup, ListGroupItem, CardGroup } from "react-bootstrap"
+
 
 export const UserBookDetails = (props) => {
     const [book, setBook] = useState({})
@@ -41,42 +43,47 @@ export const UserBookDetails = (props) => {
 
     return (
         <>
-
-            <article className="book-details">
-                <img src={book?.image_path}/> <br></br>
-                {book?.title} <br></br>
-                {book?.subtitle}<br></br>
-                {book?.author}<br></br>
-                {book?.publisher}<br></br>
-                {book?.date_published}<br></br>
-                {book?.page_count}<br></br>
-                {book?.description}<br></br>
-                <div className='comments'>
-                    <h3>Comments</h3>
-                    {
-                    book?.comments?.map(comment => {
-                        return <> <p>{comment.comment}</p>
-                        <p>{comment.user.username}</p>
-                        <p>{comment.created_on}</p>
-                        {comment.user.id === book.user.id ? 
+        <div className="book-details">
+        <Image variant="top" src={book.image_path} style={{ height: '20rem'}}/>
+        <CardGroup>
+        <Card style={{ width: '100%' }}>
+            <Card.Body>
+                <Card.Title>{book?.title}</Card.Title>
+                <Card.Text>{book?.subtitle}</Card.Text>
+                <ListGroup className="list-group-flush">
+                    <ListGroupItem>{book?.author}</ListGroupItem>
+                    <ListGroupItem>{book?.publisher}</ListGroupItem>
+                    <ListGroupItem>{book?.date_published}</ListGroupItem>
+                    <ListGroupItem>{book?.page_count}</ListGroupItem>
+                </ListGroup>
+                <Card.Text>
+                    {book?.description}
+                </Card.Text>
+            </Card.Body>
+        </Card>
+        </CardGroup>
+        <Card>
+    <Card.Body>
+      <Card.Title>Comments</Card.Title>
+      <ListGroup className="list-group-flush">
+                {book?.comments?.map(comment => {
+                    return <> <ListGroupItem>{comment.comment}</ListGroupItem>
+                        <ListGroupItem>{comment.user.username}</ListGroupItem>
+                        <ListGroupItem>{comment.created_on}</ListGroupItem>
+                        {comment.user.id === book.user.id ?
                             <>
-                            <button onClick={()=> handleEditToggle()
-                            }>Edit your comment</button>
-                            <button>Delete your comment</button>
-                            {showEditCommentForm ?
-                            <CommentForm
-                            toggle={setShowCommentForm}
-                            book={book}
-                            id={comment.id}
-                            />
-                    :""
-                }
+                                <button onClick={() => handleEditToggle()}>Edit your comment</button>
+                                <button>Delete your comment</button>
+                                {showEditCommentForm ?
+                                    <CommentForm
+                                    toggle={setShowCommentForm}
+                                    book={book}
+                                    id={comment.id} />
+                                    : ""}
                             </>
-                        :""
-                    }
+                            : ""}
                     </>
-                    })
-                    }
+                })}
                 <button onClick={() => handleCreateToggle()}>Add comment</button>
                 {showCommentForm ?
                     <CommentForm
@@ -85,7 +92,6 @@ export const UserBookDetails = (props) => {
                     />
                     :""
                 }
-                </div>
                 <div className='tags'>
                     <h3>Tags</h3>
                     {
@@ -100,8 +106,11 @@ export const UserBookDetails = (props) => {
                     <p>{reader}</p>
                 ))
                 }
-            </div>
-        </article>
-        </>
+                </div>
+                </ListGroup>
+    </Card.Body>
+  </Card>
+  </div>
+  </>
     )
 }

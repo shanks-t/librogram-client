@@ -10,7 +10,7 @@
     margin-top: 10rem
   }
   
-  .results {
+  .search-results {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -23,62 +23,16 @@
     justify-content: space-between;
     flex-direction: column;
     margin: .3rem;
+    margin-right: 4rem;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     width: 5rem;
   }
 
   .book .button {
-      justify-content: flex-end;
+      justify-content: flex-start;
       display: flex;
-  }
-
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1040;
-    width: 100vw;
-    height: 100vh;
-    background-color: #000;
-    opacity: .5;
-  }
-  
-  .modal-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1050;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    outline: 0;
-  }
-  
-  .modal {
-    z-index: 100;
-    background: white;
-    position: relative;
-    margin: 1.75rem auto;
-    border-radius: 3px;
-    max-width: 500px;
-    padding: 2rem;
-  }
-  
-  .modal-header {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .modal-close-button {
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    opacity: .3;
-    cursor: pointer;
-    border: none;
+      margin-left: 1rem;
   }
   
   button {

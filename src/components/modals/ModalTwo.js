@@ -77,3 +77,4 @@ const ModalTwo = ({ closeFn = () => null, open = false }) => {
 };
 
 export default ModalTwo;
+

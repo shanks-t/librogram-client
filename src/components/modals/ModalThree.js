@@ -1,10 +1,8 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
-import { ReadingGoalForm } from '../readingGoal/ReadingGoalForm';
-import { ReadingGoalsList } from '../readingGoal/ReadingGoalsList';
 import Modal from './Modal';
+
 
 import styled, {keyframes} from 'styled-components';
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -97,7 +95,7 @@ const ScrollableContent = styled.div`
 `;
 
 
-const ModalOne = ({ closeFn = () => null, open = false }) => {
+const ModalThree = ({ closeFn = () => null, open = false }) => {
     const [ showForm, setShowForm ] = useState(false)
 
     const handleShowForm = () => {
@@ -111,16 +109,9 @@ const ModalOne = ({ closeFn = () => null, open = false }) => {
                 </ModalBoxControl>
                 <ModalBoxContent>
                     <NonScrollableContent>
-                        <p>Here are your current reading goals</p>
-                        {showForm ? <button  onClick={() => {handleShowForm()}}> Cancel </button> : <button onClick={() => {handleShowForm()}}> Create New Reading Goal</button>}
                         </NonScrollableContent>
-                    { showForm ?
-                        <ReadingGoalForm handleShowForm={handleShowForm} />
-                        :
                     <ScrollableContent>
-                        <ReadingGoalsList close={closeFn}/>
                     </ScrollableContent>
-                    }
                 </ModalBoxContent>
             </ModalBoxContainer>
         </Modal>
@@ -128,4 +119,4 @@ const ModalOne = ({ closeFn = () => null, open = false }) => {
     );
 };
 
-export default ModalOne;
+export default ModalThree

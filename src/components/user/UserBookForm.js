@@ -39,7 +39,7 @@ export const UserBookForm = () => {
         event.preventDefault()
 
         updateUserBook(userBookId, userBook).then(() => {
-            history.push('/profile/books')
+            history.push('/profile')
         })
     }
 

@@ -26,7 +26,7 @@ export const UserBookFilter = ({ handleSearch, showFilters, filters}) => {
                         </select>
                     </fieldset>
                     <fieldset>
-                        <select name="bookLength" defaultValue={0} onChange={handleSearch}>
+                        <select name="bookLength" defaultValue={0} onChange={(event) => handleSearch(event)}>
                             <option value={0}>All Book Lengths</option>
                             <option value={100}> 100 pages or less</option>
                             <option value={200}> 200 pages or less</option>

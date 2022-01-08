@@ -32,10 +32,6 @@ export const UserBioForm = ({ close }) => {
         updateReaderBio(userBio.id, userBio).then(() => close())
     }
 
-    useEffect(() => {
-        setUserId(userBio.id)
-        console.log(userBio.id)
-    }, [userBio]);
     return (
         <Form>
             <Form.Group className="mb-3" controlId="formBio">

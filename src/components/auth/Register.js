@@ -47,7 +47,6 @@ export const Register = (props) => {
                 profile_image_url: profileImageUrl.current.value,
                 username: username.current.value,
                 bio: bio.current.value,
-                username: username.current.value,
                 password: password.current.value,
                 is_staff: isAdmin,
                 active: 1,

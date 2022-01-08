@@ -1,0 +1,30 @@
+.profile-container {
+    display: flex;
+    margin: 1rem;
+    margin-left: 1rem
+}
+
+.search {
+    display: block;
+    margin-left: 5rem;
+}
+
+.library {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.library-book {
+    margin-right: 1rem;
+}
+
+.books {
+    margin: 1rem;
+    margin-top: 5rem;
+}
+
+.filter-container {
+    margin-left: 5rem;
+    margin-top: 4.5rem;
+}
+

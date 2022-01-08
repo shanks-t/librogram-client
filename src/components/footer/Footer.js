@@ -1,7 +1,5 @@
-
-   
 import React from 'react'
-import { FaHeart, FaBars } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import './Footer.css'
 
 export const Footer = () => {

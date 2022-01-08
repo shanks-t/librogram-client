@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch, useHistory, Link } from "react-router-dom";
 import { SearchResults } from "../book/SearchResults";
+import { SearchForm } from "../book/SearchForm"
 
 import { Navbar, Nav, Form, FormControl, Button, Container, NavDropdown } from "react-bootstrap";
 
@@ -35,11 +36,10 @@ export const NavWithSearch = () => {
 
     const getBooks = async () => {
         try {
-            localStorage.removeItem('books')
             const response = await fetch(url);
             const data = await response.json()
             setBooks(data);
-            history.push('/results')
+            history.push('/search')
         } catch (error) {
             console.error(error);
         }
@@ -48,18 +48,17 @@ export const NavWithSearch = () => {
     const handleSearchKeyUp = (event) => {
         event.preventDefault();
         if (event.key === 'Enter' && event.keyCode === 13) {
-            getBooks();
-            setSearch('')
+            history.push('/search')
         }
     }
 
     const handleFormSubmit = e => e.preventDefault();
 
     useEffect(() => {
-        const json = JSON.stringify(books)
-        localStorage.setItem('books', json)
-        console.log('books', books)
-    }, [books]);
+        const json = JSON.stringify(search)
+        localStorage.setItem('search', json)
+        console.log('search', search)
+    }, [search]);
 
 
 
@@ -76,14 +75,10 @@ export const NavWithSearch = () => {
                             navbarScroll
                         >
                             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                            <Nav.Link as={Link} to="/goals">Goals</Nav.Link>
-                            <NavDropdown title="Link" id="navbarScrollingDropdown">
+                            <Nav.Link as={Link} to="/search">Search</Nav.Link>
+                            <NavDropdown title="Actions" id="navbarScrollingDropdown">
                                 <NavDropdown.Item data-modal="modal-two">Edit Bio</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    Something else here
-                                </NavDropdown.Item>
+                                <NavDropdown.Item data-modal="modal-one">View Reading Goals</NavDropdown.Item>
                             </NavDropdown>
                             
                         </Nav>
@@ -101,13 +96,15 @@ export const NavWithSearch = () => {
                                 Search
                             </Button>
                         </Form>
+
                         { (localStorage.getItem("lg_user_token") !== null) ?
-                            <Nav.Link as={Link} onClick={() => {
+                        <Nav>
+                            <Nav.Link as={Link} to='/'onClick={() => {
                                 localStorage.removeItem("lg_user_token")
-                                history.push({ pathname: "/" })
                             }}>
                                 Logout
                             </Nav.Link>
+                        </Nav>
                             :
                             <>
                         <div className="nav-item">
@@ -121,9 +118,9 @@ export const NavWithSearch = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <Switch>
-                <Route exact path="/results" component={SearchResults} />
-            </Switch> 
+            {/* <Switch>
+                <Route exact path="/search" component={Search} />
+            </Switch>  */}
             {/* <Navbar bg="dark" variant="dark">
                         <div>
                         <Link to='/profile'>profile</Link>
