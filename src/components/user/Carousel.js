@@ -3,7 +3,6 @@ import { useParams, useHistory, Link } from 'react-router-dom'
 import { UserBookSearch } from "./UserBookSearch"
 import { UserBookFilter } from "./UserBookFilter"
 import { UserContext } from "./UserManager"
-import "./UserProfile.css"
 
 import { Carousel } from 'react-bootstrap'
 

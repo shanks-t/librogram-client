@@ -3,8 +3,8 @@ import { useParams, useHistory, Link } from 'react-router-dom'
 import { UserBookSearch } from "./UserBookSearch"
 import { UserBookFilter } from "./UserBookFilter"
 import { UserContext } from "./UserManager"
-import "./UserProfile.css"
 
+import './UserView.css'
 
 export const UserLibrary = (props) => {
     const { classes } = props
@@ -53,7 +53,8 @@ export const UserLibrary = (props) => {
 
     return (
 
-        <div className="library-filter-search">
+        <div className="search-header">
+            <h2>Search Your Library</h2>
         <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} filters={filters}/>
             <UserBookSearch user={user} handleSearch={handleSearch} />
                 <article className="library-books">

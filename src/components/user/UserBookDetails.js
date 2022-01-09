@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { getBook, getCurrentUser } from "./UserManager"
 import { CommentForm } from "../comment/CommentForm"
 import { UserContext } from "./UserManager"
-import "./UserProfile.css"
+
 
 import { Image, Card, ListGroup, ListGroupItem, CardGroup } from "react-bootstrap"
 

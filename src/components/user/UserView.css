@@ -34,3 +34,96 @@
     height: 50%;
     width: 20rem;
 }
+
+.search {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    font-family: monospace;
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 4px black;
+  }
+  
+  .search-header h2 {
+    justify-content: center;
+    display: flex;
+    font-size: 3.5rem;
+    font-family: monospace;
+    margin: auto;
+    margin-top: 3.7rem;
+    font-weight: 800;
+    color: aliceblue;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  .search button {
+    background-color: #a09a9a;
+    font-weight: 600;
+    color: aliceblue;
+  }
+  
+  .search-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10rem;
+    margin-top: 3rem;
+    
+  }
+
+  .book {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    width: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.9);
+    background-color: rgb(204 180 154 / .8);
+    width: 20%;
+    margin: 0.5;
+    margin-bottom: 2rem;
+  }
+
+  .book::before {
+    opacity: .8;
+  }
+
+  .book .button {
+      justify-content: center;
+      display: flex;
+      margin: auto;
+      width: 2rem;
+    }
+  
+  .button-default {
+    font-size: .9rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 3px;
+    padding: .3rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+  }
+  
+  .button-default {
+    background: #247BA0;
+    color: #fff;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.9);
+  }
+
+
+.form-control {
+  justify-content: center;
+  width: 50% !important;
+}
+
+ .book-img {
+     height: 300;
+ } 
+
+.d-flex {
+  justify-content: center;
+}
