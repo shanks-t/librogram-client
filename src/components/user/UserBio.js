@@ -12,9 +12,6 @@ export const UserBio = (props) => {
         getCurrentUser()
     }, []);
 
-    useEffect(() => {
-        getCurrentUser()
-    }, [user]);
     return (
         <Card style={{ width: 'rem' }}>
             <Card.Img variant="top" src={user?.profile_image_url} />

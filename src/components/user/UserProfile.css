@@ -42,3 +42,26 @@
 .filter-container {
     margin-left: 5rem;
 } */
+
+/* .carousel {
+    width: auto;
+    height: auto;
+}
+.carousel-item {
+    height: 190px;
+}
+
+.image {
+    border-radius: 20px;
+}
+ */
+
+ .book {
+    max-width: 345;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.3);
+    background-color: #fafafa;
+ }
+
+ .book-img {
+     height: 300;
+ }

@@ -5,6 +5,7 @@ import { useCurrentUser } from "../user/UserContext"
 import './Search.css'
 import CheckoutModal from './CheckOutModal'
 import useModal from './useModal'
+import { UserContext } from '../user/UserManager';
 
 
 export const Book = ({ book }) => {
@@ -13,7 +14,7 @@ export const Book = ({ book }) => {
     const [ userBook, setUserBook ] = useState({})
     const [ title, setTitle ] = useState('')
     const [ author, setAuthor ] = useState('')
-    const user = useCurrentUser()
+    const { user, getCurrentUser } = useContext(UserContext)
     
 
 
@@ -44,8 +45,12 @@ export const Book = ({ book }) => {
     useEffect(() => {
         console.log('newBook', newBook)
         console.log('title', title)
-    }, [newBook]);
+        console.log('user', user)
+    }, [newBook, user]);
 
+    useEffect(() => {
+        getCurrentUser()
+    }, []);
     return (
         <>
                 {

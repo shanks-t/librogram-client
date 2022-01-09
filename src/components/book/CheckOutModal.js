@@ -11,7 +11,7 @@ const CheckoutModal = ({ isShowing, hide, title, author, addBook, user }) => {
           <Modal.Header closeButton>
             <Modal.Title>Book Checkout</Modal.Title>
           </Modal.Header>
-          <Modal.Body>{user?.user.first_name}, would you like to checkout {title} by {author ? author : 'author unknown'}?</Modal.Body>
+          <Modal.Body>{user?.user?.first_name}, would you like to checkout {title} by {author ? author : 'author unknown'}?</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={hide}>
               No
