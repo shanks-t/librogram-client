@@ -4,12 +4,16 @@
 }
 
 .search {
+  width: 80%;
   display: flex;
   justify-content: center;
   margin-top: 3rem;
   font-family: monospace;
   font-size: 3.5rem;
   text-shadow: 2px 2px 4px black;
+}
+.search-form {
+  width: 100%;
 }
 
 .user-search-header {
