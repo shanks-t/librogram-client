@@ -41,19 +41,19 @@ return (
                     <span class="details__text-subheader">{user.bio}</span>
                 </div>
                 <div class="card__info__section-3">
-                    <div class="details-bottom">
+                    <div class="details-bottom details-bottom-1">
                         <span class="details__number">{user.current_books}</span>
                         <span class="details__text">books</span>
                     </div>
                 </div>
                 <div class="card__info__section-3">
-                    <div class="details-bottom">
+                    <div class="details-bottom details-bottom-2">
                         <span class="details__number">{user.goals}</span>
                         <span class="details__text">reading goals</span>
                     </div>
                 </div>
                 <div class="card__info__section-3">
-                    <div class="details-bottom">
+                    <div class="details-bottom details-bottom-3">
                         <span class="details__number">{user.active_goals}</span>
                         <span class="details__text">active reading goals</span>
                     </div>

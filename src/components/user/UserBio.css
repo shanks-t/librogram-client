@@ -12,24 +12,19 @@
 }
 
 
-html {
+/* html {
     box-sizing: border-box;
   }
   
   *, *::after, *::before {
     box-sizing: inherit;
-  }
-  
-  body {
-    background-color: #fff;
-    font-family: sans-serif;
-  }
+  } */
   
   .wrapper {
     width: 100%;
     margin-top: 20px;
     color: #929292;
-    border-radius: 30px;
+    /* border-radius: 30px; */
   }
   
   .card {
@@ -38,7 +33,7 @@ html {
     height: 300px;
     position: relative;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);
-    border-radius: inherit;
+    border-radius: 30px;
   }
   .card__header {
     width: 100%;
@@ -48,7 +43,7 @@ html {
   .card__image {
     width: 125px;
     height: 125px;
-    margin-left: -62.5px;
+    margin-left: -62.7px;
     position: absolute;
     left: 50%;
     top: 50px;
@@ -58,17 +53,7 @@ html {
   .card__image:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);
   }
-  /* .card__image-geoff {
-    background-image: url("//s3-us-west-2.amazonaws.com/s.cdpn.io/209908/profile/profile-512_1.jpg");
-    background-size: contain;
-    cursor: pointer;
-    z-index: 10;
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-  } */
+
   .card__image-geoff:hover {
     -webkit-filter: grayscale(0%);
     filter: grayscale(0%);
@@ -77,6 +62,7 @@ html {
     width: 600px;
     height: 167px;
     background-color: #323232;
+    margin-left: -1;
   }
   .card__info__section-3 {
     float: left;
@@ -84,6 +70,8 @@ html {
     width: 34.11922%;
     height: 100%;
     position: relative;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
   .card__info__section-3:last-child {
     width: 31.76157%;
@@ -104,6 +92,14 @@ html {
     -moz-transition: background-color, 0.5s, ease-in-out;
     transition: background-color, 0.5s, ease-in-out;
   }
+
+  .details-bottom-1 {
+    border-bottom-left-radius: inherit;
+  }
+  .details-bottom-3 {
+    border-bottom-right-radius: inherit;
+  }
+
   .details-bottom:hover {
     -webkit-transition: background-color, 0.5s, ease-in-out;
     -moz-transition: background-color, 0.5s, ease-in-out;
