@@ -3,6 +3,7 @@ import { useParams, useHistory, Link } from 'react-router-dom'
 import { UserBookSearch } from "./UserBookSearch"
 import { UserBookFilter } from "./UserBookFilter"
 import { UserContext } from "./UserManager"
+import { UserBook } from "./UserBook"
 
 import './UserView.css'
 
@@ -53,26 +54,12 @@ export const UserLibrary = (props) => {
 
     return (
 
-        <div className="search-header">
+        <><div className="user-search-header">
             <h2>Search Your Library</h2>
-        <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} filters={filters}/>
+            <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} filters={filters} />
             <UserBookSearch user={user} handleSearch={handleSearch} />
-                <article className="library-books">
-                    <div className="books">
-                        {
-                            books.map(book => {
-                                return <div className="library-book"><Link to={`profile/books/${book.book.id}/${book.id}`}>
-                                    <img src={book?.book.image_path} alt={book.book.title} />
-                                </Link>
-                                    <button className='delete' onClick={(event) => {
-                                        event.preventDefault()
-                                        handleDelete(book.id)
-                                    }}>Remove from library</button>
-                                </div>
-                            })
-                        }
-                    </div>
-                </article>
-        </div>
+        </div><div className="search-results">
+                {books.map(book => <UserBook book={book} />)}
+            </div></>
     )
 }

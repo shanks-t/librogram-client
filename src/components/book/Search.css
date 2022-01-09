@@ -20,32 +20,30 @@
   }
 
   .search button {
-    background-color: #a09a9a;
+    background-color: rgb(204 180 154 / .8);
     font-weight: 600;
-    color: aliceblue;
+    color: black;
   }
   
   .search-results {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 10rem;
-    margin-top: 3rem;
+    margin: 5rem;
+    margin-top: 2rem;
     
   }
 
   .book {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
-    width: 5rem;
+    width: auto;
     border-radius: 10px;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.9);
     background-color: rgb(204 180 154 / .8);
-    width: 20%;
-    margin: 0.5;
+    margin: .5rem;
     margin-bottom: 2rem;
   }
 
@@ -90,3 +88,4 @@
 .d-flex {
   justify-content: center;
 }
+

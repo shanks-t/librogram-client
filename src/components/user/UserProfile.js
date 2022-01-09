@@ -13,7 +13,10 @@ export const UserProfile = (props) => {
 
         <div className="container">
             <div className='profile-container'>
-                {/* <UserBio /> */}
+                <div className="user-bio">
+                <UserBio />
+
+                </div>
                 <UserLibrary />
             </div>
         </div>

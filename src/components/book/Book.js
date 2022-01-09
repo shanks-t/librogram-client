@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { saveBook, saveUserBook } from './BookManager';
 import { useCurrentUser } from "../user/UserContext"
 
-//import './Search.css'
+import './Search.css'
 import CheckoutModal from './CheckOutModal'
 import useModal from './useModal'
 import { UserContext } from '../user/UserManager';
