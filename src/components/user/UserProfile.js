@@ -15,7 +15,6 @@ export const UserProfile = (props) => {
             <div className='profile-container'>
                 <div className="user-bio">
                 <UserBio />
-
                 </div>
                 <UserLibrary />
             </div>

@@ -1,0 +1,143 @@
+.user-bio {
+    display: contents;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+html {
+    box-sizing: border-box;
+  }
+  
+  *, *::after, *::before {
+    box-sizing: inherit;
+  }
+  
+  body {
+    background-color: #fff;
+    font-family: sans-serif;
+  }
+  
+  .wrapper {
+    width: 100%;
+    margin-top: 20px;
+    color: #929292;
+    border-radius: 30px;
+  }
+  
+  .card {
+    margin: 0 auto;
+    width: 600px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);
+    border-radius: inherit;
+  }
+  .card__header {
+    width: 100%;
+    height: 133px;
+    background-image: url("https://i.imgur.com/q3SB2LA.jpg");
+  }
+  .card__image {
+    width: 125px;
+    height: 125px;
+    margin-left: -62.5px;
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    border-radius: 50%;
+    border: 1px solid #cccccc;
+  }
+  .card__image:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);
+  }
+  /* .card__image-geoff {
+    background-image: url("//s3-us-west-2.amazonaws.com/s.cdpn.io/209908/profile/profile-512_1.jpg");
+    background-size: contain;
+    cursor: pointer;
+    z-index: 10;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  } */
+  .card__image-geoff:hover {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+  }
+  .card__info {
+    width: 600px;
+    height: 167px;
+    background-color: #323232;
+  }
+  .card__info__section-3 {
+    float: left;
+    display: block;
+    width: 34.11922%;
+    height: 100%;
+    position: relative;
+  }
+  .card__info__section-3:last-child {
+    width: 31.76157%;
+  }
+  
+  .card__info__section-3:nth-child(-n+3) .details-bottom {
+    border-right: 1px solid #464646;
+  }
+  
+  .details-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #464646;
+    background-color: #323232;
+    cursor: pointer;
+    -webkit-transition: background-color, 0.5s, ease-in-out;
+    -moz-transition: background-color, 0.5s, ease-in-out;
+    transition: background-color, 0.5s, ease-in-out;
+  }
+  .details-bottom:hover {
+    -webkit-transition: background-color, 0.5s, ease-in-out;
+    -moz-transition: background-color, 0.5s, ease-in-out;
+    transition: background-color, 0.5s, ease-in-out;
+    background-color: #3f3f3f;
+  }
+  .details__number {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1em;
+    padding-top: 5px;
+    font-weight: 900;
+  }
+  .details__text {
+    display: block;
+    text-align: center;
+    font-size: .8em;
+    padding-bottom: 6px;
+  }
+  .details__text-header {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 1.8em;
+    padding-top: 40px;
+    position: absolute;
+  }
+  .details__text-subheader {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: .8em;
+    padding-top: 80px;
+    position: absolute;
+  }
+  
