@@ -7,6 +7,7 @@ export const CurrentUserProvider = (props) => {
     const [ tags, setTags ] = useState([])
     const [ userBook, setUserBook ] = useState({events:[]})
     const [ book, setBook ] = useState({events:[]})
+    const [ userBooks, setUserBooks ] = useState({events:[]})
 
     const getCurrentUser = () => {
         return fetch("http://localhost:8000/readers/currentuser", {
@@ -68,6 +69,7 @@ export const CurrentUserProvider = (props) => {
         }
     })
         .then(response => response.json())
+        .then(setUserBooks)
 }
 
  const getStatuses = () => {
@@ -104,6 +106,7 @@ const getTags = () => {
         }
     })
         .then(res => res.json())
+        .then(setUserBooks)
 }
 
  const updateReaderBio = (userId, Bio) => {
@@ -122,7 +125,7 @@ const getTags = () => {
 
 return (
     <UserContext.Provider value={{
-        user, tags, userBook, book, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getStatuses, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio, setUserBook
+        user, tags, userBooks, userBook, book, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getStatuses, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio, setUserBook, setUserBooks
     }}>
         {props.children}
     </UserContext.Provider>

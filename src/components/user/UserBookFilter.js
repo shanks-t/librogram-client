@@ -3,7 +3,7 @@ import { UserContext } from "./UserManager";
 
 export const UserBookFilter = ({ handleSearch, showFilters, filters}) => {
     const [ tags, setTags ] = useState([])
-    const { getBooksByUser, user } = useContext(UserContext)
+    const { getBooksByUser, user, userBooks } = useContext(UserContext)
 
  
 useEffect(() => {
@@ -11,12 +11,14 @@ useEffect(() => {
 }, []);
 
 const getUserTags = (data) => {
-    
+    // debugger
     const userTags = []
-    for (const item of data) {
-        item.book.tags.map(tag => userTags.push(tag))
+    if (userBooks) {
+        for (const book of userBooks) {
+            book.book.tags.map(tag => userTags.push(tag))
+        }
+        setTags(userTags)
     }
-    setTags(userTags)
 }
 
 useEffect(() => {

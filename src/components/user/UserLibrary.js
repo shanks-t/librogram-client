@@ -12,15 +12,17 @@ export const UserLibrary = (props) => {
     const [books, setBooks] = useState([])
     const [userId, setUserId] = useState()
     const [filters, toggleFilters] = useState(false)
-    const { user, getCurrentUser, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
+    const { user, userBooks, getCurrentUser, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
 
     useEffect(() => {
         getBooks()
     }, []);
 
     useEffect(() => {
-        setUserId(user.user?.id)
-    }, [user]);
+        getCurrentUser().then(
+            setUserId(user.user?.id)
+        )
+    }, []);
 
     const showFilters = () => {
         if (filters === false) { toggleFilters(true) }
@@ -29,7 +31,7 @@ export const UserLibrary = (props) => {
 
 
     const getBooks = (userId, name, value) => {
-        getBooksByUser(userId).then(data => setBooks(data))
+        getBooksByUser(userId)
     }
     const handleSearch = (e) => {
         if (e.target.value == 0) {
@@ -45,12 +47,17 @@ export const UserLibrary = (props) => {
         }
     }, [user])
 
-    const handleDelete = (bookId) => {
+    const handleDelete = (event, bookId) => {
+        event.preventDefault()
         deleteBook(bookId).then(() => {
             getBooks()
         })
     }
 
+
+useEffect(() => {
+    console.log('books', userBooks)
+}, [userBooks]);
 
     return (
 
@@ -59,7 +66,7 @@ export const UserLibrary = (props) => {
             <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} filters={filters} />
             <UserBookSearch user={user} handleSearch={handleSearch} />
         </div><div className="search-results">
-                {books.map(book => <UserBook book={book} />)}
+                {userBooks.map(book => <UserBook book={book} handleDelete={handleDelete}/>)}
             </div></>
     )
 }

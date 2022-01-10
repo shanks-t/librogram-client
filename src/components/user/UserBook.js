@@ -19,13 +19,13 @@ export const UserBook = ({ book, handleDelete }) => {
                         <>
                             <div className='book'>
                                     <img src={book?.book.image_path} onClick={event => handleClick(event, book.id)} data-modal='modal-three'/>
-                                <div className='button'><button className='button-default'  onClick={handleDelete}>Delete</button></div>
+                                <div className='button'><button className='button-default'  onClick={event => handleDelete(event, book.id)}>Delete</button></div>
                                 
                             </div>
                         </>
                         : <> <div className='book'>
                             <h3 data-modal='modal-three'>{book.book.title}</h3>
-                        <div className='button'><button className='button-default' onClick={handleDelete}>Delete</button></div>
+                        <div className='button'><button className='button-default' onClick={handleDelete(book.id)}>Delete</button></div>
                         </div>
                         </>
 
