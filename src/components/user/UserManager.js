@@ -7,7 +7,7 @@ export const CurrentUserProvider = (props) => {
     const [ tags, setTags ] = useState([])
     const [ userBook, setUserBook ] = useState({events:[]})
     const [ book, setBook ] = useState({events:[]})
-    const [ userBooks, setUserBooks ] = useState({events:[]})
+    const [ userBooks, setUserBooks ] = useState([])
 
     const getCurrentUser = () => {
         return fetch("http://localhost:8000/readers/currentuser", {

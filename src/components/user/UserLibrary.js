@@ -31,7 +31,7 @@ export const UserLibrary = (props) => {
 
 
     const getBooks = (userId, name, value) => {
-        getBooksByUser(userId)
+        getBooksByUser(userId).then(data => setBooks(data))
     }
     const handleSearch = (e) => {
         if (e.target.value == 0) {
@@ -41,11 +41,11 @@ export const UserLibrary = (props) => {
         }
     }
 
-    useEffect(() => {
-        if (userId) {
-            getBooks()
-        }
-    }, [user])
+    // useEffect(() => {
+    //     if (userId) {
+    //         getBooks()
+    //     }
+    // }, [user])
 
     const handleDelete = (event, bookId) => {
         event.preventDefault()
@@ -55,18 +55,23 @@ export const UserLibrary = (props) => {
     }
 
 
-useEffect(() => {
-    console.log('books', userBooks)
-}, [userBooks]);
+    useEffect(() => {
+        console.log('userbooks', userBooks)
+    }, [userBooks]);
 
     return (
 
         <><div className="user-search-header">
             <h2>Search Your Library</h2>
-            <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} filters={filters} />
+            <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} books={books} filters={filters} />
             <UserBookSearch user={user} handleSearch={handleSearch} />
         </div><div className="search-results">
-                {userBooks.map(book => <UserBook book={book} handleDelete={handleDelete}/>)}
+                {userBooks ?
+
+                    userBooks.map(book => <UserBook book={book} handleDelete={handleDelete} />) 
+                    :
+                    <h3>Loading . . .</h3>
+                }
             </div></>
     )
 }
