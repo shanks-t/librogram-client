@@ -42,7 +42,7 @@ export const UserBookForm = ({ userBook, toggle}) => {
     }
 
     useEffect(() => {
-        console.log('userBook', userBook?.id)
+        console.log('userBook', userBook)
         console.log('status', statuses)
     }, [userBook, statuses]);
 

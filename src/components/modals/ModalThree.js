@@ -99,17 +99,20 @@ const ScrollableContent = styled.div`
 
 const ModalThree = ({ closeFn = () => null, open = false }) => {
     const [ showForm, setShowForm ] = useState(false)
-    const { userBook } = useContext(UserContext)
+    const { userBook, getUserBook } = useContext(UserContext)
 
     const handleShowForm = () => {
         setShowForm(!showForm)
+        getUserBook(userBook.id)
+        console.log('form', showForm)
     }
+
 
     return (
         <Modal open={open}>
             <ModalBoxContainer>
                 <ModalBoxControl>
-                    <AiOutlineCloseCircle aria-label="close" onClick={closeFn}/>
+                    <AiOutlineCloseCircle aria-label="close" onClick={()=> {closeFn(); handleShowForm()}}/>
                 </ModalBoxControl>
                 <ModalBoxContent>
                     <NonScrollableContent>

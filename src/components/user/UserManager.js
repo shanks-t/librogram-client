@@ -40,6 +40,7 @@ export const CurrentUserProvider = (props) => {
         },
         body: JSON.stringify(userBook)
     })
+    .then(getUserBook(userBookId))
 }
 
  const getUserBook = (userBookId) => {

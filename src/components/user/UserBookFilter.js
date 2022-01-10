@@ -7,18 +7,16 @@ export const UserBookFilter = ({ handleSearch, showFilters, filters, books}) => 
 
  
 useEffect(() => {
-    getBooksByUser(user.id).then(data => getUserTags(data))
-}, []);
+    getUserTags(userBooks)
+}, [userBooks]);
 
-const getUserTags = (data) => {
-    // debugger
+const getUserTags = (arr) => {
+     
     const userTags = []
-    if (books) {
-        for (const book of books) {
+        for (const book of arr) {
             book.book.tags.map(tag => userTags.push(tag))
         }
         setTags(userTags)
-    }
 }
 
 useEffect(() => {
@@ -36,7 +34,7 @@ useEffect(() => {
                     <fieldset>
                         <select name="tag" defaultValue={0} onChange={handleSearch}>
                             <option value={0}>All Tags</option>
-                            {tags.map(tag => {
+                            {tags.filter((tag, index, self) => index === self.findIndex((obj) => (obj.label === tag.label))).map(tag => {
                                 return <option value={tag.id}>{tag.label}</option>
                             })}
                         </select>

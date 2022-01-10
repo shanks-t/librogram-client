@@ -8,12 +8,12 @@ import { UserContext } from "./UserManager"
 import { Image, Card, ListGroup, ListGroupItem, CardGroup } from "react-bootstrap"
 
 
-export const UserBookDetails = ({ userBook }) => {
+export const UserBookDetails = () => {
     const [ showCommentForm, setShowCommentForm ] = useState(false)
     const [ showEditCommentForm, setShowEditCommentForm ] = useState(false)
     
     //const { bookId } = useParams()
-    const { user, getUserBook } = useContext(UserContext)
+    const { user, getUserBook, userBook } = useContext(UserContext)
 
     // const fetchBookInfo = () => {
     //     getBook(bookId).then(data => setBook(data))
