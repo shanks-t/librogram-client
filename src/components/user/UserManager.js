@@ -5,7 +5,7 @@ export const UserContext = React.createContext()
 export const CurrentUserProvider = (props) => {
     const [ user, setUser ] = useState({events:[]})
     const [ tags, setTags ] = useState([])
-    const [ userBook, setUserBook ] = useState({events:[]})
+    const [ userBook, setUserBook ] = useState({})
     const [ book, setBook ] = useState({events:[]})
     const [ userBooks, setUserBooks ] = useState([])
 
@@ -42,7 +42,7 @@ export const CurrentUserProvider = (props) => {
     })
 }
 
- const getUserBook = userBookId => {
+ const getUserBook = (userBookId) => {
     return fetch(`http://localhost:8000/userbooks/${userBookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`

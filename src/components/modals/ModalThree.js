@@ -105,7 +105,6 @@ const ModalThree = ({ closeFn = () => null, open = false }) => {
         setShowForm(!showForm)
     }
 
-
     return (
         <Modal open={open}>
             <ModalBoxContainer>
@@ -121,7 +120,11 @@ const ModalThree = ({ closeFn = () => null, open = false }) => {
                             <UserBookForm userBook={userBook} toggle={handleShowForm}/>
                             :
                             <ScrollableContent>
-                                <UserBookDetails userBook={userBook} />
+                                { userBook ?
+                                    <UserBookDetails userBook={userBook} />
+                                    :
+                                    <h3>Loading . . .</h3>
+                                }
                     </ScrollableContent>
                         }
                 </ModalBoxContent>

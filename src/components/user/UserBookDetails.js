@@ -11,8 +11,9 @@ import { Image, Card, ListGroup, ListGroupItem, CardGroup } from "react-bootstra
 export const UserBookDetails = ({ userBook }) => {
     const [ showCommentForm, setShowCommentForm ] = useState(false)
     const [ showEditCommentForm, setShowEditCommentForm ] = useState(false)
+    
     //const { bookId } = useParams()
-    const { getUserBook, getCurrentUser, user, book } = useContext(UserContext)
+    const { user, getUserBook } = useContext(UserContext)
 
     // const fetchBookInfo = () => {
     //     getBook(bookId).then(data => setBook(data))
@@ -33,12 +34,9 @@ export const UserBookDetails = ({ userBook }) => {
         }
     }
 
-    useEffect(() => {
-        getUserBook(userBook.id)
-    }, []);
 
     useEffect(() => {
-        console.log('userbookdeets', book)
+        console.log('userbookdeets', userBook)
     }, [userBook]);
 
 
@@ -52,7 +50,9 @@ export const UserBookDetails = ({ userBook }) => {
                 <Card.Title>{userBook.book?.title}</Card.Title>
                 <Card.Text>{userBook.book?.subtitle}</Card.Text>
                 <ListGroup className="list-group-flush">
-                    <ListGroupItem>{userBook.book?.author}</ListGroupItem>
+                    <ListGroupItem>
+                        {userBook.book?.authors.map(a => (<p>{a.name}</p>))}
+                    </ListGroupItem>
                     <ListGroupItem>{userBook.book?.publisher}</ListGroupItem>
                     <ListGroupItem>{userBook.book?.date_published}</ListGroupItem>
                     <ListGroupItem>{userBook.book?.page_count}</ListGroupItem>
