@@ -5,15 +5,20 @@ import './UserView.css'
 
 
 export const UserBook = ({ book, handleDelete }) => {
-    const { user, getCurrentUser } = useContext(UserContext)
+    const { getUserBook } = useContext(UserContext)
     
+    const handleClick = (event, id) => {
+        event.preventDefault()
+        getUserBook(id)
+    }
+
     return (
         <>
                 {
                     book?.book?.image_path ?
                         <>
                             <div className='book'>
-                                    <img src={book?.book.image_path} alt={book.title} data-modal='modal-three'/>
+                                    <img src={book?.book.image_path} onClick={event => handleClick(event, book.id)} data-modal='modal-three'/>
                                 <div className='button'><button className='button-default'  onClick={handleDelete}>Delete</button></div>
                                 
                             </div>

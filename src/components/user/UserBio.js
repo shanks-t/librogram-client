@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react"
 import { UserContext } from "./UserManager"
 
 import './UserBio.css'
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 
 

@@ -94,7 +94,7 @@ export const NavWithSearch = () => {
                                 type="text"
                                 className="mr-sm-2"
                             />
-                            <Button onClick={getBooks} variant="outline-info">
+                            <Button onClick={getBooks} variant="outline-success">
                                 Search
                             </Button>
                         </Form>

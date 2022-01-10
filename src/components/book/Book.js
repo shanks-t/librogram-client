@@ -50,6 +50,7 @@ export const Book = ({ book }) => {
     useEffect(() => {
         getCurrentUser()
     }, []);
+    
     return (
         <>
                 {

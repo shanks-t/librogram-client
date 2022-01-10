@@ -3,8 +3,10 @@ import React, { useState } from "react"
 export const UserContext = React.createContext()
 
 export const CurrentUserProvider = (props) => {
-    const [user, setUser] = useState({events:[]})
-    const [tags, setTags] = useState([])
+    const [ user, setUser ] = useState({events:[]})
+    const [ tags, setTags ] = useState([])
+    const [ userBook, setUserBook ] = useState({events:[]})
+    const [ book, setBook ] = useState({events:[]})
 
     const getCurrentUser = () => {
         return fetch("http://localhost:8000/readers/currentuser", {
@@ -46,6 +48,7 @@ export const CurrentUserProvider = (props) => {
         }
     })
         .then(response => response.json())
+        .then(setUserBook)
 }
 
  const getBook = (bookId) => {
@@ -55,6 +58,7 @@ export const CurrentUserProvider = (props) => {
         }
     })
         .then(response => response.json())
+        .then(setBook)
 }
 
  const getBooksByUser = (userId) => {
@@ -118,7 +122,7 @@ const getTags = () => {
 
 return (
     <UserContext.Provider value={{
-        user, tags, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getStatuses, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio
+        user, tags, userBook, book, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getStatuses, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio, setUserBook
     }}>
         {props.children}
     </UserContext.Provider>

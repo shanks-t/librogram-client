@@ -17,7 +17,7 @@ export const UserBookSearch = ({ handleSearch }) => {
                     type="text"
                     className="mr-sm-2"
                 />
-                <Button onClick={handleSearch} variant="outline-info">
+                <Button onClick={handleSearch} variant="outline-success">
                     Search
                 </Button>
             </Form>
