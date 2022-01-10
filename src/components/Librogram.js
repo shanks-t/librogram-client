@@ -9,6 +9,7 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import ModalManager from "./ModalManager"
 import { CurrentUserProvider } from "./user/UserManager"
+import './Librogram.css'
 
 export const Librogram = () => {
     const [modalOpen, setModal] = useState(false);

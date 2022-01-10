@@ -3,8 +3,11 @@ import React, { useState } from "react"
 export const UserContext = React.createContext()
 
 export const CurrentUserProvider = (props) => {
-    const [user, setUser] = useState({events:[]})
-    const [tags, setTags] = useState([])
+    const [ user, setUser ] = useState({events:[]})
+    const [ tags, setTags ] = useState([])
+    const [ userBook, setUserBook ] = useState({})
+    const [ book, setBook ] = useState({events:[]})
+    const [ userBooks, setUserBooks ] = useState([])
 
     const getCurrentUser = () => {
         return fetch("http://localhost:8000/readers/currentuser", {
@@ -37,15 +40,17 @@ export const CurrentUserProvider = (props) => {
         },
         body: JSON.stringify(userBook)
     })
+    .then(getUserBook(userBookId))
 }
 
- const getUserBook = userBookId => {
+ const getUserBook = (userBookId) => {
     return fetch(`http://localhost:8000/userbooks/${userBookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
     })
         .then(response => response.json())
+        .then(setUserBook)
 }
 
  const getBook = (bookId) => {
@@ -55,6 +60,7 @@ export const CurrentUserProvider = (props) => {
         }
     })
         .then(response => response.json())
+        .then(setBook)
 }
 
  const getBooksByUser = (userId) => {
@@ -64,6 +70,7 @@ export const CurrentUserProvider = (props) => {
         }
     })
         .then(response => response.json())
+        .then(setUserBooks)
 }
 
  const getStatuses = () => {
@@ -100,6 +107,7 @@ const getTags = () => {
         }
     })
         .then(res => res.json())
+        .then(setUserBooks)
 }
 
  const updateReaderBio = (userId, Bio) => {
@@ -118,7 +126,7 @@ const getTags = () => {
 
 return (
     <UserContext.Provider value={{
-        user, tags, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio
+        user, tags, userBooks, userBook, book, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getStatuses, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio, setUserBook, setUserBooks
     }}>
         {props.children}
     </UserContext.Provider>

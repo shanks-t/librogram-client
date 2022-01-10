@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import Modal from './Modal';
-
+import { UserContext } from '../user/UserManager';
+import { UserBookForm } from '../user/UserBookForm';
+import { UserBookDetails } from '../user/UserBookDetails';
 
 import styled, {keyframes} from 'styled-components';
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -97,21 +99,37 @@ const ScrollableContent = styled.div`
 
 const ModalThree = ({ closeFn = () => null, open = false }) => {
     const [ showForm, setShowForm ] = useState(false)
+    const { userBook, getUserBook } = useContext(UserContext)
 
     const handleShowForm = () => {
         setShowForm(!showForm)
+        getUserBook(userBook.id)
+        console.log('form', showForm)
     }
+
+
     return (
         <Modal open={open}>
             <ModalBoxContainer>
                 <ModalBoxControl>
-                    <AiOutlineCloseCircle aria-label="close" onClick={closeFn}/>
+                    <AiOutlineCloseCircle aria-label="close" onClick={()=> {closeFn(); handleShowForm()}}/>
                 </ModalBoxControl>
                 <ModalBoxContent>
                     <NonScrollableContent>
+                        <p>Details for {userBook.book?.title}</p>
+                        {showForm ? <button  onClick={() => {handleShowForm()}}> Cancel </button> : <button onClick={() => {handleShowForm()}}> Edit Details</button>}
                         </NonScrollableContent>
-                    <ScrollableContent>
+                        { showForm ?
+                            <UserBookForm userBook={userBook} toggle={handleShowForm}/>
+                            :
+                            <ScrollableContent>
+                                { userBook ?
+                                    <UserBookDetails userBook={userBook} />
+                                    :
+                                    <h3>Loading . . .</h3>
+                                }
                     </ScrollableContent>
+                        }
                 </ModalBoxContent>
             </ModalBoxContainer>
         </Modal>

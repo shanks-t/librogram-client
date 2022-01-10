@@ -1,24 +1,28 @@
 import React, { useEffect, useState, useContext } from "react"
 import { useParams, useHistory, Link } from 'react-router-dom'
-import { getBooksByUser, getCurrentUser, deleteBook, searchBooksByUser } from "./UserManager"
 import { UserBookSearch } from "./UserBookSearch"
 import { UserBookFilter } from "./UserBookFilter"
 import { UserContext } from "./UserManager"
-import "./UserProfile.css"
+import { UserBook } from "./UserBook"
+
+import './UserView.css'
 
 export const UserLibrary = (props) => {
+    const { classes } = props
     const [books, setBooks] = useState([])
-    const [ userId, setUserId ] = useState()
+    const [userId, setUserId] = useState()
     const [filters, toggleFilters] = useState(false)
-    const { user, getCurrentUser, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
+    const { user, userBooks, getCurrentUser, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
 
     useEffect(() => {
-        getCurrentUser()
+        getBooks()
     }, []);
 
     useEffect(() => {
-      setUserId(user.id)  
-    }, [user]);
+        getCurrentUser().then(
+            setUserId(user.user?.id)
+        )
+    }, []);
 
     const showFilters = () => {
         if (filters === false) { toggleFilters(true) }
@@ -32,44 +36,42 @@ export const UserLibrary = (props) => {
     const handleSearch = (e) => {
         if (e.target.value == 0) {
             getBooks()
-        }else{
-            searchBooksByUser( userId, e.target.name, e.target.value).then(data => setBooks(data))
+        } else {
+            searchBooksByUser(userId, e.target.name, e.target.value).then(data => setBooks(data))
         }
     }
 
-    useEffect(() => {
-        if (userId) {
-            getBooks()
-        }
-    }, [user])
+    // useEffect(() => {
+    //     if (userId) {
+    //         getBooks()
+    //     }
+    // }, [user])
 
-    const handleDelete = (bookId) => {
+    const handleDelete = (event, bookId) => {
+        event.preventDefault()
         deleteBook(bookId).then(() => {
             getBooks()
         })
     }
 
 
+    useEffect(() => {
+        console.log('userbooks', userBooks)
+    }, [userBooks]);
+
     return (
-        <div className="library">
-        <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} filters={filters}/>
+
+        <><div className="user-search-header">
+            <h2>Search Your Library</h2>
+            <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} books={books} filters={filters} />
             <UserBookSearch user={user} handleSearch={handleSearch} />
-                <article className="library">
-                    <div className="books">
-                        {
-                            books.map(book => {
-                                return <div className="library-book"><Link to={`profile/books/${book.book.id}/${book.id}`}>
-                                    <img src={book?.book.image_path} alt={book.book.title} />
-                                </Link>
-                                    <button className='delete' onClick={(event) => {
-                                        event.preventDefault()
-                                        handleDelete(book.id)
-                                    }}>Remove from library</button>
-                                </div>
-                            })
-                        }
-                    </div>
-                </article>
-        </div>
+        </div><div className="search-results">
+                {userBooks ?
+
+                    userBooks.map(book => <UserBook book={book} handleDelete={handleDelete} />) 
+                    :
+                    <h3>Loading . . .</h3>
+                }
+            </div></>
     )
 }

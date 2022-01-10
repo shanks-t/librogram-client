@@ -1,36 +1,107 @@
-.profile-container {
-    display: flex;
-    margin: 1rem;
-    margin-left: 1rem
+.filter-container {
+  display: flex;
+  justify-content: center;
 }
 
 .search {
-    display: block;
-    margin-left: 5rem;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  font-family: monospace;
+  font-size: 3.5rem;
+  text-shadow: 2px 2px 4px black;
+}
+.search-form {
+  width: 100%;
 }
 
-.library {
-    display: block;
-    flex-wrap: wrap;
-    margin: 5px;
-    margin-bottom: 3rem;
+.user-search-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.library-book {
-    margin-right: .5rem;
+.user-search-header h2 {
+  justify-content: center;
+  display: flex;
+  font-size: 2em;
+  font-family: monospace;
+  margin: auto;
+  margin-top: 3.7rem;
+  font-weight: 800;
+  color: aliceblue;
+  text-shadow: 2px 2px 4px #000000;
 }
 
-.books {
-    margin: 1rem;
-    margin-top: 5rem;
+.search button {
+  background-color: rgb(204 180 154 / .8);
+  font-weight: 600;
 }
 
-.filter-container {
-    margin-left: 5rem;
-    margin-top: 4.5rem;
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 5rem;
+  margin-top: 3rem;
+  
 }
 
-.card {
-    height: 50%;
-    width: 20rem;
+.book {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.9);
+  background-color: rgb(204 180 154 / .8);
+  margin: 2px;
+  margin-bottom: 2rem;
 }
+
+.book::before {
+  opacity: .8;
+}
+
+.book .button {
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    width: 2rem;
+  }
+
+.button-default {
+  font-size: .9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  margin-left: 0.5rem;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+}
+
+.button-default {
+  background: #247BA0;
+  color: #fff;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.9);
+}
+
+
+.form-control {
+justify-content: center;
+width: 50% !important;
+}
+
+.book-img {
+   height: 300;
+} 
+
+.d-flex {
+justify-content: center;
+}
+

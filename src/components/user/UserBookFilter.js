@@ -1,22 +1,22 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
 import { UserContext } from "./UserManager";
 
-export const UserBookFilter = ({ handleSearch, showFilters, filters}) => {
+export const UserBookFilter = ({ handleSearch, showFilters, filters, books}) => {
     const [ tags, setTags ] = useState([])
-    const { getBooksByUser, user } = useContext(UserContext)
+    const { getBooksByUser, user, userBooks } = useContext(UserContext)
 
  
 useEffect(() => {
-    getBooksByUser(user.id).then(data => getUserTags(data))
-}, []);
+    getUserTags(userBooks)
+}, [userBooks]);
 
-const getUserTags = (data) => {
-    debugger
+const getUserTags = (arr) => {
+     
     const userTags = []
-    for (const item of data) {
-        item.book.tags.map(tag => userTags.push(tag))
-    }
-    setTags(userTags)
+        for (const book of arr) {
+            book.book.tags.map(tag => userTags.push(tag))
+        }
+        setTags(userTags)
 }
 
 useEffect(() => {
@@ -34,7 +34,7 @@ useEffect(() => {
                     <fieldset>
                         <select name="tag" defaultValue={0} onChange={handleSearch}>
                             <option value={0}>All Tags</option>
-                            {tags.map(tag => {
+                            {tags.filter((tag, index, self) => index === self.findIndex((obj) => (obj.label === tag.label))).map(tag => {
                                 return <option value={tag.id}>{tag.label}</option>
                             })}
                         </select>

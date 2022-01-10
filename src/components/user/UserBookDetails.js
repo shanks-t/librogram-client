@@ -3,22 +3,21 @@ import { useParams, useHistory } from 'react-router-dom'
 import { getBook, getCurrentUser } from "./UserManager"
 import { CommentForm } from "../comment/CommentForm"
 import { UserContext } from "./UserManager"
-import "./UserProfile.css"
+
 
 import { Image, Card, ListGroup, ListGroupItem, CardGroup } from "react-bootstrap"
 
 
-export const UserBookDetails = (props) => {
-    const [book, setBook] = useState({})
-    const history = useHistory()
+export const UserBookDetails = () => {
     const [ showCommentForm, setShowCommentForm ] = useState(false)
     const [ showEditCommentForm, setShowEditCommentForm ] = useState(false)
-    const { bookId } = useParams()
-    const { getBook, getCurrentUser } = useContext(UserContext)
+    
+    //const { bookId } = useParams()
+    const { user, getUserBook, userBook } = useContext(UserContext)
 
-    const fetchBookInfo = () => {
-        getBook(bookId).then(data => setBook(data))
-    }
+    // const fetchBookInfo = () => {
+    //     getBook(bookId).then(data => setBook(data))
+    // }
 
     const handleCreateToggle = (id) => {
         if(showCommentForm) {
@@ -35,31 +34,31 @@ export const UserBookDetails = (props) => {
         }
     }
 
-    useEffect(() => {
-        fetchBookInfo()
-    }, []);
 
     useEffect(() => {
-        console.log('book', book)
-    }, [book]);
+        console.log('userbookdeets', userBook)
+    }, [userBook]);
+
 
     return (
         <>
         <div className="book-details">
-        <Image variant="top" src={book.image_path} style={{ height: '20rem'}}/>
+        <Image variant="top" src={userBook.book?.image_path} style={{ height: '20rem'}}/>
         <CardGroup>
         <Card style={{ width: '100%' }}>
             <Card.Body>
-                <Card.Title>{book?.title}</Card.Title>
-                <Card.Text>{book?.subtitle}</Card.Text>
+                <Card.Title>{userBook.book?.title}</Card.Title>
+                <Card.Text>{userBook.book?.subtitle}</Card.Text>
                 <ListGroup className="list-group-flush">
-                    <ListGroupItem>{book?.author}</ListGroupItem>
-                    <ListGroupItem>{book?.publisher}</ListGroupItem>
-                    <ListGroupItem>{book?.date_published}</ListGroupItem>
-                    <ListGroupItem>{book?.page_count}</ListGroupItem>
+                    <ListGroupItem>
+                        {userBook.book?.authors.map(a => (<p>{a.name}</p>))}
+                    </ListGroupItem>
+                    <ListGroupItem>{userBook.book?.publisher}</ListGroupItem>
+                    <ListGroupItem>{userBook.book?.date_published}</ListGroupItem>
+                    <ListGroupItem>{userBook.book?.page_count}</ListGroupItem>
                 </ListGroup>
                 <Card.Text>
-                    {book?.description}
+                    {userBook.book?.description}
                 </Card.Text>
             </Card.Body>
         </Card>
@@ -68,18 +67,18 @@ export const UserBookDetails = (props) => {
     <Card.Body>
       <Card.Title>Comments</Card.Title>
       <ListGroup className="list-group-flush">
-                {book?.comments?.map(comment => {
+                {userBook.book?.comments?.map(comment => {
                     return <> <ListGroupItem>{comment.comment}</ListGroupItem>
                         <ListGroupItem>{comment.user.username}</ListGroupItem>
                         <ListGroupItem>{comment.created_on}</ListGroupItem>
-                        {comment.user.id === book.user.id ?
+                        {comment.user.id === user.id ?
                             <>
                                 <button onClick={() => handleEditToggle()}>Edit your comment</button>
                                 <button>Delete your comment</button>
                                 {showEditCommentForm ?
                                     <CommentForm
                                     toggle={setShowCommentForm}
-                                    book={book}
+                                    book={userBook.book}
                                     id={comment.id} />
                                     : ""}
                             </>
@@ -90,21 +89,21 @@ export const UserBookDetails = (props) => {
                 {showCommentForm ?
                     <CommentForm
                     toggle={setShowCommentForm}
-                    book={book}
+                    book={userBook.book}
                     />
                     :""
                 }
                 <div className='tags'>
                     <h3>Tags</h3>
                     {
-                        book?.tags?.map(tag => (
+                        userBook.book?.tags?.map(tag => (
                             <p>{tag.label}</p>
                         ))
                     }
                 </div>
             <div className='readers'>
                 <h3>Who's checked out this book:</h3>
-                {book?.readers_list?.map(reader => (
+                {userBook.book?.readers_list?.map(reader => (
                     <p>{reader}</p>
                 ))
                 }

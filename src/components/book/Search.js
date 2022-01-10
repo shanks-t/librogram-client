@@ -72,7 +72,7 @@ export const Search = () => {
 
     return (
         <Container align='center' sx={{ mt: 2 }}>
-        <div>
+        <div className='search-header'>
             <h2>Search for Books</h2>
         </div>
             <SearchForm

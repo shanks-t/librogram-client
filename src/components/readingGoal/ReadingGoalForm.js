@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useContext, useEffect, useState } from "react"
 import { getReadingGoal, saveReadingGoal, updateReadingGoal } from "./ReadingGoalManager"
-
+import { UserContext } from "../user/UserManager"
 
 export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
     const [ readingGoal, setReadingGoal ] = useState({})
-
+    const { getCurrentUser } = useContext(UserContext)
 
     const handleOnChange = (event) => {
         const copyReadingGoal = { ...readingGoal }
@@ -34,7 +33,7 @@ export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
         } else {
             saveReadingGoal(readingGoal).then(() => {
                 handleShowForm()
-        })
+        }).then(() => getCurrentUser())
     }}
 
     const updateGoal = (event) => {

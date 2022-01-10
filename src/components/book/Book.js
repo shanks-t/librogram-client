@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { saveBook, saveUserBook } from './BookManager';
-import { useCurrentUser } from "../user/UserContext"
 
 import './Search.css'
 import CheckoutModal from './CheckOutModal'
 import useModal from './useModal'
+import { UserContext } from '../user/UserManager';
 
 
 export const Book = ({ book }) => {
     const { isShowing, toggle } = useModal();
     const [ newBook, setNewBook ] = useState({})
     const [ userBook, setUserBook ] = useState({})
-    const [ title, setTitle ] = useState('')
-    const [ author, setAuthor ] = useState('')
-    const user = useCurrentUser()
+    // const [ title, setTitle ] = useState('')
+    // const [ authors, setAuthors ] = useState('')
+    const { user, getCurrentUser } = useContext(UserContext)
     
 
 
@@ -21,7 +21,7 @@ export const Book = ({ book }) => {
         const copyBook = {
         title: book?.volumeInfo?.title,
         subtitle: book?.volumeInfo?.subtitle,
-        author: book?.volumeInfo?.authors,
+        authors: book?.volumeInfo?.authors,
         imagePath: book?.volumeInfo?.imageLinks?.thumbnail,
         description: book?.volumeInfo?.description,
         pageCount: book?.volumeInfo?.pageCount,
@@ -31,8 +31,6 @@ export const Book = ({ book }) => {
         }
   
         setNewBook(copyBook)
-        setTitle(book?.volumeInfo.title)
-        setAuthor(book?.volumeInfo.authors)
         toggle(!isShowing)
     }
 
@@ -43,8 +41,12 @@ export const Book = ({ book }) => {
     }
     useEffect(() => {
         console.log('newBook', newBook)
-        console.log('title', title)
-    }, [newBook]);
+
+    }, [newBook, user]);
+
+    useEffect(() => {
+        getCurrentUser()
+    }, []);
 
     return (
         <>
@@ -64,8 +66,8 @@ export const Book = ({ book }) => {
                             isShowing={isShowing}
                             hide={toggle}
                             book={newBook}
-                            title={title}
-                            author={author}
+                            title={book.volumeInfo.title}
+                            authors={book.volumeInfo.authors}
                             addBook={addBook}
 
                             />

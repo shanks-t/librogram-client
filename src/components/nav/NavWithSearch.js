@@ -8,6 +8,7 @@ import { Navbar, Nav, Form, FormControl, Button, Container, NavDropdown } from "
 import { GiBlackBook } from "react-icons/gi";
 
 import './NavBar.css'
+import { getBook } from "../book/BookManager";
 
 export const NavWithSearch = () => {
     const history = useHistory()
@@ -48,6 +49,7 @@ export const NavWithSearch = () => {
     const handleSearchKeyUp = (event) => {
         event.preventDefault();
         if (event.key === 'Enter' && event.keyCode === 13) {
+            getBooks()
             history.push('/search')
         }
     }
@@ -92,7 +94,7 @@ export const NavWithSearch = () => {
                                 type="text"
                                 className="mr-sm-2"
                             />
-                            <Button onClick={getBooks} variant="outline-info">
+                            <Button onClick={getBooks} variant="outline-success">
                                 Search
                             </Button>
                         </Form>
