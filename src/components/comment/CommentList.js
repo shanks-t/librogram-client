@@ -6,24 +6,11 @@ import { UserContext } from "../user/UserManager"
 import { CommentContext } from "./CommentManager"
 
 export const CommentsList = (props) => {
-    //const [ comments, setComments ] = useState([])
     const { userBook } = useContext(UserContext)
     const [showForm, setShowForm] = useState(false)
     const [showFormCreate, setShowFormCreate] = useState(false)
     const { comment, deleteComment, getComments, comments, setComments } = useContext(CommentContext)
     const { user, getBooksByUser } = useContext(UserContext)
-
-    // const commentsFetch = () => {
-    //     getComments(). then(data => setComments(data))
-    // }
-
-    // useEffect(() => {
-    //     commentsFetch()
-    // }, []);
-
-    // useEffect(() => {
-    //     console.log('comments', comments)
-    // }, [comments]);
 
     useEffect(() => {
         getComments(userBook.book.id)
@@ -41,7 +28,7 @@ export const CommentsList = (props) => {
     const handleDelete = (event, id) => {
         event.preventDefault()
         deleteComment(id).then(() => {
-            getComments(userBook.book.id)
+            handleShowForm()
         })
     }
 

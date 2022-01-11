@@ -3,7 +3,6 @@ import { useHistory, useParams } from "react-router-dom"
 import { UserContext } from "./UserManager"
 
 export const UserBookForm = () => {
-    const [ updatedUserBook, setUpdatedUserBook ] = useState({})
     const [ statuses, setStatuses ] = useState([])
     const { getStatuses, updateUserBook, setUserBook, userBook, getUserBook } = useContext(UserContext)
 
@@ -72,7 +71,7 @@ export const UserBookForm = () => {
             </div>
             <div>
                 <label>Book Status</label>
-                <select type="number" name="statusId" value={userBook.statusId} onChange={(event) => handleOnChange(event)}>
+                <select type="number" name="statusId" value={userBook.status?.id} onChange={(event) => handleOnChange(event)}>
                     <option value='0'>Select a Status</option>
                     {
                         statuses.map(status => <option  value={status.id}>{status.label}</option>)
