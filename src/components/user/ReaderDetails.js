@@ -7,30 +7,6 @@ export const ReaderDetails = ({ userBook }) => {
     const [ statuses, setStatuses ] = useState([])
     const { getStatuses, updateUserBook, setUserBook } = useContext(UserContext)
 
-    // useEffect(() => {
-    //     getStatuses().then(data => setStatuses(data))
-    // }, []);
-
-    // const handleOnChange = (event) => {
-    //     const copyUserBook = { ...userBook }
-    //     copyUserBook[event.target.name] = event.target.value
-    //     setUserBook(copyUserBook)
-    // }
-
-    // useEffect(() => {
-    //     if (userBook) {
-    //        setUserBook({
-    //         id: userBook.id,   
-    //         rating: userBook.rating,
-    //         review: userBook.review,
-    //         startDate: userBook.start_date,
-    //         finishDate: userBook.finish_date,
-    //         currentPage: userBook.current_page,
-    //         statusId: userBook?.status?.id
-    //         })
-    //     }
-    // }, [])
-
     return (
         <>
             <h4>Reader Details for <i>{userBook.book.title}</i> </h4>

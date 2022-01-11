@@ -18,7 +18,6 @@ export const UserBookForm = ({ userBook, toggle}) => {
     }
 
     useEffect(() => {
-        if (userBook) {
            setUserBook({
             id: userBook.id,   
             rating: userBook.rating,
@@ -28,7 +27,6 @@ export const UserBookForm = ({ userBook, toggle}) => {
             currentPage: userBook.current_page,
             statusId: userBook?.statusId
             })
-        }
     }, [])
 
 

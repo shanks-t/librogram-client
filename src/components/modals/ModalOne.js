@@ -43,7 +43,7 @@ const ModalBoxContainer = styled.div`
     max-width: 650px;
     border: 2px solid black;
     border-radius: 25px 25px 25px 25px;
-    background-color: #fff;
+    background-color: #c6ac8e;
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
     animation: ${fadeIn} 0.5s;
     // TBD: add responsiveness
