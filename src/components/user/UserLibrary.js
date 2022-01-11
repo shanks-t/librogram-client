@@ -32,12 +32,14 @@ export const UserLibrary = (props) => {
         getBooksByUser(userId).then(data => setBooks(data))
     }
     const handleSearch = (e) => {
+        e.preventDefault()
         if (e.target.value == 0) {
             getBooks()
         } else {
-            searchBooksByUser(user.id, e.target.name, e.target.value).then(data => setBooks(data))
+            searchBooksByUser(user.user.id, e.target.name, e.target.value).then(data => setBooks(data))
         }
     }
+
 
     // useEffect(() => {
     //     if (userId) {
