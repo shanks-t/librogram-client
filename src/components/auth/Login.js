@@ -34,7 +34,7 @@ export const Login = () => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("lg_user_token", res.token)
-                    history.push("/search")
+                    history.push("/profile")
                 }
                 else {
                     invalidDialog.current.showModal()
@@ -72,7 +72,7 @@ export const Login = () => {
                         <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
                     </fieldset>
                     <div>
-                    <Button sx={{ m: 2 }} variant='outlined' className="btn-login" type="submit">Sign In</Button>
+                    <Button sx={{ m: 2 }} variant='contained' className="btn-login" type="submit">Sign In</Button>
                     </div>
                 </form>
                 <Link to="/register">Not a member yet?</Link>
