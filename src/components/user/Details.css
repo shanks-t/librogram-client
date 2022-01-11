@@ -1,0 +1,27 @@
+
+.book-details img {
+height: auto;
+width: auto;
+max-height: 150px;
+max-width: 100px;
+box-shadow: 0 5px 8px 0 rgb(0 0 0 / 90%);
+z-index: 1;
+}
+
+.card-body {
+    width: fit-content;
+}
+
+.btn-group button {
+    border: 1px black;
+}
+
+.card {
+    width: auto;
+    height: auto;
+    margin-top: 10px;
+}
+
+img {
+    z-index: 1;
+}

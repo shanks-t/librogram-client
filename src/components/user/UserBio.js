@@ -35,7 +35,7 @@ return (
             <div class="card__image card__image-geoff" style={styleImage}></div>
             <div class="card__info">
                 <div class="details">
-                    <span class="details__text-header">{user?.user?.username}</span>
+                    <span class="details__text-header">@{user?.user?.username}</span>
                     <span class="details__text-subheader">{user?.user?.first_name} {user?.user?.last_name}</span><br></br>
                     <span class="details__text-subheader">{user.bio}</span>
                 </div>

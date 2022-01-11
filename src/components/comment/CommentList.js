@@ -1,42 +1,76 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link, useHistory } from 'react-router-dom'
-import { getComments } from "./CommentManager"
+
+import { CommentForm } from "./CommentForm"
+import { UserContext } from "../user/UserManager"
+import { CommentContext } from "./CommentManager"
 
 export const CommentsList = (props) => {
-    const [ comments, setComments ] = useState([])
-    const history = useHistory()
+    //const [ comments, setComments ] = useState([])
+    const { userBook } = useContext(UserContext)
+    const [showForm, setShowForm] = useState(false)
+    const [showFormCreate, setShowFormCreate] = useState(false)
+    const { comment, deleteComment, getComments, comments } = useContext(CommentContext)
 
-    const commentsFetch = () => {
-        getComments(). then(data => setComments(data))
+    // const commentsFetch = () => {
+    //     getComments(). then(data => setComments(data))
+    // }
+    
+    // useEffect(() => {
+    //     commentsFetch()
+    // }, []);
+
+    // useEffect(() => {
+    //     console.log('comments', comments)
+    // }, [comments]);
+
+    useEffect(() => {
+        console.log('ub', userBook)
+    }, [userBook]);
+
+    const handleShowFormCreate = () => {
+        setShowFormCreate(!showFormCreate)
+        console.log('form', showForm)
+    }
+    const handleShowForm = () => {
+        setShowForm(!showForm)
+        console.log('form', showForm)
     }
     
-    useEffect(() => {
-        commentsFetch()
-    }, []);
-
-    useEffect(() => {
-        console.log('comments', comments)
-    }, [comments]);
-    return (
-        <>
-        
-        <article className="comments">
-        <button onClick={()=>history.push('comments/create')}>Create a New Reading comment</button>
-        <ul>
-        {
-                comments.map(comment => {
-                    return <>
-                    <li key={`comment--${comment.id}`} className="comment">
-                        <Link to={`comments/edit/${comment.id}`}>{comment.id}</Link>
-                    </li>
-                    <li>{comment.comment}</li>
-                    <li>{comment.created_on}</li>
-                    </>
-            })
-        }
-        </ul>
-    </article>
-
-    </>
-    )
+    const handleDelete = (event, id) => {
+        event.preventDefault()
+        deleteComment(id).then(() => {
+            getComments()
+        })
     }
+
+    return (
+        <article className="comments">
+            { showFormCreate ?
+                <CommentForm userBook={userBook} handleShowFormCreate={handleShowFormCreate}/>
+                :
+                <button onClick={() => handleShowFormCreate()}>Add Comment</button>
+            }
+        {
+            showForm ?
+                    
+            <CommentForm id={comment.id} userBook={userBook} handleShowForm={handleShowForm}/>
+            :
+            comments.map(comment => {
+                return <>
+                <ul>
+                    <li key={`comment--${comment.id}`} className="comment">
+                        <Link onClick={()=>handleShowForm()}>{comment.id}</Link>
+                    </li>
+                    <li>Comment: {comment.comment}</li>
+                    <li>Created On: {comment.created_on}</li>
+                    <Link style={{color: 'red'}} onClick={(event) => handleDelete(event, comment.id)}>delete</Link>
+                </ul>
+                    </>
+                })
+            }
+            
+        
+    </article>
+    )
+}

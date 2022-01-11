@@ -37,7 +37,6 @@ export const UserBookForm = ({ userBook, toggle}) => {
         event.preventDefault()
 
         updateUserBook(userBook?.id, userBook).then(() => {
-            toggle()
         })
     }
 

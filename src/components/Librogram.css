@@ -2,3 +2,7 @@ body {
     background-image: url('https://images.pexels.com/photos/2128249/pexels-photo-2128249.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
     font-family: monospace;
 }
+
+ul {
+    list-style: none;
+}
