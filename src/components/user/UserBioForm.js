@@ -16,10 +16,11 @@ export const UserBioForm = ({ close }) => {
 
     useEffect(() => {
         if (user) {
-            setUserBio({
+        setUserBio({
          id: user.id,
          bio: user.bio,
-         profileImageUrl: user.profile_image_url
+         profileImageUrl: user.profile_image_url,
+         backgroundImageUrl: user.background_image_url
                  })
         }
     }, []);
@@ -59,6 +60,15 @@ export const UserBioForm = ({ close }) => {
                 <Form.Label>Profile Image</Form.Label>
                 <Form.Control name='profileImageUrl' type="url" 
                 value={userBio.profileImageUrl}
+                placeholder="profile image url" 
+                onChange={(event) => handleOnChange(event)}
+                />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Background Image</Form.Label>
+                <Form.Control name='backgroundImageUrl' type="url" 
+                value={userBio.backgroundImageUrl}
                 placeholder="profile image url" 
                 onChange={(event) => handleOnChange(event)}
                 />

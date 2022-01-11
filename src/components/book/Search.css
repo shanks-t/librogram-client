@@ -40,6 +40,7 @@
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     width: auto;
+    max-width: 150px;
     border-radius: 10px;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.9);
     background-color: rgb(204 180 154 / .8);
@@ -89,3 +90,6 @@
   justify-content: center;
 }
 
+.book, h3 {
+  font-size: inherit;
+}

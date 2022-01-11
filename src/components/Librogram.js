@@ -9,6 +9,7 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import ModalManager from "./ModalManager"
 import { CurrentUserProvider } from "./user/UserManager"
+import { CommentProvider } from "./comment/CommentManager"
 import './Librogram.css'
 
 export const Librogram = () => {
@@ -30,6 +31,7 @@ export const Librogram = () => {
     return (
         <>
         <CurrentUserProvider>
+            <CommentProvider>
             <Route render={() => {
                 if (localStorage.getItem("lg_user_token")) {
                     return <>
@@ -46,6 +48,8 @@ export const Librogram = () => {
                     return <Redirect to="/login" />
                 }
             }} />
+
+            </CommentProvider>
 
         </CurrentUserProvider>
 
