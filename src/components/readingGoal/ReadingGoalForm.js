@@ -59,11 +59,6 @@ export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
             </div>
 
             <div>
-                <label>number of pages</label>
-                <input type="number" name="numberOfPages" step='20' value={readingGoal.numberOfPages} onChange={(event) => handleOnChange(event)}></input>
-            </div>
-
-            <div>
                 <label>start date</label>
                 <input type="date" name="startDate" value={readingGoal.startDate} onChange={(event) => handleOnChange(event)}></input>
             </div>

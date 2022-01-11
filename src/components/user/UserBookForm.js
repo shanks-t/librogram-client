@@ -4,7 +4,7 @@ import { UserContext } from "./UserManager"
 
 export const UserBookForm = () => {
     const [ statuses, setStatuses ] = useState([])
-    const { getStatuses, updateUserBook, setUserBook, userBook, getUserBook } = useContext(UserContext)
+    const { getStatuses, updateUserBook, setUserBook, userBook, getUserBook, getCurrentUser, user } = useContext(UserContext)
 
     useEffect(() => {
         getStatuses().then(data => setStatuses(data))
@@ -34,7 +34,7 @@ export const UserBookForm = () => {
         event.preventDefault()
 
         updateUserBook(userBook.id, userBook).then(() => {
-            getUserBook(userBook.id)
+            getUserBook(userBook.id).then(() => getCurrentUser())
         })
     }
 
