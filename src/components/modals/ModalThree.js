@@ -6,6 +6,7 @@ import { UserContext } from '../user/UserManager';
 import { UserBookForm } from '../user/UserBookForm';
 import { UserBookDetails } from '../user/UserBookDetails';
 import { CommentsList } from '../../components/comment/CommentList'
+import { ReaderDetails } from '../user/ReaderDetails';
 
 import styled, { keyframes } from 'styled-components';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
@@ -164,9 +165,10 @@ const ModalThree = ({ closeFn = () => null, open = false }) => {
                 <ModalBoxContent>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                            <Tab label="Details" {...a11yProps(0)} />
-                            <Tab label="Edit" {...a11yProps(1)} />
+                            <Tab label="book details" {...a11yProps(0)} />
+                            <Tab label="edit" {...a11yProps(1)} />
                             <Tab label="comments" {...a11yProps(2)} />
+                            <Tab label="user details" {...a11yProps(3)} />
                         </Tabs>
                     </Box>
                     <TabPanel value={value} index={0}>
@@ -177,6 +179,9 @@ const ModalThree = ({ closeFn = () => null, open = false }) => {
                     </TabPanel>
                     <TabPanel value={value} index={2}>
                         <CommentsList />
+                    </TabPanel>
+                    <TabPanel value={value} index={3}>
+                        <ReaderDetails userBook={userBook}/>
                     </TabPanel>
                 </ModalBoxContent>
             </ModalBoxContainer>

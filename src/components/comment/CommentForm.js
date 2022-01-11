@@ -34,17 +34,17 @@ export const CommentForm = ( { userBook }) => {
         })
     }
 
-    const updateUserComment = (event) => {
-        event.preventDefault()
+    // const updateUserComment = (event) => {
+    //     event.preventDefault()
 
-        updateComment(comment.id, comment).then(() => {
-        })
-    }
-    useEffect(() => {
-        console.log('book', bookId)
-        console.log('comment', comment)
+    //     updateComment(comment.id, comment).then(() => {
+    //     })
+    // }
+    // useEffect(() => {
+    //     console.log('book', bookId)
+    //     console.log('comment', comment)
         
-    }, [bookId, comment]);
+    // }, [bookId, comment]);
 
 
     return (

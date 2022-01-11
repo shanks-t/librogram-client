@@ -26,7 +26,7 @@ export const UserBookForm = ({ userBook, toggle}) => {
             startDate: userBook.start_date,
             finishDate: userBook.finish_date,
             currentPage: userBook.current_page,
-            statusId: userBook?.status?.id
+            statusId: userBook?.statusId
             })
         }
     }, [])

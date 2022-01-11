@@ -10,7 +10,8 @@ export const CommentsList = (props) => {
     const { userBook } = useContext(UserContext)
     const [showForm, setShowForm] = useState(false)
     const [showFormCreate, setShowFormCreate] = useState(false)
-    const { comment, deleteComment, getComments, comments } = useContext(CommentContext)
+    const { comment, deleteComment, getComments, setComments } = useContext(CommentContext)
+    const { user, getBooksByUser } = useContext(UserContext)
 
     // const commentsFetch = () => {
     //     getComments(). then(data => setComments(data))
@@ -40,7 +41,7 @@ export const CommentsList = (props) => {
     const handleDelete = (event, id) => {
         event.preventDefault()
         deleteComment(id).then(() => {
-            getComments()
+            getBooksByUser(user.id)
         })
     }
 
@@ -56,7 +57,7 @@ export const CommentsList = (props) => {
                     
             <CommentForm id={comment.id} userBook={userBook} handleShowForm={handleShowForm}/>
             :
-            comments.map(comment => {
+            userBook.book.comments.map(comment => {
                 return <>
                 <ul>
                     <li key={`comment--${comment.id}`} className="comment">
