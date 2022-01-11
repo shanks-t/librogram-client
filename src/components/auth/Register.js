@@ -189,7 +189,7 @@ export const Register = (props) => {
                             handleAdminCheckbox()
                         }} />} label="Are you and Administrator?" />
                     </FormGroup>
-                    <Button sx={{ m: 2 }} variant='outlined' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
+                    <Button sx={{ m: 2 }} variant='contained' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
                 </form>
                 <section className="link--register">
                     Already registered? <Link to="/login">Login</Link>

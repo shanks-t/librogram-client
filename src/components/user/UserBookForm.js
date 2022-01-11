@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { UserContext } from "./UserManager"
 
-export const UserBookForm = ({ userBook, toggle}) => {
+export const UserBookForm = () => {
     const [ updatedUserBook, setUpdatedUserBook ] = useState({})
     const [ statuses, setStatuses ] = useState([])
-    const { getStatuses, updateUserBook, setUserBook } = useContext(UserContext)
+    const { getStatuses, updateUserBook, setUserBook, userBook, getUserBook } = useContext(UserContext)
 
     useEffect(() => {
         getStatuses().then(data => setStatuses(data))
@@ -34,7 +34,8 @@ export const UserBookForm = ({ userBook, toggle}) => {
     const updateUserBookFields = (event) => {
         event.preventDefault()
 
-        updateUserBook(userBook?.id, userBook).then(() => {
+        updateUserBook(userBook.id, userBook).then(() => {
+            getUserBook(userBook.id)
         })
     }
 

@@ -6,7 +6,7 @@ import Modal from './Modal';
 import { UserBioForm } from '../user/UserBioForm';
 
 import styled, {keyframes} from 'styled-components';
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
 const fadeIn = keyframes`
     from {
@@ -65,7 +65,7 @@ const ModalTwo = ({ closeFn = () => null, open = false }) => {
         <Modal open={open}>
             <ModalBoxContainer>
                 <ModalBoxControl>
-                    <AiOutlineCloseCircle aria-label="close" onClick={closeFn}/>
+                    <CancelPresentationIcon aria-label="close" onClick={closeFn}/>
                 </ModalBoxControl>
                 <ModalBoxContent>
                     <UserBioForm close={closeFn}/>

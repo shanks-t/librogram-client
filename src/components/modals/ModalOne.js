@@ -7,7 +7,7 @@ import { ReadingGoalsList } from '../readingGoal/ReadingGoalsList';
 import Modal from './Modal';
 
 import styled, {keyframes} from 'styled-components';
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
 // animation for fade in
 const fadeIn = keyframes`
@@ -107,7 +107,7 @@ const ModalOne = ({ closeFn = () => null, open = false }) => {
         <Modal open={open}>
             <ModalBoxContainer>
                 <ModalBoxControl>
-                    <AiOutlineCloseCircle aria-label="close" onClick={closeFn}/>
+                    <CancelPresentationIcon aria-label="close" onClick={closeFn}/>
                 </ModalBoxControl>
                 <ModalBoxContent>
                     <NonScrollableContent>

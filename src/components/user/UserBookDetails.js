@@ -36,8 +36,8 @@ export const UserBookDetails = () => {
 
 
     useEffect(() => {
-        console.log('userbookdeets', userBook)
-    }, [userBook]);
+        getUserBook()
+    }, []);
 
 
     return (

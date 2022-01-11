@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
 import { UserContext } from "./UserManager";
 
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import styled from 'styled-components'
+
 export const UserBookFilter = ({ handleSearch, showFilters, filters, books}) => {
     const [ tags, setTags ] = useState([])
     const { getBooksByUser, user, userBooks } = useContext(UserContext)
@@ -19,14 +23,19 @@ const getUserTags = (arr) => {
         setTags(userTags)
 }
 
+const StyledDiv = styled.div`
+display: flex;
+align-items: center;
+`
 useEffect(() => {
     console.log('usertags', tags)
 }, [tags]);
     return (
         <div className="filter-container">
-            <div>
-                Filter <button onClick={showFilters}>{filters ? "⬆️" : "⬇️"}</button>
-            </div>
+            <StyledDiv className="filter-icon" style={{display: 'flex'}}>
+                <h3 style={{color: 'aliceblue'}}>Filters</h3>
+                <button onClick={showFilters}>{filters ? <VisibilityOffIcon/> : <VisibilityIcon/>}</button>
+            </StyledDiv>
     
         {filters ?
             <>
@@ -42,10 +51,17 @@ useEffect(() => {
                     <fieldset>
                         <select name="bookLength" defaultValue={0} onChange={(event) => handleSearch(event)}>
                             <option value={0}>All Book Lengths</option>
-                            <option value={100}> 100 pages or less</option>
-                            <option value={200}> 200 pages or less</option>
-                            <option value={300}> 300 pages or less</option>
-                            <option value={500}> 500 pages or less</option>
+                            <option value={100}> greater than 100 </option>
+                            <option value={200}> greater than 200 </option>
+                            <option value={300}> greater than 300 </option>
+                            <option value={500}> greater than 500 </option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <select name="rating" defaultValue={0} onChange={(event) => handleSearch(event)}>
+                            <option value={0}>All Ratings</option>
+                            <option value={5.1}> rated 5 - 10 </option>
+                            <option value={4.9}> rated 0 - 5 </option>
                         </select>
                     </fieldset>
                 </div>
