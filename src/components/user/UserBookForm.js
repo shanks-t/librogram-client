@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { UserContext } from "./UserManager"
 
-export const UserBookForm = ({ userBook, toggle}) => {
-    const [ updatedUserBook, setUpdatedUserBook ] = useState({})
+export const UserBookForm = () => {
     const [ statuses, setStatuses ] = useState([])
-    const { getStatuses, updateUserBook, setUserBook } = useContext(UserContext)
+    const { getStatuses, updateUserBook, setUserBook, userBook, getUserBook, getCurrentUser, user } = useContext(UserContext)
 
     useEffect(() => {
         getStatuses().then(data => setStatuses(data))
@@ -18,7 +17,6 @@ export const UserBookForm = ({ userBook, toggle}) => {
     }
 
     useEffect(() => {
-        if (userBook) {
            setUserBook({
             id: userBook.id,   
             rating: userBook.rating,
@@ -28,7 +26,6 @@ export const UserBookForm = ({ userBook, toggle}) => {
             currentPage: userBook.current_page,
             statusId: userBook?.statusId
             })
-        }
     }, [])
 
 
@@ -36,7 +33,8 @@ export const UserBookForm = ({ userBook, toggle}) => {
     const updateUserBookFields = (event) => {
         event.preventDefault()
 
-        updateUserBook(userBook?.id, userBook).then(() => {
+        updateUserBook(userBook.id, userBook).then(() => {
+            getUserBook(userBook.id).then(() => getCurrentUser())
         })
     }
 
@@ -73,7 +71,7 @@ export const UserBookForm = ({ userBook, toggle}) => {
             </div>
             <div>
                 <label>Book Status</label>
-                <select type="number" name="statusId" value={userBook.statusId} onChange={(event) => handleOnChange(event)}>
+                <select type="number" name="statusId" value={userBook.status?.id} onChange={(event) => handleOnChange(event)}>
                     <option value='0'>Select a Status</option>
                     {
                         statuses.map(status => <option  value={status.id}>{status.label}</option>)

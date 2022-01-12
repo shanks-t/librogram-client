@@ -6,13 +6,13 @@ import { CommentContext } from "./CommentManager"
 export const CommentForm = ( { userBook }) => {
     //const [ comment, setComment ] = useState({})
     const history = useHistory()
-    const  bookId  = userBook.id
-    const { saveComment, comment, setComment, updateComment } = useContext(CommentContext)
+   
+    const { saveComment, comment, setComment, getComments } = useContext(CommentContext)
 
     const handleOnChange = (event) => {
         const copyComment = { ...comment }
         copyComment[event.target.name] = event.target.value
-        copyComment['bookId'] = bookId
+        copyComment['bookId'] = userBook.book.id
         setComment(copyComment)
     }
 
@@ -31,6 +31,7 @@ export const CommentForm = ( { userBook }) => {
         event.preventDefault()
 
         saveComment(comment).then(() => {
+            getComments(userBook.book.id)
         })
     }
 

@@ -10,8 +10,8 @@ export const CommentProvider = (props) => {
     const [comment, setComment] = useState([])
     const history = useHistory()
 
-    const getComments = () => {
-        return fetch(`http://localhost:8000/comments`,{
+    const getComments = (bookId) => {
+        return fetch(`http://localhost:8000/comments?bookId=${bookId}`,{
             headers: {"Authorization": `Token ${localStorage.getItem("lg_user_token")}`}
         })
         .then(res => res.json())
