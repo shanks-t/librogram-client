@@ -60,7 +60,7 @@ export const Login = () => {
                     <Typography
                     variant='h3'
                     align='center'
-                    color='textSecondary'
+                    color='textPrimary'
                     >Please sign in</Typography>
                     <MdMenuBook className="book-icon-login"/>
                     <fieldset className='login'>
