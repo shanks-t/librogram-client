@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import React, { useContext, useEffect, useState } from "react"
 import { getReadingGoal, saveReadingGoal, updateReadingGoal } from "./ReadingGoalManager"
+import { UserContext } from "../user/UserManager"
 
-
-export const ReadingGoalForm = () => {
+export const ReadingGoalForm = ({ goalId, handleShowForm }) => {
     const [ readingGoal, setReadingGoal ] = useState({})
-    const history = useHistory()
-    const { goalId } = useParams()
-
+    const { getCurrentUser } = useContext(UserContext)
 
     const handleOnChange = (event) => {
         const copyReadingGoal = { ...readingGoal }
@@ -31,19 +28,24 @@ export const ReadingGoalForm = () => {
 
     const saveGoal = (event) => {
         event.preventDefault()
-
-        saveReadingGoal(readingGoal).then(() => {
-            history.push('/profile')
-        })
-    }
+        if (!readingGoal.endDate) {
+            window.alert('please add an end date for goal')
+        } else {
+            saveReadingGoal(readingGoal).then(() => {
+                handleShowForm()
+        }).then(() => getCurrentUser())
+    }}
 
     const updateGoal = (event) => {
         event.preventDefault()
-
-        updateReadingGoal(goalId, readingGoal).then(() => {
-            history.push('/profile')
+        if (!readingGoal.endDate) {
+            window.alert('please add an end date for goal')
+        } else {
+            updateReadingGoal(goalId, readingGoal).then(() => {
+                handleShowForm()
         })
-    }
+    }}
+    
     useEffect(() => {
         console.log('ReadingGoal', readingGoal)
         console.log('goalId', goalId)
@@ -53,12 +55,7 @@ export const ReadingGoalForm = () => {
         <form>
             <div>
                 <label>number of books</label>
-                <input name='numberOfBooks' type='number' min='1' max='10' value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
-            </div>
-
-            <div>
-                <label>number of pages</label>
-                <input type="number" name="numberOfPages" step='20' value={readingGoal.numberOfPages} onChange={(event) => handleOnChange(event)}></input>
+                <input required name='numberOfBooks' type='number' min='1' max='400' value={readingGoal.numberOfBooks} step='1' onChange={(event) => handleOnChange(event)}></input>
             </div>
 
             <div>
@@ -68,7 +65,7 @@ export const ReadingGoalForm = () => {
 
             <div>
                 <label>end date</label>
-                <input type="date" name="endDate" value={readingGoal.endDate} onChange={(event) => handleOnChange(event)}></input>
+                <input required='required' type="date" name="endDate" value={readingGoal.endDate} onChange={(event) => handleOnChange(event)}></input>
             </div>
             <div>
                 <button onClick={(event) => {
@@ -78,6 +75,7 @@ export const ReadingGoalForm = () => {
                         saveGoal(event)
                     }
                     }}>Save Goal</button>
+                    <button onClick={(event) => handleShowForm()}>cancel</button>
             </div>
         </form>
     )

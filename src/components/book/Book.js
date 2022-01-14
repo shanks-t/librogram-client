@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { saveBook, saveUserBook } from './BookManager';
+
 import './Search.css'
-import Modal from './Modal'
+import CheckoutModal from './CheckOutModal'
 import useModal from './useModal'
+import { UserContext } from '../user/UserManager';
 
 
 export const Book = ({ book }) => {
     const { isShowing, toggle } = useModal();
     const [ newBook, setNewBook ] = useState({})
     const [ userBook, setUserBook ] = useState({})
-    const [ title, setTitle ] = useState('')
-    const [ author, setAuthor ] = useState('')
+    // const [ title, setTitle ] = useState('')
+    // const [ authors, setAuthors ] = useState('')
+    const { user, getCurrentUser } = useContext(UserContext)
+    
 
 
     const handleClick = () => {
         const copyBook = {
         title: book?.volumeInfo?.title,
         subtitle: book?.volumeInfo?.subtitle,
-        author: book?.volumeInfo?.authors,
+        authors: book?.volumeInfo?.authors,
         imagePath: book?.volumeInfo?.imageLinks?.thumbnail,
         description: book?.volumeInfo?.description,
         pageCount: book?.volumeInfo?.pageCount,
@@ -27,8 +31,6 @@ export const Book = ({ book }) => {
         }
   
         setNewBook(copyBook)
-        setTitle(book?.volumeInfo.title)
-        setAuthor(book?.volumeInfo.authors)
         toggle(!isShowing)
     }
 
@@ -39,10 +41,13 @@ export const Book = ({ book }) => {
     }
     useEffect(() => {
         console.log('newBook', newBook)
-        console.log('title', title)
-    }, [newBook]);
 
-    console.log('authors', book?.volumeInfo?.authors)
+    }, [newBook, user]);
+
+    useEffect(() => {
+        getCurrentUser()
+    }, []);
+
     return (
         <>
                 {
@@ -52,16 +57,17 @@ export const Book = ({ book }) => {
                                 <a target='blank' href={book?.volumeInfo?.infoLink}>
                                     <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book.title} />
                                 </a>
-                                <div className='button'><button className='button-default' onClick={handleClick}>Add To Library</button></div>
+                                <div className='button'><button className='button-default'  onClick={handleClick}>Add To Library</button></div>
                                 
                             </div>
                             
-                            <Modal
+                            <CheckoutModal
+                            user={user}
                             isShowing={isShowing}
                             hide={toggle}
                             book={newBook}
-                            title={title}
-                            author={author}
+                            title={book.volumeInfo.title}
+                            authors={book.volumeInfo.authors}
                             addBook={addBook}
 
                             />

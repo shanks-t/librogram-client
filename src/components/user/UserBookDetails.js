@@ -1,107 +1,100 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useParams, useHistory } from 'react-router-dom'
 import { getBook, getCurrentUser } from "./UserManager"
 import { CommentForm } from "../comment/CommentForm"
-import "./UserProfile.css"
+import { UserContext } from "./UserManager"
+
+import styled, { keyframes } from 'styled-components';
+
+import './Details.css'
+import { Image, Card, ListGroup, ListGroupItem, CardGroup, ButtonGroup, Button } from "react-bootstrap"
 
 
-export const UserBookDetails = (props) => {
-    const [book, setBook] = useState({})
-    const history = useHistory()
-    const [ showCommentForm, setShowCommentForm ] = useState(false)
-    const [ showEditCommentForm, setShowEditCommentForm ] = useState(false)
-    const { bookId } = useParams()
+export const UserBookDetails = () => {
+    const [showCommentForm, setShowCommentForm] = useState(false)
+    const [showEditCommentForm, setShowEditCommentForm] = useState(false)
 
-    const fetchBookInfo = () => {
-        getBook(bookId).then(data => setBook(data))
-    }
+    //const { bookId } = useParams()
+    const { user, getUserBook, userBook } = useContext(UserContext)
+
+    // const fetchBookInfo = () => {
+    //     getBook(bookId).then(data => setBook(data))
+    // }
 
     const handleCreateToggle = (id) => {
-        if(showCommentForm) {
+        if (showCommentForm) {
             setShowCommentForm(false)
-        }else{ 
+        } else {
             setShowCommentForm(true)
         }
     }
     const handleEditToggle = (id) => {
-        if(showEditCommentForm) {
+        if (showEditCommentForm) {
             setShowEditCommentForm(false)
-        }else{ 
+        } else {
             setShowEditCommentForm(true)
         }
     }
 
-    useEffect(() => {
-        fetchBookInfo()
-    }, []);
+
+    const ScrollableContent = styled.div`
+    position: absolute;
+    width: 86%;
+    height: calc(100% - 140px);
+    overflow-y: auto;
+    margin: 10px 30px 30px 30px;
+    padding: 0px 25px 38px 0px;
+    /* scroll bar width */
+    &::-webkit-scrollbar {
+    width: 10px;
+    }`
+
+
 
     useEffect(() => {
-        console.log('book', book)
-    }, [book]);
+        getUserBook()
+    }, []);
+
 
     return (
         <>
+        <ScrollableContent>
 
-            <article className="book-details">
-                <img src={book?.image_path}/> <br></br>
-                {book?.title} <br></br>
-                {book?.subtitle}<br></br>
-                {book?.author}<br></br>
-                {book?.publisher}<br></br>
-                {book?.date_published}<br></br>
-                {book?.page_count}<br></br>
-                {book?.description}<br></br>
-                <div className='comments'>
-                    <h3>Comments</h3>
-                    {
-                    book?.comments?.map(comment => {
-                        return <> <p>{comment.comment}</p>
-                        <p>{comment.user.username}</p>
-                        <p>{comment.created_on}</p>
-                        {comment.user.id === book.user.id ? 
-                            <>
-                            <button onClick={()=> handleEditToggle()
-                            }>Edit your comment</button>
-                            <button>Delete your comment</button>
-                            {showEditCommentForm ?
-                            <CommentForm
-                            toggle={setShowCommentForm}
-                            book={book}
-                            id={comment.id}
-                            />
-                    :""
-                }
-                            </>
-                        :""
-                    }
-                    </>
-                    })
-                    }
-                <button onClick={() => handleCreateToggle()}>Add comment</button>
-                {showCommentForm ?
-                    <CommentForm
-                    toggle={setShowCommentForm}
-                    book={book}
-                    />
-                    :""
-                }
-                </div>
-                <div className='tags'>
-                    <h3>Tags</h3>
-                    {
-                        book?.tags?.map(tag => (
-                            <p>{tag.label}</p>
-                        ))
-                    }
-                </div>
-            <div className='readers'>
-                <h3>Who's checked out this book:</h3>
-                {book?.readers_list?.map(reader => (
-                    <p>{reader}</p>
-                ))
-                }
+            <div className="book-details">
+                <Image variant="top" src={userBook.book?.image_path} style={{ height: '9rem', zIndex: '1' }} />
+                <CardGroup>
+                    <Card style={{ width: '100%', height: 'auto', marginTop: '5px' }}>
+                        <Card.Body>
+                            <Card.Title>{userBook.book?.title}</Card.Title>
+                            <Card.Text>{userBook.book?.subtitle}</Card.Text>
+                            <ListGroup className="list-group-flush">
+                                <ListGroupItem>
+                                    Author(s): {userBook.book?.authors.map(a => (<p>{a.name}</p>))}
+                                </ListGroupItem>
+                                <ListGroupItem>Publisher: {userBook.book?.publisher}</ListGroupItem>
+                                <ListGroupItem>Publish Date: {userBook.book?.date_published}</ListGroupItem>
+                                <ListGroupItem>Pages: {userBook.book?.page_count}</ListGroupItem>
+                                <ListGroupItem></ListGroupItem>
+                            </ListGroup>
+                            <Card.Text >
+                                {userBook.book?.description}
+                            </Card.Text>
+                                </Card.Body>
+                            <Card.Body>
+                            <ListGroup>
+                                <Card.Title>Tags</Card.Title>
+                                    {
+                                        userBook.book?.tags?.map(tag => (
+                                            <ListGroupItem>{tag.label}</ListGroupItem>
+                                        ))
+                                    }
+                            </ListGroup>
+
+                        </Card.Body>
+                    </Card>
+                </CardGroup>
             </div>
-        </article>
+        </ScrollableContent>
         </>
     )
 }

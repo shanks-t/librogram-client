@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { getStatuses, getUserBook, updateUserBook } from "./UserManager"
+import { UserContext } from "./UserManager"
 
 export const UserBookForm = () => {
-    const [ userBook, setUserBook ] = useState({})
     const [ statuses, setStatuses ] = useState([])
-    const history = useHistory()
-    const { userBookId } = useParams()
+    const { getStatuses, updateUserBook, setUserBook, userBook, getUserBook, getCurrentUser, user } = useContext(UserContext)
 
     useEffect(() => {
         getStatuses().then(data => setStatuses(data))
-        
     }, []);
 
     const handleOnChange = (event) => {
@@ -20,26 +17,24 @@ export const UserBookForm = () => {
     }
 
     useEffect(() => {
-        if (userBookId) {
-            getUserBook(userBookId).then((data) => setUserBook({
-            ...data,
-            rating: data.rating,
-            review: data.review,
-            startDate: data.start_date,
-            finishDate: data.finish_date,
-            currentPage: data.current_page,
-            statusId: data.status.id
-            }))
-        }
-    }, [userBookId])
+           setUserBook({
+            id: userBook.id,   
+            rating: userBook.rating,
+            review: userBook.review,
+            startDate: userBook.start_date,
+            finishDate: userBook.finish_date,
+            currentPage: userBook.current_page,
+            statusId: userBook?.statusId
+            })
+    }, [])
 
 
 
     const updateUserBookFields = (event) => {
         event.preventDefault()
 
-        updateUserBook(userBookId, userBook).then(() => {
-            history.push('/profile/books')
+        updateUserBook(userBook.id, userBook).then(() => {
+            getUserBook(userBook.id).then(() => getCurrentUser())
         })
     }
 
@@ -76,7 +71,7 @@ export const UserBookForm = () => {
             </div>
             <div>
                 <label>Book Status</label>
-                <select type="number" name="statusId" value={userBook?.statusId} onChange={(event) => handleOnChange(event)}>
+                <select type="number" name="statusId" value={userBook.status?.id} onChange={(event) => handleOnChange(event)}>
                     <option value='0'>Select a Status</option>
                     {
                         statuses.map(status => <option  value={status.id}>{status.label}</option>)

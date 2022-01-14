@@ -1,77 +1,77 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { useParams, useHistory, Link } from 'react-router-dom'
-import { getBooksByUser, getCurrentUser, deleteBook, searchBooksByUser } from "./UserManager"
 import { UserBookSearch } from "./UserBookSearch"
 import { UserBookFilter } from "./UserBookFilter"
-import "./UserProfile.css"
+import { UserContext } from "./UserManager"
+import { UserBook } from "./UserBook"
 
-export const UserLibrary = ({ user }) => {
+import './UserView.css'
+
+export const UserLibrary = (props) => {
+    const { classes } = props
     const [books, setBooks] = useState([])
-    const [userId, setUserId] = useState( user.id )
     const [filters, toggleFilters] = useState(false)
-    const history = useHistory()
+    const { user, userBooks, getCurrentUser, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
+
+    useEffect(() => {
+        getBooks()
+    }, []);
+
+    useEffect(() => {
+        getCurrentUser()
+        
+    }, []);
 
     const showFilters = () => {
         if (filters === false) { toggleFilters(true) }
         else { toggleFilters(false) }
     }
 
-    const getUser = () => {
-        getCurrentUser().then(data => setUserId(data.user.id))
-    }
-    const getBooks = (userId, name, value) => {
+
+    const getBooks = (userId) => {
         getBooksByUser(userId).then(data => setBooks(data))
     }
     const handleSearch = (e) => {
+        e.preventDefault()
         if (e.target.value == 0) {
             getBooks()
-        }else{
-            searchBooksByUser( userId, e.target.name, e.target.value).then(data => setBooks(data))
+        } else {
+            searchBooksByUser(user.user.id, e.target.name, e.target.value).then(data => setBooks(data))
         }
     }
 
-    useEffect(() => {
-        if (userId) {
 
-            getBooks()
-        }
-    }, [userId])
+    // useEffect(() => {
+    //     if (userId) {
+    //         getBooks()
+    //     }
+    // }, [user])
 
-    useEffect(() => {
-        getUser()
-    }, []);
-
-    const handleDelete = (bookId) => {
+    const handleDelete = (event, bookId) => {
+        event.preventDefault()
         deleteBook(bookId).then(() => {
-            getBooks()
+            getBooks(user.id)
         })
     }
 
+
     useEffect(() => {
-        console.log('books', books)
-        console.log('user', userId)
-    }, [books, userId]);
+        console.log('userbooks', userBooks)
+    }, [userBooks]);
 
     return (
-        <>
-        <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} filters={filters}/>
+
+        <><div className="user-search-header">
+            <h2>Search Your Library</h2>
+            <UserBookFilter showFilters={showFilters} handleSearch={handleSearch} books={books} filters={filters} />
             <UserBookSearch user={user} handleSearch={handleSearch} />
-                <article className="library">
-                    <div className="books">
-                        {
-                            books.map(book => {
-                                return <div><Link to={`profile/books/${book.book.id}/${book.id}`}>
-                                    <img src={book?.book.image_path} alt={book.book.title} />
-                                </Link>
-                                    <button className='delete' onClick={(event) => {
-                                        event.preventDefault()
-                                        handleDelete(book.id)
-                                    }}>Remove from library</button>
-                                </div>
-                            })
-                        }
-                    </div>
-                </article>
-        </>
+        </div><div className="search-results">
+                {userBooks ?
+
+                    userBooks.map(book => <UserBook book={book} handleDelete={handleDelete} />) 
+                    :
+                    <h3>Loading . . .</h3>
+                }
+            </div></>
     )
 }

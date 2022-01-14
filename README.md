@@ -1,71 +1,67 @@
-# Getting Started with Create React App
+## Overview
+I love books, have since I was very small. They have been a source of comfort and exploration for me all my life. This app is an expression of my joy for reading. It allows users to search for books via google's free books api, and then save all the books they've ever read to their user library. Users can make comments about the books in their library and see a list of other users that have checked out each book. Also, in the user profile users can set reading goals which are dynamically updated as they update the progress of each book by setting the status of the book to 'unread', 'in-progress' or 'finished'. Users can also filter their personal library by category, author, title or number of pages. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Table of contents
+* [Librogram](#Librogram)
+* [Features](#features)
+* [Tech Stack](#tech-stack)
+* [Run Locally](#run-locally)
 
-In the project directory, you can run:
+# Librogram
 
-### `npm start`
+This is the final, server-side project for NSS full-stack boot camp. The live app is here https://librogram-shanks.herokuapp.com/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Full crud functionality with server
+- Filtering books by title, author, book length or category via django ORM
+- A custom property for calculating and updating progress toward reading goals
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Librogam ERD
+https://drawsql.app/nss-7/diagrams/librogram#
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Client:** ReactJS, HTML, CSS, React-Bootstrap
+- https://github.com/shanks-t/librogram-client
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Server:** Python, Django, SQLite3
+- https://github.com/shanks-t/librogram-server
+## Run Locally
 
-### `npm run eject`
+Clone the project
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+  git clone https://github.com/shanks-t/librogram-server
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Go to the project directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+  cd Librogram-server
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Install Pipenv
+```bash
+curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+```
 
-## Learn More
+Install dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  pipenv install django autopep8 pylint djangorestframework django-cors-headers pylint-django
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create and initialize a new virtual environment
 
-### Code Splitting
+```bash
+  pipenv shell
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Librogram-Client
+Start server
+```bash
+  pipenv runserver
+```

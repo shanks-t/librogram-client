@@ -65,7 +65,7 @@ export const Register = (props) => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("lg_user_token", res.token);
-                        history.push("/search");
+                        history.push("/profile");
                     }
                 });
         } else {
@@ -90,10 +90,17 @@ export const Register = (props) => {
                     <Typography
                         variant='h3'
                         align='center'
+<<<<<<< HEAD
                         color='textSecondary'
                     >Please sign in
                     </Typography>
                     <MdMenuBook className="book-icon-register" />
+=======
+                        color='textPrimary'
+                    >Please sign in
+                    </Typography>
+                    <MdMenuBook className="book-icon-register"/>
+>>>>>>> 48c7e63fe69aa06872a0144a327a6aece651fb54
                     <fieldset className='register'>
                         <label htmlFor="firstName"> First Name </label>
                         <input

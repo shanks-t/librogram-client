@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { saveComment, getComment, updateComment } from "./CommentManager"
+//import { saveComment, getComment, updateComment } from "./CommentManager"
+import { CommentContext } from "./CommentManager"
 
-
-export const CommentForm = ( { id }) => {
-    const [ comment, setComment ] = useState({})
+export const CommentForm = ( { userBook }) => {
+    //const [ comment, setComment ] = useState({})
     const history = useHistory()
-    const { bookId } = useParams()
-    const commentId = id
+   
+    const { saveComment, comment, setComment, getComments } = useContext(CommentContext)
 
     const handleOnChange = (event) => {
         const copyComment = { ...comment }
         copyComment[event.target.name] = event.target.value
-        copyComment['bookId'] = bookId
+        copyComment['bookId'] = userBook.book.id
         setComment(copyComment)
     }
 
-    useEffect(() => {
-        if (commentId) {
-            getComment(commentId).then((data) => setComment({
-            ...data,
-            comment: data.comment,
-            }))
-        }
-    }, [commentId])
+    // useEffect(() => {
+    //     if (commentId) {
+    //         getComment(commentId).then((data) => setComment({
+    //         ...data,
+    //         comment: data.comment,
+    //         }))
+    //     }
+    // }, [commentId])
 
 
 
@@ -31,22 +31,21 @@ export const CommentForm = ( { id }) => {
         event.preventDefault()
 
         saveComment(comment).then(() => {
-            history.push('/profile')
+            getComments(userBook.book.id)
         })
     }
 
-    const updateUserComment = (event) => {
-        event.preventDefault()
+    // const updateUserComment = (event) => {
+    //     event.preventDefault()
 
-        updateComment(commentId, comment).then(() => {
-            history.push('/profile')
-        })
-    }
-    useEffect(() => {
-        console.log('book', bookId)
-        console.log('commentId', commentId)
+    //     updateComment(comment.id, comment).then(() => {
+    //     })
+    // }
+    // useEffect(() => {
+    //     console.log('book', bookId)
+    //     console.log('comment', comment)
         
-    }, [bookId. commentId]);
+    // }, [bookId, comment]);
 
 
     return (
@@ -57,12 +56,8 @@ export const CommentForm = ( { id }) => {
             </div>
             <div>
                 <button onClick={(event) => {
-                    if (commentId) {
-                        updateUserComment(event)
-                    } else {
                         addComment(event)
-                    }}
-                    }>Save Comment</button>
+                }}>Save Comment</button>
             </div>
         </form>
     )
