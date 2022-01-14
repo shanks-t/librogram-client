@@ -10,7 +10,6 @@ import './UserView.css'
 export const UserLibrary = (props) => {
     const { classes } = props
     const [books, setBooks] = useState([])
-    const [userId, setUserId] = useState()
     const [filters, toggleFilters] = useState(false)
     const { user, userBooks, getCurrentUser, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
 
@@ -19,9 +18,8 @@ export const UserLibrary = (props) => {
     }, []);
 
     useEffect(() => {
-        getCurrentUser().then(
-            setUserId(user.user?.id)
-        )
+        getCurrentUser()
+        
     }, []);
 
     const showFilters = () => {
@@ -30,16 +28,18 @@ export const UserLibrary = (props) => {
     }
 
 
-    const getBooks = (userId, name, value) => {
+    const getBooks = (userId) => {
         getBooksByUser(userId).then(data => setBooks(data))
     }
     const handleSearch = (e) => {
+        e.preventDefault()
         if (e.target.value == 0) {
             getBooks()
         } else {
-            searchBooksByUser(userId, e.target.name, e.target.value).then(data => setBooks(data))
+            searchBooksByUser(user.user.id, e.target.name, e.target.value).then(data => setBooks(data))
         }
     }
+
 
     // useEffect(() => {
     //     if (userId) {
@@ -50,7 +50,7 @@ export const UserLibrary = (props) => {
     const handleDelete = (event, bookId) => {
         event.preventDefault()
         deleteBook(bookId).then(() => {
-            getBooks()
+            getBooks(user.id)
         })
     }
 

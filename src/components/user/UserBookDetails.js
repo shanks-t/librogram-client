@@ -4,6 +4,8 @@ import { getBook, getCurrentUser } from "./UserManager"
 import { CommentForm } from "../comment/CommentForm"
 import { UserContext } from "./UserManager"
 
+import styled, { keyframes } from 'styled-components';
+
 import './Details.css'
 import { Image, Card, ListGroup, ListGroupItem, CardGroup, ButtonGroup, Button } from "react-bootstrap"
 
@@ -35,14 +37,29 @@ export const UserBookDetails = () => {
     }
 
 
+    const ScrollableContent = styled.div`
+    position: absolute;
+    width: 86%;
+    height: calc(100% - 140px);
+    overflow-y: auto;
+    margin: 10px 30px 30px 30px;
+    padding: 0px 25px 38px 0px;
+    /* scroll bar width */
+    &::-webkit-scrollbar {
+    width: 10px;
+    }`
+
+
+
     useEffect(() => {
-        console.log('userbookdeets', userBook)
-    }, [userBook]);
+        getUserBook()
+    }, []);
 
 
     return (
         <>
-        
+        <ScrollableContent>
+
             <div className="book-details">
                 <Image variant="top" src={userBook.book?.image_path} style={{ height: '9rem', zIndex: '1' }} />
                 <CardGroup>
@@ -77,6 +94,7 @@ export const UserBookDetails = () => {
                     </Card>
                 </CardGroup>
             </div>
+        </ScrollableContent>
         </>
     )
 }

@@ -65,7 +65,7 @@ export const Register = (props) => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("lg_user_token", res.token);
-                        history.push("/search");
+                        history.push("/profile");
                     }
                 });
         } else {
@@ -90,10 +90,10 @@ export const Register = (props) => {
                     <Typography
                         variant='h3'
                         align='center'
-                        color='textSecondary'
+                        color='textPrimary'
                     >Please sign in
                     </Typography>
-                    <MdMenuBook className="book-icon-register" />
+                    <MdMenuBook className="book-icon-register"/>
                     <fieldset className='register'>
                         <label htmlFor="firstName"> First Name </label>
                         <input
@@ -189,7 +189,7 @@ export const Register = (props) => {
                             handleAdminCheckbox()
                         }} />} label="Are you and Administrator?" />
                     </FormGroup>
-                    <Button sx={{ m: 2 }} variant='outlined' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
+                    <Button sx={{ m: 2 }} variant='contained' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
                 </form>
                 <section className="link--register">
                     Already registered? <Link to="/login">Login</Link>

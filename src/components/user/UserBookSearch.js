@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "./UserManager";
 
 import { Form, FormControl, Button } from 'react-bootstrap'
 
 export const UserBookSearch = ({ handleSearch }) => {
-
     return (
     
 <div className="search">
             <div className='search-form'>
-            <Form className="d-flex" >
+            <Form className="d-flex">
                 <FormControl
-                    placeholder='Search for Books'
+                    name='q'
+                    placeholder='Search Titles'
                     defaultValue=""
-                    // onChange={onInputChange}
+                    onChange={e => handleSearch(e)}
                     // onKeyUp={handleSearchKeyUp}
                     type="text"
                     className="mr-sm-2"
                 />
-                <Button onClick={handleSearch} variant="outline-success">
+                <Button  variant="outline-success">
                     Search
                 </Button>
             </Form>
