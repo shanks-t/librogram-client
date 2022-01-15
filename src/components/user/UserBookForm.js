@@ -24,7 +24,7 @@ export const UserBookForm = () => {
             startDate: userBook.start_date,
             finishDate: userBook.finish_date,
             currentPage: userBook.current_page,
-            statusId: userBook?.statusId
+            statusId: userBook.status.id
             })
     }, [])
 
@@ -71,7 +71,7 @@ export const UserBookForm = () => {
             </div>
             <div>
                 <label>Book Status</label>
-                <select type="number" name="statusId" value={userBook.status?.id} onChange={(event) => handleOnChange(event)}>
+                <select type="number" name="statusId" value={userBook.statusId} onChange={(event) => handleOnChange(event)}>
                     <option value='0'>Select a Status</option>
                     {
                         statuses.map(status => <option  value={status.id}>{status.label}</option>)
