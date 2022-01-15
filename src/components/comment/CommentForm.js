@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom"
 //import { saveComment, getComment, updateComment } from "./CommentManager"
 import { CommentContext } from "./CommentManager"
 
-export const CommentForm = ( { userBook }) => {
+export const CommentForm = ( { userBook, handleShowFormCreate }) => {
     //const [ comment, setComment ] = useState({})
     const history = useHistory()
    
@@ -12,7 +12,6 @@ export const CommentForm = ( { userBook }) => {
     const handleOnChange = (event) => {
         const copyComment = { ...comment }
         copyComment[event.target.name] = event.target.value
-        copyComment['bookId'] = userBook.book.id
         setComment(copyComment)
     }
 
@@ -31,7 +30,7 @@ export const CommentForm = ( { userBook }) => {
         event.preventDefault()
 
         saveComment(comment).then(() => {
-            getComments(userBook.book.id)
+            handleShowFormCreate()
         })
     }
 

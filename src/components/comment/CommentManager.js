@@ -43,7 +43,7 @@ export const CommentProvider = (props) => {
     }
 
     const saveComment = (comment) => {
-    return fetch("http://localhost:8000/comments", {
+    return fetch(`http://localhost:8000/comments?bookId=${userBook.book.id}`, {
         method: "POST",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
