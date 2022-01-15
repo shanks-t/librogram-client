@@ -1,21 +1,24 @@
-import React, { useState, createContext } from "react"
+import React, { useState, createContext, useContext } from "react"
 import { useHistory } from "react-router"
+import { UserContext } from "../user/UserManager"
 
 // The context is imported and used by individual components that need data
 export const CommentContext = createContext()
 
 // This component establishes what data can be used.
 export const CommentProvider = (props) => {
+    const { userBook } = useContext(UserContext)
     const [comments, setComments] = useState([])
     const [comment, setComment] = useState([])
     const history = useHistory()
 
-    const getComments = (bookId) => {
-        return fetch(`http://localhost:8000/comments?bookId=${bookId}`,{
+    const getComments = () => {
+        
+        return fetch(`http://localhost:8000/comments?bookId=${userBook.book.id}`,{
             headers: {"Authorization": `Token ${localStorage.getItem("lg_user_token")}`}
         })
         .then(res => res.json())
-        .then((data) => setComments(data))
+        .then(setComments)
     }
 
     const getComment = commentId => {
@@ -29,7 +32,6 @@ export const CommentProvider = (props) => {
 }
 
     const deleteComment = (id) => {
-
         return fetch(`http://localhost:8000/comments/${id}`, {
             method: "DELETE",
             headers: {
