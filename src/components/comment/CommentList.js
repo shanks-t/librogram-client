@@ -13,10 +13,11 @@ export const CommentsList = (props) => {
     const { user, getBooksByUser } = useContext(UserContext)
 
     useEffect(() => {
-        getComments(userBook.book.id)
-    }, [showForm]);
+        getComments()
+    }, []);
 
     const handleShowFormCreate = () => {
+        
         setShowFormCreate(!showFormCreate)
         console.log('form', showForm)
     }
@@ -28,7 +29,6 @@ export const CommentsList = (props) => {
     const handleDelete = (event, id) => {
         event.preventDefault()
         deleteComment(id).then(() => {
-            handleShowForm()
         })
     }
 
