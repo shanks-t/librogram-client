@@ -9,6 +9,18 @@ import styled, { keyframes } from 'styled-components';
 import './Details.css'
 import { Image, Card, ListGroup, ListGroupItem, CardGroup, ButtonGroup, Button } from "react-bootstrap"
 
+const ScrollableContent = styled.div`
+position: absolute;
+width: 86%;
+height: calc(100% - 140px);
+overflow-y: auto;
+margin: 10px 30px 30px 30px;
+padding: 0px 25px 38px 0px;
+/* scroll bar width */
+&::-webkit-scrollbar {
+width: 10px;
+}`
+
 
 export const UserBookDetails = () => {
     const [showCommentForm, setShowCommentForm] = useState(false)
@@ -37,23 +49,6 @@ export const UserBookDetails = () => {
     }
 
 
-    const ScrollableContent = styled.div`
-    position: absolute;
-    width: 86%;
-    height: calc(100% - 140px);
-    overflow-y: auto;
-    margin: 10px 30px 30px 30px;
-    padding: 0px 25px 38px 0px;
-    /* scroll bar width */
-    &::-webkit-scrollbar {
-    width: 10px;
-    }`
-
-
-
-    useEffect(() => {
-        getUserBook()
-    }, []);
 
 
     return (
