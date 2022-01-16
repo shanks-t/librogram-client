@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useContext, createContext } from "react"
-import { useParams, useHistory } from 'react-router-dom'
-import { getBooksByUser, getCurrentUser } from "./UserManager"
+import React from "react"
 import { UserLibrary } from "./UserLibrary"
 import { UserBio } from "./UserBio"
 

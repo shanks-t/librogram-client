@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Book } from "./Book"
 import { SearchResults } from './SearchResults';
 import { SearchForm } from './SearchForm';
-//import './Search.css'
 import { Container } from '@mui/material'
-import { getBook } from './BookManager';
 
 
 
@@ -13,7 +10,6 @@ export const Search = () => {
     const [ books, setBooks ] = useState({});
     const [ search, setSearch ] = useState('');
     const [ API_KEY, set_API_KEY ] = useState(`${process.env.REACT_APP_API}`)
-    const [ localBooks, setLocalBooks ] = useState([])
     const [ storageItem, setStorageItem ] = useState([])
 
   

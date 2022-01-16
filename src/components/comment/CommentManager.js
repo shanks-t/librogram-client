@@ -1,5 +1,4 @@
 import React, { useState, createContext, useContext } from "react"
-import { useHistory } from "react-router"
 import { UserContext } from "../user/UserManager"
 
 // The context is imported and used by individual components that need data
@@ -10,7 +9,6 @@ export const CommentProvider = (props) => {
     const { userBook } = useContext(UserContext)
     const [comments, setComments] = useState([])
     const [comment, setComment] = useState([])
-    const history = useHistory()
 
     const getComments = () => {
         

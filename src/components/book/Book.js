@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { saveBook, saveUserBook } from './BookManager';
+import { saveBook } from './BookManager';
 
 import './Search.css'
 import CheckoutModal from './CheckOutModal'
@@ -10,9 +10,6 @@ import { UserContext } from '../user/UserManager';
 export const Book = ({ book }) => {
     const { isShowing, toggle } = useModal();
     const [ newBook, setNewBook ] = useState({})
-    const [ userBook, setUserBook ] = useState({})
-    // const [ title, setTitle ] = useState('')
-    // const [ authors, setAuthors ] = useState('')
     const { user, getCurrentUser } = useContext(UserContext)
     
 

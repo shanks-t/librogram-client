@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { CommentForm } from "./CommentForm"
 import { UserContext } from "../user/UserManager"
@@ -24,8 +24,8 @@ width: 10px;
 export const CommentsList = (props) => {
     const [showForm, setShowForm] = useState(false)
     const [showFormCreate, setShowFormCreate] = useState(false)
-    const { comment, deleteComment, getComments, comments, setComments } = useContext(CommentContext)
-    const { user, getBooksByUser, userBook } = useContext(UserContext)
+    const { comment, deleteComment, getComments, comments } = useContext(CommentContext)
+    const { user, userBook } = useContext(UserContext)
 
     useEffect(() => {
         getComments()

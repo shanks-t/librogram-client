@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import { Modal, Button } from 'react-bootstrap'
 import './CheckoutModal.css'

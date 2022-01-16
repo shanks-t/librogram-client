@@ -5,8 +5,7 @@ import { Form, Button } from 'react-bootstrap'
 
 export const UserBioForm = ({ close }) => {
     const [ userBio, setUserBio] = useState({})
-    const [userId, setUserId] = useState({})
-    const { user, updateReaderBio, getCurrentUser } = useContext(UserContext)
+    const { user, updateReaderBio } = useContext(UserContext)
 
     const handleOnChange = (event) => {
         const copyUser = { ...user }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserManager";
 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 export const UserBookFilter = ({ handleSearch, showFilters, filters, books}) => {
     const [ tags, setTags ] = useState([])
-    const { getBooksByUser, user, userBooks } = useContext(UserContext)
+    const { userBooks } = useContext(UserContext)
 
  
 useEffect(() => {

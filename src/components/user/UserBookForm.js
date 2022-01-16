@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
 import { UserContext } from "./UserManager"
 
 export const UserBookForm = () => {
     const [ statuses, setStatuses ] = useState([])
-    const { getStatuses, updateUserBook, setUserBook, userBook, getUserBook, getCurrentUser, user } = useContext(UserContext)
+    const { getStatuses, updateUserBook, setUserBook, userBook, getUserBook, getCurrentUser } = useContext(UserContext)
 
     useEffect(() => {
         getStatuses().then(data => setStatuses(data))

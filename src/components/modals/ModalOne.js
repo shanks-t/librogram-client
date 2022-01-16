@@ -1,6 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { useState } from 'react';
 
 import { ReadingGoalForm } from '../readingGoal/ReadingGoalForm';
 import { ReadingGoalsList } from '../readingGoal/ReadingGoalsList';
@@ -19,17 +18,17 @@ const fadeIn = keyframes`
     }
 `;
 
-const ModalOverlay = styled.div`
-    color: #4A82A6;
-    position: fixed;
-    top: 50;
-    right: 0;
-    z-index: 1100;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-    animation: ${fadeIn} 0.5s;
-`;
+// const ModalOverlay = styled.div`
+//     color: #4A82A6;
+//     position: fixed;
+//     top: 50;
+//     right: 0;
+//     z-index: 1100;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(0, 0, 0, 0.25);
+//     animation: ${fadeIn} 0.5s;
+// `;
 
 const ModalBoxContainer = styled.div`
     display: block;
