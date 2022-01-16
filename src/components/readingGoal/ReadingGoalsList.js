@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Link, useHistory } from 'react-router-dom'
 
 import { getReadingGoals } from "./ReadingGoalManager"
 import { ProgressBar } from "./ProgressBar"
@@ -11,7 +10,6 @@ export const ReadingGoalsList = ({ close }) => {
     const [goals, setGoals] = useState([])
     const [ showForm, setShowForm ] = useState(false)
     const [ goal, setGoal ] = useState({})
-    const history = useHistory()
 
     const goalsFetch = () => {
         getReadingGoals().then(data => setGoals(data))

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react"
-import { useParams, useHistory, Link } from 'react-router-dom'
 import { UserBookSearch } from "./UserBookSearch"
 import { UserBookFilter } from "./UserBookFilter"
 import { UserContext } from "./UserManager"
@@ -8,19 +7,15 @@ import { UserBook } from "./UserBook"
 import './UserView.css'
 
 export const UserLibrary = (props) => {
-    const { classes } = props
     const [books, setBooks] = useState([])
     const [filters, toggleFilters] = useState(false)
-    const { user, userBooks, getCurrentUser, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
+    const { user, userBooks, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
 
     useEffect(() => {
         getBooks()
     }, []);
 
-    useEffect(() => {
-        getCurrentUser()
-        
-    }, []);
+
 
     const showFilters = () => {
         if (filters === false) { toggleFilters(true) }

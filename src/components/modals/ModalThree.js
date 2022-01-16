@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useContext, useState } from 'react';
 
 import Modal from './Modal';
 import { UserContext } from '../user/UserManager';
@@ -59,17 +58,17 @@ const fadeIn = keyframes`
     }
 `;
 
-const ModalOverlay = styled.div`
-    color: #4A82A6;
-    position: fixed;
-    top: 50;
-    right: 0;
-    z-index: 1100;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(198, 172, 142);
-    animation: ${fadeIn} 0.5s;
-`;
+// const ModalOverlay = styled.div`
+//     color: #4A82A6;
+//     position: fixed;
+//     top: 50;
+//     right: 0;
+//     z-index: 1100;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgb(198, 172, 142);
+//     animation: ${fadeIn} 0.5s;
+// `;
 
 const ModalBoxContainer = styled.div`
     display: block;
@@ -102,41 +101,41 @@ const ModalBoxContent = styled.div`
     color: #333;
 `;
 
-const NonScrollableContent = styled.div`
-    margin: auto;
-    text-align: center;
-`;
+// const NonScrollableContent = styled.div`
+//     margin: auto;
+//     text-align: center;
+// `;
 
-const ScrollableContent = styled.div`
-    position: absolute;
-    width: 86%;
-    height: calc(100% - 140px);
-    overflow-y: auto;
-    margin: 10px 30px 30px 30px;
-    padding: 0px 25px 38px 0px;
-    /* scroll bar width */
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
+// const ScrollableContent = styled.div`
+//     position: absolute;
+//     width: 86%;
+//     height: calc(100% - 140px);
+//     overflow-y: auto;
+//     margin: 10px 30px 30px 30px;
+//     padding: 0px 25px 38px 0px;
+//     /* scroll bar width */
+//     &::-webkit-scrollbar {
+//       width: 10px;
+//     }
     
-    /* scroll bar track */
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 2px #333; 
-      border-radius: 10px;
-    }
+//     /* scroll bar track */
+//     &::-webkit-scrollbar-track {
+//       box-shadow: inset 0 0 2px #333; 
+//       border-radius: 10px;
+//     }
      
-    /* scroll bar handle */
-    &::-webkit-scrollbar-thumb {
-      background: rgba(51,51,51,0.8);
-      opacity: 0.6;
-      border-radius: 10px;
-    }
+//     /* scroll bar handle */
+//     &::-webkit-scrollbar-thumb {
+//       background: rgba(51,51,51,0.8);
+//       opacity: 0.6;
+//       border-radius: 10px;
+//     }
     
-    /* scroll bar handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgba(51,51,51,1);
-    }
-`;
+//     /* scroll bar handle on hover */
+//     &::-webkit-scrollbar-thumb:hover {
+//       background: rgba(51,51,51,1);
+//     }
+// `;
 
 
 const ModalThree = ({ closeFn = () => null, open = false }) => {

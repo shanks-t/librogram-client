@@ -1,13 +1,10 @@
-import React, { useContext, useEffect, useState } from "react"
-import { useParams, useHistory } from 'react-router-dom'
-import { getBook, getCurrentUser } from "./UserManager"
-import { CommentForm } from "../comment/CommentForm"
+import React, { useContext } from "react"
 import { UserContext } from "./UserManager"
 
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import './Details.css'
-import { Image, Card, ListGroup, ListGroupItem, CardGroup, ButtonGroup, Button } from "react-bootstrap"
+import { Image, Card, ListGroup, ListGroupItem, CardGroup } from "react-bootstrap"
 
 const ScrollableContent = styled.div`
 position: absolute;
@@ -23,33 +20,7 @@ width: 10px;
 
 
 export const UserBookDetails = () => {
-    const [showCommentForm, setShowCommentForm] = useState(false)
-    const [showEditCommentForm, setShowEditCommentForm] = useState(false)
-
-    //const { bookId } = useParams()
-    const { user, getUserBook, userBook } = useContext(UserContext)
-
-    // const fetchBookInfo = () => {
-    //     getBook(bookId).then(data => setBook(data))
-    // }
-
-    const handleCreateToggle = (id) => {
-        if (showCommentForm) {
-            setShowCommentForm(false)
-        } else {
-            setShowCommentForm(true)
-        }
-    }
-    const handleEditToggle = (id) => {
-        if (showEditCommentForm) {
-            setShowEditCommentForm(false)
-        } else {
-            setShowEditCommentForm(true)
-        }
-    }
-
-
-
+    const { userBook } = useContext(UserContext)
 
     return (
         <>

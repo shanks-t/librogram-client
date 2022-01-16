@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Book } from "./Book"
-import { SearchResults } from './SearchResults';
+import React from 'react';
 import './Search.css'
 
 import { Form, FormControl, Button } from 'react-bootstrap'
 
-export const SearchForm = ({ handleFormSubmit, onInputChange, handleSearchKeyUp, getBooks, search }) => {
+export const SearchForm = ({ onInputChange, handleSearchKeyUp, getBooks, search }) => {
 
     return (
 
