@@ -19,7 +19,7 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        return fetch("https://librogram-shanks.herokuapp.com/login", {
+        return fetch("https://librogram.herokuapp.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
