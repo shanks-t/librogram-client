@@ -19,7 +19,7 @@ export const Search = () => {
   
     
     const getStorageBooks =  () => {
-        return fetch(`https://www.googleapis.com/books/v1/volumes?q=${storageItem}&key=${API_KEY}&maxResults=30`, {
+        return fetch(`https://www.googleapis.com/books/v1/volumes?q=${storageItem}&key=${process.env.REACT_APP_API}&maxResults=30`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
