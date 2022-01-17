@@ -10,7 +10,7 @@ export const CurrentUserProvider = (props) => {
     const [ userBooks, setUserBooks ] = useState([])
 
     const getCurrentUser = () => {
-        return fetch("http://localhost:8000/readers/currentuser", {
+        return fetch("https://librogram.herokuapp.com/readers/currentuser", {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
             }
@@ -21,7 +21,7 @@ export const CurrentUserProvider = (props) => {
 
 
  const saveUserBook = (book) => {
-    return fetch("http://localhost:8000/userbooks", {
+    return fetch("https://librogram.herokuapp.com/userbooks", {
         method: "POST",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -32,7 +32,7 @@ export const CurrentUserProvider = (props) => {
 
 }
  const updateUserBook = (userBookId, userBook) => {
-    return fetch(`http://localhost:8000/userbooks/${userBookId}/edit`, {
+    return fetch(`https://librogram.herokuapp.com/userbooks/${userBookId}/edit`, {
         method: "PATCH",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -44,7 +44,7 @@ export const CurrentUserProvider = (props) => {
 }
 
  const getUserBook = (userBookId) => {
-    return fetch(`http://localhost:8000/userbooks/${userBookId}`, {
+    return fetch(`https://librogram.herokuapp.com/userbooks/${userBookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
@@ -54,7 +54,7 @@ export const CurrentUserProvider = (props) => {
 }
 
  const getBook = (bookId) => {
-    return fetch(`http://localhost:8000/books/${bookId}`, {
+    return fetch(`https://librogram.herokuapp.com/books/${bookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
@@ -64,7 +64,7 @@ export const CurrentUserProvider = (props) => {
 }
 
  const getBooksByUser = (userId) => {
-    return fetch(`http://localhost:8000/userbooks?user_id=${userId}`, {
+    return fetch(`https://librogram.herokuapp.com/userbooks?user_id=${userId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
@@ -74,7 +74,7 @@ export const CurrentUserProvider = (props) => {
 }
 
  const getStatuses = () => {
-    return fetch(`http://localhost:8000/statuses`, {
+    return fetch(`https://librogram.herokuapp.com/statuses`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
@@ -84,7 +84,7 @@ export const CurrentUserProvider = (props) => {
 
 
 const getTags = () => {
-    return fetch(`http://localhost:8000/tags`,{
+    return fetch(`https://librogram.herokuapp.com/tags`,{
         headers: {"Authorization": `Token ${localStorage.getItem("lg_user_token")}`}
     })
     .then(res => res.json())
@@ -92,7 +92,7 @@ const getTags = () => {
 }
 
  const deleteBook = (bookId) => {
-    return fetch(`http://localhost:8000/userbooks/${ bookId }`, {
+    return fetch(`https://librogram.herokuapp.com/userbooks/${ bookId }`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
@@ -101,7 +101,7 @@ const getTags = () => {
 }
 
  const searchBooksByUser = (userId, q, term) => {
-    return fetch(`http://localhost:8000/userbooks?user_id=${userId}&${q}=${term}`, {
+    return fetch(`https://librogram.herokuapp.com/userbooks?user_id=${userId}&${q}=${term}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
@@ -111,7 +111,7 @@ const getTags = () => {
 }
 
  const updateReaderBio = (userId, Bio) => {
-    return fetch(`http://localhost:8000/readers/${userId}/edit`, {
+    return fetch(`https://librogram.herokuapp.com/readers/${userId}/edit`, {
         method: "PATCH",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
