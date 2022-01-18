@@ -7,6 +7,7 @@ export const CurrentUserProvider = (props) => {
     const [ tags, setTags ] = useState([])
     const [ userBook, setUserBook ] = useState({})
     const [ book, setBook ] = useState({events:[]})
+    const [ googleBooks, setGoogleBooks ] = useState({events:[]})
     const [ userBooks, setUserBooks ] = useState([])
 
     const getCurrentUser = () => {
@@ -122,11 +123,19 @@ const getTags = () => {
     .then(getCurrentUser)
 }
 
+const getGoogleBooks = (search) => {
+        
+    return fetch(`http://localhost:8000/search?q=${search}`,{
+        headers: {"Authorization": `Token ${localStorage.getItem("lg_user_token")}`}
+    })
+    .then(res => res.json())
+    .then(setGoogleBooks)
+}
 
 
 return (
     <UserContext.Provider value={{
-        user, tags, userBooks, userBook, book, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getStatuses, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio, setUserBook, setUserBooks
+        user, tags, userBooks, userBook, book, googleBooks, getCurrentUser, saveUserBook, updateUserBook, getUserBook, getStatuses, getBook, getBooksByUser, getTags, deleteBook, searchBooksByUser, updateReaderBio, setUserBook, setUserBooks, getGoogleBooks
     }}>
         {props.children}
     </UserContext.Provider>

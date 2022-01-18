@@ -53,7 +53,7 @@ export const Register = (props) => {
                 subscriber: false
             };
 
-            return fetch("http://127.0.0.1:8000/register", {
+            return fetch("http://localhost:8000/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -90,10 +90,10 @@ export const Register = (props) => {
                     <Typography
                         variant='h3'
                         align='center'
-                        color='textPrimary'
+                        color='textSecondary'
                     >Please sign in
                     </Typography>
-                    <MdMenuBook className="book-icon-register"/>
+                    <MdMenuBook className="book-icon-register" />
                     <fieldset className='register'>
                         <label htmlFor="firstName"> First Name </label>
                         <input

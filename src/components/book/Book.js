@@ -41,9 +41,6 @@ export const Book = ({ book }) => {
 
     }, [newBook, user]);
 
-    useEffect(() => {
-        getCurrentUser()
-    }, []);
 
     return (
         <>
