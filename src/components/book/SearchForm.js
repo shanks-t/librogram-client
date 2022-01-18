@@ -3,7 +3,7 @@ import './Search.css'
 
 import { Form, FormControl, Button } from 'react-bootstrap'
 
-export const SearchForm = ({ onInputChange, handleSearchKeyUp, getBooks, search }) => {
+export const SearchForm = ({ onInputChange, handleSearchKeyUp, handleClick, search }) => {
 
     return (
 
@@ -18,7 +18,7 @@ export const SearchForm = ({ onInputChange, handleSearchKeyUp, getBooks, search 
                     type="text"
                     className="mr-sm-2"
                 />
-                <Button onClick={getBooks} variant="outline-success">
+                <Button onClick={(event) => handleClick(event)} variant="outline-success">
                     Search
                 </Button>
             </Form>

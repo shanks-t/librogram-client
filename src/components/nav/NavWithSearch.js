@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { UserContext } from "../user/UserManager";
 
 import { Navbar, Nav, Form, FormControl, Button, Container, NavDropdown } from "react-bootstrap";
 
@@ -10,32 +11,28 @@ import './NavBar.css'
 export const NavWithSearch = () => {
     const history = useHistory()
     const [search, setSearch] = useState('');
+    const { getGoogleBooks } = useContext(UserContext)
 
     const onInputChange = e => {
         setSearch(e.target.value);
     }
 
-    const getBooks = async () => {
+    const handleSearch = (event) => {
+        event.preventDefault()
+        getGoogleBooks(search)
         history.push('/search')
     }
 
     const handleSearchKeyUp = (event) => {
         event.preventDefault();
         if (event.key === 'Enter' && event.keyCode === 13) {
-            getBooks()
+            getGoogleBooks(search)
             history.push('/search')
+            setSearch('')
         }
     }
 
     const handleFormSubmit = e => e.preventDefault();
-
-    useEffect(() => {
-        const json = JSON.stringify(search)
-        localStorage.setItem('search', json)
-        console.log('search', search)
-    }, [search]);
-
-
 
     return (
         <>
@@ -67,7 +64,7 @@ export const NavWithSearch = () => {
                                 type="text"
                                 className="mr-sm-2"
                             />
-                            <Button onClick={getBooks} variant="outline-success">
+                            <Button onClick={(event) => handleSearch(event)} variant="outline-success">
                                 Search
                             </Button>
                         </Form>
