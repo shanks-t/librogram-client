@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-
+import React, { useEffect, useState, useContext } from "react"
+import { UserContext } from "../user/UserManager"
 import { getReadingGoals } from "./ReadingGoalManager"
 import { ProgressBar } from "./ProgressBar"
 import { deleteReadingGoal } from "./ReadingGoalManager"
@@ -10,9 +10,13 @@ export const ReadingGoalsList = ({ close }) => {
     const [goals, setGoals] = useState([])
     const [ showForm, setShowForm ] = useState(false)
     const [ goal, setGoal ] = useState({})
+    const { getCurrentUser } = useContext(UserContext)
 
+    
     const goalsFetch = () => {
-        getReadingGoals().then(data => setGoals(data))
+        getReadingGoals().then(data => setGoals(data)).then(() => {
+            getCurrentUser()
+        })
     }
 
     useEffect(() => {
