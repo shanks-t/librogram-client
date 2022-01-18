@@ -1,18 +1,12 @@
-import React, { useCallback, useContext, useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
-//import { saveComment, getComment, updateComment } from "./CommentManager"
+import React, { useContext } from "react"
 import { CommentContext } from "./CommentManager"
 
-export const CommentForm = ( { userBook }) => {
-    //const [ comment, setComment ] = useState({})
-    const history = useHistory()
-   
-    const { saveComment, comment, setComment, getComments } = useContext(CommentContext)
+export const CommentForm = ( { userBook, handleShowFormCreate }) => {
+    const { saveComment, comment, setComment } = useContext(CommentContext)
 
     const handleOnChange = (event) => {
         const copyComment = { ...comment }
         copyComment[event.target.name] = event.target.value
-        copyComment['bookId'] = userBook.book.id
         setComment(copyComment)
     }
 
@@ -31,7 +25,7 @@ export const CommentForm = ( { userBook }) => {
         event.preventDefault()
 
         saveComment(comment).then(() => {
-            getComments(userBook.book.id)
+            handleShowFormCreate()
         })
     }
 

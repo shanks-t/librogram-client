@@ -1,49 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, useHistory, Link } from "react-router-dom";
-import { SearchResults } from "../book/SearchResults";
-import { SearchForm } from "../book/SearchForm"
+import { useHistory, Link } from "react-router-dom";
 
 import { Navbar, Nav, Form, FormControl, Button, Container, NavDropdown } from "react-bootstrap";
 
 import { GiBlackBook } from "react-icons/gi";
 
 import './NavBar.css'
-import { getBook } from "../book/BookManager";
 
 export const NavWithSearch = () => {
     const history = useHistory()
-    const [books, setBooks] = useState({});
     const [search, setSearch] = useState('');
-    const [API_KEY, set_API_KEY] = useState(`${process.env.REACT_APP_API}`)
-
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}&maxResults=30`
 
     const onInputChange = e => {
         setSearch(e.target.value);
     }
 
-    // handleSearchSubmit = () => {
-    //     if (searchText) {
-    //         let text = searchText;
-    //         setState({ searchText: "" })
-    //         history.push({
-    //             pathname: "/results",
-    //             state: { searchText: text }
-    //         });
-    //     } else {
-    //         alert("Please enter some search text!");
-    //     }
-    // };
-
     const getBooks = async () => {
-        try {
-            const response = await fetch(url);
-            const data = await response.json()
-            setBooks(data);
-            history.push('/search')
-        } catch (error) {
-            console.error(error);
-        }
+        history.push('/search')
     }
 
     const handleSearchKeyUp = (event) => {

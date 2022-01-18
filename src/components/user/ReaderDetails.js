@@ -1,11 +1,6 @@
-import React, { useContext, useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
-import { UserContext } from "./UserManager"
+import React from "react"
 
 export const ReaderDetails = ({ userBook }) => {
-    const [ updatedUserBook, setUpdatedUserBook ] = useState({})
-    const [ statuses, setStatuses ] = useState([])
-    const { getStatuses, updateUserBook, setUserBook } = useContext(UserContext)
 
     return (
         <>

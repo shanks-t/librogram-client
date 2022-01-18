@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
 import { UserContext } from '../user/UserManager';
 import './UserView.css'
 
@@ -18,7 +17,7 @@ export const UserBook = ({ book, handleDelete }) => {
                     book?.book?.image_path ?
                         <>
                             <div className='book'>
-                                    <img src={book?.book.image_path} onClick={event => handleClick(event, book.id)} data-modal='modal-three'/>
+                                    <img src={book?.book.image_path} alt={''} onClick={event => handleClick(event, book.id)} data-modal='modal-three'/>
                                 <div className='button'><button className='button-default'  onClick={event => handleDelete(event, book.id)}>Delete</button></div>
                                 
                             </div>
