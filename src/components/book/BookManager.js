@@ -1,5 +1,5 @@
 export const saveBook = (book) => {
-    return fetch("http://localhost:8000/books", {
+    return fetch("https://librogram.herokuapp.com/books", {
         method: "POST",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -10,7 +10,7 @@ export const saveBook = (book) => {
 
 }
 export const saveUserBook = (book) => {
-    return fetch("http://localhost:8000/userbooks", {
+    return fetch("https://librogram.herokuapp.com/userbooks", {
         method: "POST",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -22,7 +22,7 @@ export const saveUserBook = (book) => {
 }
 
 export const getBook = (bookId) => {
-    return fetch(`http://localhost:8000/books/${bookId}`, {
+    return fetch(`https://librogram.herokuapp.com/books/${bookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }

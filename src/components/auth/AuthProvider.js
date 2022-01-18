@@ -6,7 +6,7 @@ export const CurrentUserProvider = (props) => {
     const [user, setUser] = useState({events:[]})
 
     const getCurrentUser = () => {
-        return fetch("http://localhost:8000/readers/currentuser", {
+        return fetch("https://librogram.herokuapp.com/readers/currentuser", {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
             }

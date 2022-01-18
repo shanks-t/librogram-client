@@ -12,7 +12,7 @@ export const CommentProvider = (props) => {
 
     const getComments = () => {
         
-        return fetch(`http://localhost:8000/comments?bookId=${userBook.book.id}`,{
+        return fetch(`https://librogram.herokuapp.com/comments?bookId=${userBook.book.id}`,{
             headers: {"Authorization": `Token ${localStorage.getItem("lg_user_token")}`}
         })
         .then(res => res.json())
@@ -20,7 +20,7 @@ export const CommentProvider = (props) => {
     }
 
     const getComment = commentId => {
-    return fetch(`http://localhost:8000/comments/${commentId}`, {
+    return fetch(`https://librogram.herokuapp.com/comments/${commentId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
@@ -30,7 +30,7 @@ export const CommentProvider = (props) => {
 }
 
     const deleteComment = (id) => {
-        return fetch(`http://localhost:8000/comments/${id}`, {
+        return fetch(`https://librogram.herokuapp.com/comments/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
@@ -41,7 +41,7 @@ export const CommentProvider = (props) => {
     }
 
     const saveComment = (comment) => {
-    return fetch(`http://localhost:8000/comments?bookId=${userBook.book.id}`, {
+    return fetch(`https://librogram.herokuapp.com/comments?bookId=${userBook.book.id}`, {
         method: "POST",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -53,7 +53,7 @@ export const CommentProvider = (props) => {
 }
 
 const updateComment = (commentId, comment) => {
-    return fetch(`http://localhost:8000/comments/${commentId}`, {
+    return fetch(`https://librogram.herokuapp.com/comments/${commentId}`, {
         method: "PUT",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -75,7 +75,7 @@ const updateComment = (commentId, comment) => {
 
 
 // export const updateComment = (commentId, comment) => {
-//     return fetch(`http://localhost:8000/comments/${commentId}`, {
+//     return fetch(`https://librogram.herokuapp.com/comments/${commentId}`, {
 //         method: "PUT",
 //         headers: {
 //             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -86,7 +86,7 @@ const updateComment = (commentId, comment) => {
 // }
 
 // export const saveComment = (comment) => {
-//     return fetch("http://localhost:8000/comments", {
+//     return fetch("https://librogram.herokuapp.com/comments", {
 //         method: "POST",
 //         headers: {
 //             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -98,7 +98,7 @@ const updateComment = (commentId, comment) => {
 // }
 
 // export const getComment = commentId => {
-//     return fetch(`http://localhost:8000/comments/${commentId}`, {
+//     return fetch(`https://librogram.herokuapp.com/comments/${commentId}`, {
 //         headers: {
 //             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
 //         }
@@ -107,7 +107,7 @@ const updateComment = (commentId, comment) => {
 // }
 
 // export const getComments = () => {
-//     return fetch(`http://localhost:8000/comments`, {
+//     return fetch(`https://librogram.herokuapp.com/comments`, {
 //         headers: {
 //             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
 //         }
