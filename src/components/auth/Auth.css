@@ -5,8 +5,10 @@
     font-size: 7rem;
 }
 
-/* .btn-login,
-.btn-login button {
-   margin: 1rem;
+body {
+    background-color: black;
+}
 
-} */
+.MuiTypography-h1 {
+    color: aliceblue;
+}
