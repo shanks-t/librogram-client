@@ -53,7 +53,7 @@ export const Register = (props) => {
                 subscriber: false
             };
 
-            return fetch("https://librogram-shanks.herokuapp.com/register", {
+            return fetch("http://localhost:8000/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
