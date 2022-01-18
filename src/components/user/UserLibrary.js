@@ -13,7 +13,6 @@ export const UserLibrary = (props) => {
 
     useEffect(() => {
         getBooks(user.user?.id)
-        console.log('user', user)
     }, [user]);
 
 
@@ -36,12 +35,6 @@ export const UserLibrary = (props) => {
         }
     }
 
-
-    // useEffect(() => {
-    //     if (userId) {
-    //         getBooks()
-    //     }
-    // }, [user])
 
     const handleDelete = (event, bookId) => {
         event.preventDefault()
