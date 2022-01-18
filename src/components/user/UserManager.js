@@ -99,6 +99,7 @@ const getTags = () => {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
     })
+    .then(getCurrentUser)
 }
 
  const searchBooksByUser = (userId, q, term) => {

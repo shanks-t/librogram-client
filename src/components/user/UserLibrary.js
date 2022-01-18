@@ -12,8 +12,9 @@ export const UserLibrary = (props) => {
     const { user, userBooks, getBooksByUser, deleteBook, searchBooksByUser } = useContext(UserContext)
 
     useEffect(() => {
-        getBooks()
-    }, []);
+        getBooks(user.user?.id)
+        console.log('user', user)
+    }, [user]);
 
 
 
@@ -45,7 +46,7 @@ export const UserLibrary = (props) => {
     const handleDelete = (event, bookId) => {
         event.preventDefault()
         deleteBook(bookId).then(() => {
-            getBooks(user.id)
+            getBooks(user.user?.id)
         })
     }
 

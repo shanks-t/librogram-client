@@ -4,11 +4,11 @@ import './UserView.css'
 
 
 export const UserBook = ({ book, handleDelete }) => {
-    const { getUserBook } = useContext(UserContext)
+    const { getBooksByUser, user } = useContext(UserContext)
     
     const handleClick = (event, id) => {
         event.preventDefault()
-        getUserBook(id)
+        getBooksByUser(user.user.id)
     }
 
     return (
