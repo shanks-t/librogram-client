@@ -1,5 +1,5 @@
 export const updateReadingGoal = (goalId, goal) => {
-    return fetch(`https://librogram.herokuapp.com/reading_goals/${goalId}/edit`, {
+    return fetch(`http://localhost:8000/reading_goals/${goalId}/edit`, {
         method: "PATCH",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -10,7 +10,7 @@ export const updateReadingGoal = (goalId, goal) => {
 }
 
 export const saveReadingGoal = (goal) => {
-    return fetch("https://librogram.herokuapp.com/reading_goals", {
+    return fetch("http://localhost:8000/reading_goals", {
         method: "POST",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`,
@@ -22,7 +22,7 @@ export const saveReadingGoal = (goal) => {
 }
 
 export const getReadingGoal = goalId => {
-    return fetch(`https://librogram.herokuapp.com/reading_goals/${goalId}`, {
+    return fetch(`http://localhost:8000/reading_goals/${goalId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
@@ -31,7 +31,7 @@ export const getReadingGoal = goalId => {
 }
 
 export const getReadingGoals = () => {
-    return fetch(`https://librogram.herokuapp.com/reading_goals`, {
+    return fetch(`http://localhost:8000/reading_goals`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
         }
@@ -40,7 +40,7 @@ export const getReadingGoals = () => {
 }
 
 export const deleteReadingGoal = (goalId) => {
-    return fetch(`https://librogram.herokuapp.com/reading_goals/${ goalId }`, {
+    return fetch(`http://localhost:8000/reading_goals/${ goalId }`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lg_user_token")}`
