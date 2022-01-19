@@ -5,7 +5,13 @@
     font-size: 7rem;
 }
 
-.container-login, .container-register {
+.container-register {
+    margin-top: 0;
+    background-color: #383131;
+    box-shadow: 20px 20px 10px #1c1b1a;;
+}
+.container-login {
+    margin-top: 0;
     background-color: #383131;
     box-shadow: 20px 20px 10px #1c1b1a;;
 }
