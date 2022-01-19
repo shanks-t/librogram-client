@@ -74,7 +74,7 @@ export const Register = (props) => {
     };
 
     return (
-        <main style={{ textAlign: "center" }}>
+        <main className='container-register' style={{ textAlign: "center" }}>
             <dialog className="dialog dialog--password" ref={passwordDialog}>
                 <div>Passwords do not match</div>
                 <button
@@ -93,7 +93,7 @@ export const Register = (props) => {
                         style={{color:"#f0f8ff"}}
                     >Please sign in
                     </Typography>
-                    <MdMenuBook className="book-icon-register" />
+                    <MdMenuBook style={{color:"#f0f8ff"}} className="book-icon-register" />
                     <fieldset className='register'>
                         <label htmlFor="firstName" style={{color:"#f0f8ff"}}> First Name </label>
                         <input

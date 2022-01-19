@@ -62,13 +62,13 @@ export const Login = () => {
                     align='center'
                     style={{color:"#f0f8ff", fontWeight:"400"}}
                     >Please sign in</Typography>
-                    <MdMenuBook className="book-icon-login"/>
+                    <MdMenuBook style={{color:"#f0f8ff"}} className="book-icon-login"/>
                     <fieldset className='login'>
-                        <label htmlFor="inputUsername"> Username</label>
+                        <label style={{color:"#f0f8ff"}} htmlFor="inputUsername"> Username</label>
                         <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
                     <fieldset className='login'>
-                        <label htmlFor="inputPassword"> Password </label>
+                        <label style={{color:"#f0f8ff"}} htmlFor="inputPassword"> Password </label>
                         <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
                     </fieldset>
                     <div>
