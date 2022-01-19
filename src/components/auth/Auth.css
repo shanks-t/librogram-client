@@ -7,8 +7,9 @@
 
 body {
     background-color: black;
+    background-image: none;
 }
 
-.MuiTypography-h1 {
+.MuiTypography-h3 {
     color: aliceblue;
 }

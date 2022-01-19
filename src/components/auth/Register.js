@@ -90,12 +90,12 @@ export const Register = (props) => {
                     <Typography
                         variant='h3'
                         align='center'
-                        color='textSecondary'
+                        style={{color:"#f0f8ff"}}
                     >Please sign in
                     </Typography>
-                    <MdMenuBook className="book-icon-register" />
+                    <MdMenuBook className="book-icon-register" style={{color:"#f0f8ff"}}/>
                     <fieldset className='register'>
-                        <label htmlFor="firstName"> First Name </label>
+                        <label htmlFor="firstName" style={{color:"#f0f8ff"}}> First Name </label>
                         <input
                             ref={firstName}
                             type="text"
@@ -107,7 +107,7 @@ export const Register = (props) => {
                         />
                     </fieldset>
                     <fieldset className='register'>
-                        <label htmlFor="lastName"> Last Name </label>
+                        <label htmlFor="lastName" style={{color:"#f0f8ff"}}> Last Name </label>
                         <input
                             ref={lastName}
                             type="text"
@@ -118,7 +118,7 @@ export const Register = (props) => {
                         />
                     </fieldset>
                     <fieldset className='register'>
-                        <label htmlFor="username"> Username </label>
+                        <label htmlFor="username" style={{color:"#f0f8ff"}}> Username </label>
                         <input
                             ref={username}
                             type="text"
@@ -129,7 +129,7 @@ export const Register = (props) => {
                         />
                     </fieldset>
                     <fieldset className='register'>
-                        <label htmlFor="bio"> Bio </label>
+                        <label htmlFor="bio" style={{color:"#f0f8ff"}}> Bio </label>
                         <textarea
                             ref={bio}
                             rows={6}
@@ -141,7 +141,7 @@ export const Register = (props) => {
                         />
                     </fieldset>
                     <fieldset className='register'>
-                        <label htmlFor="inputEmail"> Email address </label>
+                        <label htmlFor="inputEmail" style={{color:"#f0f8ff"}}> Email address </label>
                         <input
                             ref={email}
                             type="email"
@@ -152,7 +152,7 @@ export const Register = (props) => {
                         />
                     </fieldset>
                     <fieldset className='register'>
-                        <label htmlFor="profileImageUrl"> User Photo </label>
+                        <label htmlFor="profileImageUrl" style={{color:"#f0f8ff"}}> User Photo </label>
                         <input
                             ref={profileImageUrl}
                             type="text"
@@ -163,7 +163,7 @@ export const Register = (props) => {
                         />
                     </fieldset>
                     <fieldset className='register'>
-                        <label htmlFor="inputPassword"> Password </label>
+                        <label htmlFor="inputPassword" style={{color:"#f0f8ff"}}> Password </label>
                         <input
                             ref={password}
                             type="password"
@@ -174,7 +174,7 @@ export const Register = (props) => {
                         />
                     </fieldset>
                     <fieldset className='register'>
-                        <label htmlFor="verifyPassword"> Verify Password </label>
+                        <label htmlFor="verifyPassword" style={{color:"#f0f8ff"}}> Verify Password </label>
                         <input
                             ref={verifyPassword}
                             type="password"
@@ -185,13 +185,13 @@ export const Register = (props) => {
                         />
                     </fieldset>
                     <FormGroup sx={{ alignItems: 'center'}}>
-                        <FormControlLabel control={<Checkbox name='isAdmin' onChange={() => {
+                        <FormControlLabel style={{color:"#f0f8ff"}} control={<Checkbox name='isAdmin' onChange={() => {
                             handleAdminCheckbox()
                         }} />} label="Are you and Administrator?" />
                     </FormGroup>
                     <Button sx={{ m: 2 }} variant='contained' className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
                 </form>
-                <section className="link--register">
+                <section className="link--register" style={{color:"#f0f8ff"}}>
                     Already registered? <Link to="/login">Login</Link>
                 </section>
             </Container>
