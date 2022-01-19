@@ -5,9 +5,9 @@
     font-size: 7rem;
 }
 
-body {
-    background-color: black;
-    background-image: none;
+#app-root {
+    background-color: dimgrey;
+    box-shadow: 20px 20px 10px #1c1b1a;;
 }
 
 .MuiTypography-h3 {

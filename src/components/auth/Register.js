@@ -93,7 +93,7 @@ export const Register = (props) => {
                         style={{color:"#f0f8ff"}}
                     >Please sign in
                     </Typography>
-                    <MdMenuBook className="book-icon-register" style={{color:"#f0f8ff"}}/>
+                    <MdMenuBook className="book-icon-register" />
                     <fieldset className='register'>
                         <label htmlFor="firstName" style={{color:"#f0f8ff"}}> First Name </label>
                         <input

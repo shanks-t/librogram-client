@@ -53,14 +53,14 @@ export const Login = () => {
                 <form className="form--login" onSubmit={handleLogin}>
                     <Typography 
                         variant='h1'
-                        style={{color:"#f0f8ff"}}
+                        style={{color:"#f0f8ff", fontWeight:"400"}}
                         align='center'
                         >Librogram
                         </Typography>
                     <Typography
                     variant='h3'
                     align='center'
-                    style={{color:"#f0f8ff"}}
+                    style={{color:"#f0f8ff", fontWeight:"400"}}
                     >Please sign in</Typography>
                     <MdMenuBook className="book-icon-login"/>
                     <fieldset className='login'>
